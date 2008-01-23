@@ -11,9 +11,9 @@ import TextField.StyleSheet;
 /**
  * @author Colin
  */
-class com.mixmedia.view.HTMLTextField extends AbstractEventDispatcher implements IEventDispatcher {
+class com.mixmedia.mx.view.TextFieldXHTML extends AbstractEventDispatcher implements IEventDispatcher {
 	private var base:TextField;
-	public function HTMLTextField(base:TextField) {
+	public function TextFieldXHTML(base:TextField) {
 		this.base = base;
 		base.addListener(this);
 		base.onSetFocus = Delegate.create(this,onSetFocus);

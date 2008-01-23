@@ -1,14 +1,14 @@
 import mx.utils.Delegate;
 
 import com.mixmedia.mx.events.AbstractEventDispatcher;
-import com.mixmedia.view.IButtonClip;
-import com.mixmedia.view.IButtonElement;
+import com.mixmedia.mx.view.IButtonClip;
+import com.mixmedia.mx.view.IButtonElement;
 import com.mixmedia.view.events.ButtonClipEvent;
 
 /**
  * @author Colin
  */
-class com.mixmedia.view.ButtonClip extends AbstractEventDispatcher implements IButtonClip{
+class com.mixmedia.mx.view.ButtonClip extends AbstractEventDispatcher implements IButtonClip{
 	public var isHighlight:Boolean = false;
 	private var hitArea:Button;
 

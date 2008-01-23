@@ -1,10 +1,10 @@
 import mx.utils.Delegate;
 
+import com.mixmedia.mx.view.ButtonClip;
+import com.mixmedia.mx.view.IButtonClip;
+import com.mixmedia.mx.view.IButtonElement;
 import com.mixmedia.navigation.Navigation;
 import com.mixmedia.navigation.events.NavigationEvent;
-import com.mixmedia.view.ButtonClip;
-import com.mixmedia.view.IButtonClip;
-import com.mixmedia.view.IButtonElement;
 import com.mixmedia.view.events.ButtonClipEvent;
 
 /**
