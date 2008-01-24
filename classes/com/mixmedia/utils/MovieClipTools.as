@@ -161,4 +161,12 @@ class com.mixmedia.utils.MovieClipTools {
 			mc.lineTo(x, y);
 		}
 	};
+	
+	public static function findButton(mc:MovieClip):Button{
+		for(var name:String in mc){
+			if(mc[name] instanceof Button){
+				return mc[name];
+			};
+		}
+	}
 }

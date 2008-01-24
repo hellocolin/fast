@@ -1,6 +1,7 @@
 import com.mixmedia.mx.view.ButtonEvt;
 import com.mixmedia.mx.view.IButtonClip;
 import com.mixmedia.mx.view.IButtonElement;
+import com.mixmedia.utils.MovieClipTools;
 
 /**
  * @author Colin
@@ -10,7 +11,7 @@ class com.mixmedia.view.ButtonClip extends MovieClip implements IButtonClip {
 	private var base:ButtonEvt;
 	
 	public function ButtonClip() {
-		if(this[hitArea]==null)findButton();
+		if(this[hitArea]==null)MovieClipTools.findButton();
 		base = new ButtonEvt(hitArea);
 		base.setCurrentTarget(this);	
 	}
@@ -29,14 +30,5 @@ class com.mixmedia.view.ButtonClip extends MovieClip implements IButtonClip {
 	
 	public function setCurrentTarget(currentTarget : Object) : Void {
 		base.setCurrentTarget(currentTarget);
-	}
-	
-	private function findButton():Void{
-		for(var name:String in this){
-			if(this[name] instanceof Button){
-				hitArea = this[name];
-				break;
-			};
-		}
 	}
 }
