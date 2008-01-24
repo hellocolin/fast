@@ -8,7 +8,7 @@ import com.mixmedia.navigation.events.NavigationEvent;
  //: dispatch event
 
 class com.mixmedia.navigation.Navigation extends AbstractEventDispatcher{
-	static public var ins:Navigation;
+	static private var ins:Navigation;
 	static public function instance():Navigation{
 		if(ins==null)ins = new Navigation();
 		return ins;

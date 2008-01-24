@@ -1,6 +1,6 @@
 import mx.utils.Delegate;
 
-import com.mixmedia.mx.view.ButtonClip;
+import com.mixmedia.mx.view.ButtonEvt;
 import com.mixmedia.mx.view.IButtonClip;
 import com.mixmedia.mx.view.IButtonElement;
 import com.mixmedia.navigation.Navigation;
@@ -11,7 +11,7 @@ import com.mixmedia.view.events.ButtonClipEvent;
  * @author Colin
  * decorator of ButtonClip
  */
-class com.mixmedia.view.navigation.NavButton implements IButtonClip{
+class com.mixmedia.mx.view.NavButton implements IButtonClip{
 	private static var navBtnReference:Array = new Array();
 	private var base:IButtonClip;
 	private var currentTarget : IButtonClip;
@@ -21,7 +21,7 @@ class com.mixmedia.view.navigation.NavButton implements IButtonClip{
 	public var targetContainer:String;
 
 	public function NavButton(hitarea:Button,navKey:String,targetContainer:String){
-		base = new ButtonClip(hitarea);
+		base = new ButtonEvt(hitarea);
 		base.setCurrentTarget(this);
 		base.addEventListener(ButtonClipEvent.CLICK, Delegate.create(this,click));
 

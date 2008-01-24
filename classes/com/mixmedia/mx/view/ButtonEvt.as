@@ -8,11 +8,11 @@ import com.mixmedia.view.events.ButtonClipEvent;
 /**
  * @author Colin
  */
-class com.mixmedia.mx.view.ButtonClip extends AbstractEventDispatcher implements IButtonClip{
+class com.mixmedia.mx.view.ButtonEvt extends AbstractEventDispatcher implements IButtonClip{
 	public var isHighlight:Boolean = false;
 	private var hitArea:Button;
 
-	public function ButtonClip(hitarea:Button){
+	public function ButtonEvt(hitarea:Button){
 		this.hitArea = hitarea;
 
 		hitarea.onRollOver = Delegate.create(this,over);
@@ -32,22 +32,22 @@ class com.mixmedia.mx.view.ButtonClip extends AbstractEventDispatcher implements
 	}
 
 	private function out():Void{
-		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.MOUSE_OUT  ,this, isHighlight));
+		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.MOUSE_OUT  ,hitArea, isHighlight));
 	}
 
 	private function over():Void{
-		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.MOUSE_OVER ,this, isHighlight));
+		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.MOUSE_OVER ,hitArea, isHighlight));
 	}
 	
 	private function reset():Void{
-		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.RESET      ,this, isHighlight));
+		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.RESET      ,hitArea, isHighlight));
 	}
 	
 	private function click():Void{
-		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.CLICK      ,this, isHighlight));
+		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.CLICK      ,hitArea, isHighlight));
 	}
 
 	private function down():Void{
-		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.MOUSE_DOWN ,this, isHighlight));
+		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.MOUSE_DOWN ,hitArea, isHighlight));
 	}
 }
