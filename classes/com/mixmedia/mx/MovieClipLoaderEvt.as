@@ -26,7 +26,7 @@ class com.mixmedia.mx.MovieClipLoaderEvt extends MovieClipLoader implements IEve
 		return super.loadClip(url,target);
 	}
 
-	public function getTarget() : Object {
+	public function getTargetContainer() : Object {
 		return target;
 	}
 

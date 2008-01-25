@@ -56,7 +56,7 @@ import com.mixmedia.net.ILoader;
 		dispatchEvent(new LoaderEvent(currentTarget,LoaderEvent.COMPLETE, this,src));
 	}
 
-	public function getTarget() : Object {
+	public function getTargetContainer() : Object {
 		return this;
 	}
 

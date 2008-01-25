@@ -33,7 +33,7 @@ class com.mixmedia.net.LoadFLV implements ILoader {
 		if(autoPlay==false)vid_ns.pause(true);
 	}
 
-	public function getTarget() : Object {
+	public function getTargetContainer() : Object {
 		return vid;
 	}
 

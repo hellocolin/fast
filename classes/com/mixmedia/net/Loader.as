@@ -56,8 +56,8 @@ class com.mixmedia.net.Loader extends AbstractEventDispatcher implements ILoader
 		queue.addRequest(delLoad);
 	}
 
-	public function getTarget():Object{
-		return base.getTarget();
+	public function getTargetContainer():Object{
+		return base.getTargetContainer();
 	}
 
 	private function doLoad():Void{
@@ -70,7 +70,7 @@ class com.mixmedia.net.Loader extends AbstractEventDispatcher implements ILoader
 	}
 
 	private function makePreloader():Void{
-		BindMovieClip.make(BindMovieClip.PROGRESS, preloaderParent, preloaderID, {target:getTarget()});
+		BindMovieClip.make(BindMovieClip.PROGRESS, preloaderParent, preloaderID, {target:getTargetContainer()});
 	}
 
 	private function killPreloader():Void{

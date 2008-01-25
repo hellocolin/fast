@@ -17,7 +17,7 @@ class com.mixmedia.net.LoadXML implements ILoader {
 		xmlContent.load(request);
 	}
 
-	public function getTarget() : Object {
+	public function getTargetContainer() : Object {
 		return xmlContent;
 	}
 

@@ -42,7 +42,7 @@ class com.mixmedia.net.LoadSWF implements ILoader {
 		mcImageLoader.stop();
 	}
 
-	public function getTarget() : Object {
+	public function getTargetContainer() : Object {
 		return mcImageLoader;
 	}
 

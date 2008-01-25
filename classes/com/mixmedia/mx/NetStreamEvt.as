@@ -77,8 +77,8 @@ class com.mixmedia.mx.NetStreamEvt extends NetStream implements IEventDispatcher
 		dispatchEvent(new LoaderEvent(currentTarget,LoaderEvent.OPEN,this,this));
 	}
 
-	public function getTarget() : Object {
-		return this;
+	public function getTargetContainer() : Object {
+		return this;//prefer the video.. but no way to get it
 	}
 
 	public function load(requestURL : String) : Void {

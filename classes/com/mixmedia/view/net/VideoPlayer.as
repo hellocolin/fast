@@ -210,7 +210,7 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 		}
 	}
 	
-	public function getTarget() : Object {
+	public function getTargetContainer() : Object {
 		return vid;
 	}
 }

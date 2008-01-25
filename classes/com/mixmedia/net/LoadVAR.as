@@ -11,7 +11,7 @@ class com.mixmedia.net.LoadVAR implements ILoader {
 		this.currentTarget = this;
 	}
 
-	public function getTarget() : Object {
+	public function getTargetContainer() : Object {
 		return this;
 	}
 
