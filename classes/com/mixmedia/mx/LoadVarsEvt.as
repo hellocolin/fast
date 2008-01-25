@@ -19,6 +19,10 @@ class com.mixmedia.mx.LoadVarsEvt extends LoadVars implements IEventDispatcher,I
 		currentTarget = this;
 	}
 	
+	public function load(requestURL : String) : Void{
+		super.load(requestURL);
+	}
+
 	private function onLoad(success:Boolean):Void{
 		super.onLoad(success);
 		if(success==true){
