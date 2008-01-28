@@ -1,5 +1,4 @@
 ﻿import com.mixmedia.mx.events.Event;
-import com.mixmedia.net.ILoader;
 
 /**
  * @author Colin
@@ -7,7 +6,7 @@ import com.mixmedia.net.ILoader;
 class com.mixmedia.mx.events.LoaderEvent extends Event{
 	public var targetContainer:Object;
 
-	public function LoaderEvent(currentTarget : Object, type:String,target:ILoader,targetContainer:Object){
+	public function LoaderEvent(currentTarget : Object, type:String,target:Object,targetContainer:Object){
 		super(currentTarget,type,target);
 		this.targetContainer=targetContainer;
 	}
