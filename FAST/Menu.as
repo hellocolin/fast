@@ -14,6 +14,9 @@ class Menu extends MovieClip {
 	private var hideMotion:MotionTween;
 	
 	public function Menu(){
+		_alpha = 0;
+		_visible = false;
+
 		showMotion = new MotionTween(this,{a:100});
 		hideMotion = new MotionTween(this,{a:0});
 
