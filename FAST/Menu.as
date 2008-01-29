@@ -1,41 +1,47 @@
 import mx.utils.Delegate;
 
 import com.mixmedia.motion.MotionTween;
+import com.mixmedia.mx.events.MouseEvent;
 
 /**
  * @author Colin
  */
 class Menu extends MovieClip {
-	private var navBtns:Array=[];
-	public static var STATUS_SHOW:String = "show";
-	public static var STATUS_HIDE:String = "hide";
+	private var navKey:String;
 
 	private var iid:Number;
 	private var showMotion:MotionTween;
 	private var hideMotion:MotionTween;
 	
 	public function Menu(){
-		trace('hi');
 		showMotion = new MotionTween(this,{a:100});
 		hideMotion = new MotionTween(this,{a:0});
-		
+
+		var para:Array = _name.split("$");
+		this.navKey = para[1];
+	}
+	
+	public function onLoad():Void{
 		for(var n in this){
 			if(this[n] instanceof NavBtn){
-				navBtns.push(this[n]);
+				NavBtn(this[n]).addEventListener(MouseEvent.MOUSE_OVER, Delegate.create(this,show));
+				NavBtn(this[n]).addEventListener(MouseEvent.MOUSE_OUT, Delegate.create(this,hide));
 			}
 		}
 	}
 	
 	public function show():Void{
+		clearHide();
 		showMotion.startTween();
 	}
 	
 	public function hide():Void{
 		clearHide();
-		setInterval(Delegate.create(this, hideImp),500);
+		iid = setInterval(Delegate.create(this, hideImp),500);
 	}
 	
 	private function hideImp():Void{
+		clearHide();
 		hideMotion.startTween();
 	}
 	
