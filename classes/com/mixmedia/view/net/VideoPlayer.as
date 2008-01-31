@@ -90,6 +90,8 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	}
 
 	public function play():Void{
+		if(isPlaying==true)return;
+
 		if(ns.bytesLoaded==0){
 			dispatchEvent(new ErrorEvent(currentTarget,ErrorEvent.ERROR,this,'VideoPlayer play before data loaded'));
 			return;
@@ -100,6 +102,8 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	}
 
 	public function stop(sendEvent:Boolean):Void{
+		if(isPlaying==false)return;
+		
 		ns.pause(true);
 		isPlay = false;
 		if(sendEvent==false)return;
