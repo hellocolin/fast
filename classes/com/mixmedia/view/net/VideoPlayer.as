@@ -29,9 +29,11 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	public var safePlayToEnd : Boolean = false;
 	public var errorCode : String;
 	public var clickDisable : Boolean = true;
+	
+	public var autoPlay:Boolean = false;
 
 	public function VideoPlayer(){
-		loader = new Loader(new LoadFLV(vid,false,1,true),1);
+		loader = new Loader(new LoadFLV(vid,false,1,true,0),1);
 		loader.addEventListener(LoaderEvent.READY, Delegate.create(this,onFLVLoad));
 		loader.addEventListener(LoaderEvent.PROGRESS,Delegate.create(this,onProgress));
 		loader.addEventListener(ErrorEvent.ERROR,Delegate.create(this,onError));
@@ -72,7 +74,7 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 
 	private function onEarliestStartTime():Void{
 		safePlayToEnd = true;
-		this.play();
+		if(autoPlay==true)this.play();
 		dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.EARLIESTSTARTTIME,this));
 	}
 
@@ -88,7 +90,10 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	}
 
 	public function play():Void{
-		if(ns.bytesLoaded==0)dispatchEvent(new ErrorEvent(currentTarget,ErrorEvent.ERROR,this,'VideoPlayer play before data loaded'));
+		if(ns.bytesLoaded==0){
+			dispatchEvent(new ErrorEvent(currentTarget,ErrorEvent.ERROR,this,'VideoPlayer play before data loaded'));
+			return;
+		}
 		ns.pause(false);
 		isPlay = true;
 		dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.PLAY));
