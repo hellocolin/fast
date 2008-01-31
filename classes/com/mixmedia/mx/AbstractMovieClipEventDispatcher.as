@@ -11,6 +11,7 @@ class com.mixmedia.mx.AbstractMovieClipEventDispatcher extends MovieClip impleme
 	
 	public function AbstractMovieClipEventDispatcher(){
 		EventDispatcher.initialize(this);
+		currentTarget = this;
 	}
 
 	public function setCurrentTarget(currentTarget : Object) : Void {
