@@ -53,11 +53,11 @@ class com.mixmedia.utils.MovieClipTools {
 		
 	}
 	
-	public static function alignCenter(floatMc:MovieClip,fixMc:MovieClip):Void{
-		var fixMcCenterX:Number = fixMc._width/2;
-		var fixMcCenterY:Number = fixMc._height/2;
-		floatMc._x = fixMcCenterX-floatMc._width + floatMc._width/2;
-		floatMc._y = fixMcCenterY-floatMc._height + floatMc._height/2;
+	public static function alignCenter(floatMc:Object,fixMc:Object):Void{
+		var fixMcCenterX:Number = fixMc['_width']/2;
+		var fixMcCenterY:Number = fixMc['_height']/2;
+		floatMc['_x'] = fixMcCenterX-floatMc['_width'] + floatMc['_width']/2;
+		floatMc['_y'] = fixMcCenterY-floatMc['_height'] + floatMc['_height']/2;
 	};
 
 	public static function alignStageXCenter(floatMc:MovieClip):Void{

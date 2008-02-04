@@ -1,14 +1,16 @@
-import mx.utils.Delegate;
+﻿import mx.utils.Delegate;
 
 import com.mixmedia.mx.AbstractMovieClipEventDispatcher;
 import com.mixmedia.mx.NetStreamEvt;
 import com.mixmedia.mx.events.ErrorEvent;
+import com.mixmedia.mx.events.Event;
 import com.mixmedia.mx.events.IEventDispatcher;
 import com.mixmedia.mx.events.LoaderEvent;
 import com.mixmedia.mx.events.MouseEvent;
 import com.mixmedia.net.ILoader;
 import com.mixmedia.net.LoadFLV;
 import com.mixmedia.net.Loader;
+import com.mixmedia.utils.MovieClipTools;
 import com.mixmedia.view.events.VideoPlayerEvent;
 
 /**
@@ -31,12 +33,31 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	public var clickDisable : Boolean = true;
 	
 	public var autoPlay:Boolean = false;
+	public var autoScale:Boolean = true;
 
 	public function VideoPlayer(){
 		loader = new Loader(new LoadFLV(vid,false,1,true,0),1);
 		loader.addEventListener(LoaderEvent.READY, Delegate.create(this,onFLVLoad));
 		loader.addEventListener(LoaderEvent.PROGRESS,Delegate.create(this,onProgress));
 		loader.addEventListener(ErrorEvent.ERROR,Delegate.create(this,onError));
+		loader.addEventListener(LoaderEvent.OPEN, Delegate.create(this,onStreamOpen));
+	}
+	
+	private function onStreamOpen(e:LoaderEvent):Void{
+		ns = NetStreamEvt(e.target);
+		resize();
+	}
+
+	private function resize():Void{
+
+		if(autoScale==true)return;
+		var metaDataArray:Array = ns.metaDataArray;
+		for(var i:Number = 0;i<metaDataArray.length;i++){
+			if(metaDataArray[i].name=="width")vid._width=metaDataArray[i].value;
+			if(metaDataArray[i].name=="height")vid._height=metaDataArray[i].value;
+		}
+		
+		MovieClipTools.alignCenter(vid, this);
 	}
 	
 	public function load(path:String):Void{
@@ -103,7 +124,8 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 
 	public function stop(sendEvent:Boolean):Void{
 		if(isPlaying==false)return;
-		
+		removeReplayInterval();
+
 		ns.pause(true);
 		isPlay = false;
 		if(sendEvent==false)return;
@@ -117,6 +139,9 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	}
 
 	public function gotoAndPlay(time:Number):Void{
+		if(time==0){
+			removeReplayInterval();
+		}
 		ns.seek(time);
 		play();
 	}
@@ -126,10 +151,31 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 		stop();
 	}
 	
+	private var prevFrameTime:Number=0;
+	private var iid:Number;
+	
 	private function onEnterFrame():Void{
 		if(isPlay){
 			dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.PLAYING,this));
+
+			if(_currentframe==prevFrameTime){
+				if(iid==null)iid = setInterval(Delegate.create(this, playEnd),1000);
+			}else{
+				removeReplayInterval();
+			}
+
+			prevFrameTime = ns.time;
+
+			if(_currentframe>=getDuration()){
+				playEnd();
+			}
 		}
+	}
+	
+	private function playEnd():Void{
+		removeReplayInterval();
+		stop();
+		dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.PLAYEND, this));	
 	}
 	
 	private function onPress():Void{
@@ -201,6 +247,7 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 		// For video downloaded with progressive download, the user has tried to seek or play past the end of the video data that has downloaded thus far, or past the end of the video once the entire file has downloaded. The message.details property contains a time code that indicates the last valid position to which the user can seek.
 		'NetStream.Seek.Notify';
 		//' The seek operation is complete.*/
+
 		if(safePlayToEnd==false){
 			if(getSecondBeforeSafePlay()<=0)onEarliestStartTime();
 		}
@@ -221,5 +268,10 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	
 	public function getTargetContainer() : Object {
 		return vid;
+	}
+	
+	private function removeReplayInterval():Void{
+		clearInterval(iid);
+		iid=null;
 	}
 }
