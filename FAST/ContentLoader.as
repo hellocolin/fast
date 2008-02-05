@@ -40,10 +40,14 @@ class ContentLoader extends MovieClip {
 	
 	private function onFadeOutAndLoad(e:Event):Void {
 		MotionTween(e.currentTarget).removeEventListener(Event.TWEENEND,arguments.caller);
-		loader.load(prefix+currentNavKey+".swf");
+		loadAction();
 	}
 
 	private function onLoadContentAndFadeIn():Void{
 		motion.startTween({a:100});
+	}
+	
+	private function loadAction():Void{
+		loader.load(prefix+currentNavKey+".swf");	
 	}
 }
