@@ -20,7 +20,7 @@ class com.mixmedia.utils.MovieClipTools {
 	
 	static public function captureTransform(mc:MovieClip):Object{
 		return {x:mc._x,y:mc._y,r:mc._rotation,xs:mc._xscale,ys:mc._yscale};
-	}
+	} 
 	
 	static public function killMovieClip(mc:MovieClip):Void{
 		mc.swapDepths(50000);
