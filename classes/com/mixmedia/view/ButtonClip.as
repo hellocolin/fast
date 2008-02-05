@@ -11,9 +11,9 @@ class com.mixmedia.view.ButtonClip extends MovieClip implements IButtonClip {
 	private var base:ButtonEvt;
 	
 	public function ButtonClip() {
-		if(this[hitArea]==null)MovieClipTools.findButton();
+		if(this[hitArea]==null)hitArea = MovieClipTools.findButton(this);
 		base = new ButtonEvt(hitArea);
-		base.setCurrentTarget(this);	
+		base.setCurrentTarget(this);
 	}
 	
 	public function addElement(element : IButtonElement) : Void {

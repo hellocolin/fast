@@ -12,11 +12,9 @@ import com.mixmedia.view.events.ButtonClipEvent;
  * decorator of ButtonClip
  */
 class com.mixmedia.mx.view.NavButton implements IButtonClip{
-	private static var navBtnReference:Array = new Array();
-	private var base:IButtonClip;
+	private var base:ButtonEvt;
 	private var currentTarget : IButtonClip;
 
-	public var isHighlight:Boolean;
 	public var navKey:String;
 	public var targetContainer:String;
 
@@ -28,12 +26,6 @@ class com.mixmedia.mx.view.NavButton implements IButtonClip{
 		this.navKey = navKey;
 		this.targetContainer = targetContainer;
 		Navigation.instance().addEventListener(NavigationEvent.CHANGE,Delegate.create(this,highlightButton));
-		register();
-	}
-
-	private function register():Void{
-		if(navBtnReference[navKey]==null)navBtnReference[navKey] = new Array();
-		navBtnReference[navKey].push(this);
 	}
 
 	private function click(e:ButtonClipEvent):Void{
@@ -42,32 +34,16 @@ class com.mixmedia.mx.view.NavButton implements IButtonClip{
 	}
 
 	public function highlightButton(e:NavigationEvent):Void{
-		var callerNavID:String = e.navKey;
-		var i:Number,j:Number,name:String,matchName:String;
-		//reset all navbtn status
-		for(name in navBtnReference){
-			for(i=0;i<navBtnReference[name].length;i++){
-				navBtnReference[name][i].isHighlight = false;
+		//if me in tree, highlight, else, dim
+		var id:String = e.navKey;//1, 1_2_3, 5, 3;
+		for(var i:Number=0;i<id.split("_").length;i++){
+			if(this.navKey==id.split("_",i+1).join("_")){
+				base.isHighlight = true;
+				return;
 			}
 		}
+		base.isHighlight = false;
 
-		//find which button need to be highlight
-		//callerNavID = 1_2_4
-		//matchName = 1 , matchName=1_2, matchName = 1_2_4
-		for(i=0;i<callerNavID.split("_").length;i++){
-			matchName = callerNavID.split("_",i+1).join("_");
-			if(navBtnReference[matchName]!=null){
-				for(j=0;j<navBtnReference[matchName].length;j++){
-					NavButton(navBtnReference[matchName][j]).isHighlight = true;
-				}
-			}
-		}
-
-		for(name in navBtnReference){
-			for(i=0;i<navBtnReference[name].length;i++){
-				navBtnReference[name][i].reset();
-			}
-		}
 	}
 	
 	public function addElement(element : IButtonElement) : Void {
@@ -84,5 +60,9 @@ class com.mixmedia.mx.view.NavButton implements IButtonClip{
 	
 	public function setCurrentTarget(currentTarget : Object) : Void {
 		base.setCurrentTarget(currentTarget);
+	}
+	
+	public function get isHighlight():Boolean{
+		return base.isHighlight;
 	}
 }
