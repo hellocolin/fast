@@ -33,12 +33,12 @@ class com.mixmedia.mx.view.TextFieldXHTML extends AbstractEventDispatcher implem
 	public function get _target() 		: String{return base._target;}
 	public function get _rotation() 	: Number{return base._rotation;}
 	public function get _name() 		: String{return base._name;}
-	public function get _framesloaded()	: Number{return base._framesloaded;}
-	public function get _droptarget() 	: String{return base._droptarget;}
-	public function get _currentframe()	: Number{return base._currentframe;}
-	public function get _totalframes() 	: Number{return base._totalframes;}
+//	public function get _framesloaded()	: Number{return base._framesloaded;}
+//	public function get _droptarget() 	: String{return base._droptarget;}
+//	public function get _currentframe()	: Number{return base._currentframe;}
+//	public function get _totalframes() 	: Number{return base._totalframes;}
 	public function get _quality() 		: String{return base._quality;}
-	public function get _focusrect() 	: Boolean{return base._focusrect;}
+//	public function get _focusrect() 	: Boolean{return base._focusrect;}
 	public function get _soundbuftime()	: Number{return base._soundbuftime;}
 	public function get _url() 			: String{return base._url;}
 	public function get _parent() 		: MovieClip{return base._parent;}
@@ -87,12 +87,12 @@ class com.mixmedia.mx.view.TextFieldXHTML extends AbstractEventDispatcher implem
 	public function set _target 		(s: String)	: Void{base._target= s;}
 	public function set _rotation		(n : Number): Void{base._rotation= n;}
 	public function set _name			(s: String)	: Void{base._name=s;}
-	public function set _framesloaded	(n:Number)	: Void{base._framesloaded= n;}
-	public function set _droptarget 	(s: String)	: Void{base._droptarget=s;}
-	public function set _currentframe 	(n:Number)	: Void{base._currentframe= n;}
-	public function set _totalframes 	(n:Number)	: Void{base._totalframes= n;}
+//	public function set _framesloaded	(n:Number)	: Void{base._framesloaded= n;}
+//	public function set _droptarget 	(s: String)	: Void{base._droptarget=s;}
+//	public function set _currentframe 	(n:Number)	: Void{base._currentframe= n;}
+//	public function set _totalframes 	(n:Number)	: Void{base._totalframes= n;}
 	public function set _quality 		(s: String)	: Void{base._quality=s;}
-	public function set _focusrect 		(b: Boolean): Void{base._focusrect= b;}
+//	public function set _focusrect 		(b: Boolean): Void{base._focusrect= b;}
 	public function set _soundbuftime 	(n: Number)	: Void{base._soundbuftime= n;}
 	public function set _url 			(s: String)	: Void{base._url=s;}
 	public function set _parent 		(m: MovieClip): Void{base._parent= m;}
