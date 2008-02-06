@@ -57,4 +57,8 @@ class com.mixmedia.net.LoadSWF implements ILoader {
 	public function setCurrentTarget(currentTarget : Object) : Void {
 		mcl.setCurrentTarget(currentTarget);
 	}
+	
+	public function unload() : Void {
+		mcImageLoader.unloadMovie();
+	}
 }

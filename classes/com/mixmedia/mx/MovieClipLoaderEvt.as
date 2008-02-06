@@ -9,9 +9,9 @@ import com.mixmedia.net.ILoader;
 /**
  * @author colin
  */
-class com.mixmedia.mx.MovieClipLoaderEvt extends MovieClipLoader implements IEventDispatcher, ILoader{
+class com.mixmedia.mx.MovieClipLoaderEvt extends MovieClipLoader implements IEventDispatcher{
 	private var target : Object;
-	private var currentTarget : ILoader;
+	private var currentTarget : Object;
 	private var isInit:Boolean = false;
 
 	public function MovieClipLoaderEvt(){

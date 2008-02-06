@@ -12,11 +12,11 @@ import com.mixmedia.net.ILoader;
  * 
  */
 
- class com.mixmedia.mx.XMLEvt extends XML implements IEventDispatcher,ILoader{
+ class com.mixmedia.mx.XMLEvt extends XML implements IEventDispatcher{
 	private var iid:Number;
 	private var isOpen:Boolean = false;
 	private var isComplete:Boolean = false;
-	private var currentTarget : ILoader;
+	private var currentTarget : Object;
 
 	public function XMLEvt(){
 		EventDispatcher.initialize(this);

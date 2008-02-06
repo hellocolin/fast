@@ -97,4 +97,8 @@ class com.mixmedia.net.Loader extends AbstractEventDispatcher implements ILoader
 		BindMovieClip.make(BindMovieClip.ERROR,errorIconParent,errorIconID);
 		killPreloader();
 	}
+	
+	public function unload() : Void {
+		base.unload();
+	}
 }

@@ -22,7 +22,7 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	private var speedSlope:Number;
 
 	private var vid:Video;
-	private var loader:Loader;
+	private var base:Loader;
 	private var ns:NetStreamEvt;
 
 	private var isPlay : Boolean = false;
@@ -36,11 +36,11 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	public var autoScale:Boolean = true;
 
 	public function VideoPlayer(){
-		loader = new Loader(new LoadFLV(vid,false,1,true,0),1);
-		loader.addEventListener(LoaderEvent.READY, Delegate.create(this,onFLVLoad));
-		loader.addEventListener(LoaderEvent.PROGRESS,Delegate.create(this,onProgress));
-		loader.addEventListener(ErrorEvent.ERROR,Delegate.create(this,onError));
-		loader.addEventListener(LoaderEvent.OPEN, Delegate.create(this,onStreamOpen));
+		base = new Loader(new LoadFLV(vid,false,1,true,0),1);
+		base.addEventListener(LoaderEvent.READY, Delegate.create(this,onFLVLoad));
+		base.addEventListener(LoaderEvent.PROGRESS,Delegate.create(this,onProgress));
+		base.addEventListener(ErrorEvent.ERROR,Delegate.create(this,onError));
+		base.addEventListener(LoaderEvent.OPEN, Delegate.create(this,onStreamOpen));
 	}
 	
 	private function onStreamOpen(e:LoaderEvent):Void{
@@ -64,7 +64,7 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 		startTime = getTimer();
 		isMetaReady=false;
 		flvURL = path;
-		loader.load(path);
+		base.load(path);
 		safePlayToEnd = false;
 	}
 
@@ -273,5 +273,9 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	private function removeReplayInterval():Void{
 		clearInterval(iid);
 		iid=null;
+	}
+	
+	public function unload() : Void {
+		base.unload();
 	}
 }

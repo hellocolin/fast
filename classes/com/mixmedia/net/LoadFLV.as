@@ -27,8 +27,7 @@ class com.mixmedia.net.LoadFLV implements ILoader {
 	}
 
 	public function load(requestURL:String):Void{
-		vid_nc.close();
-		vid_ns.close();
+		unload();
 		vid_ns.load(requestURL);
 		if(autoPlay==false)vid_ns.pause(true);
 	}
@@ -47,5 +46,10 @@ class com.mixmedia.net.LoadFLV implements ILoader {
 	
 	public function setCurrentTarget(currentTarget:Object):Void{
 		vid_ns.setCurrentTarget(currentTarget);
+	}
+	
+	public function unload() : Void {
+		vid_nc.close();
+		vid_ns.close();
 	}
 }

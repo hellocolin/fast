@@ -32,4 +32,6 @@ class com.mixmedia.net.LoadXML implements ILoader {
 	public function setCurrentTarget(currentTarget : Object) : Void {
 		xmlContent.setCurrentTarget(currentTarget);
 	}
+	
+	public function unload() : Void {}
 }

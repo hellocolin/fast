@@ -10,10 +10,10 @@ import com.mixmedia.net.ILoader;
 /**
  * @author Colin
  */
-class com.mixmedia.mx.NetStreamEvt extends NetStream implements IEventDispatcher, ILoader{
+class com.mixmedia.mx.NetStreamEvt extends NetStream implements IEventDispatcher{
 	public var metaDataArray:Array;
 	public var cuePointArray : Array;
-	private var currentTarget : ILoader;
+	private var currentTarget : Object;
 	
 	private var nc:NetConnection;
 

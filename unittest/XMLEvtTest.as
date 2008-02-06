@@ -4,7 +4,6 @@ import com.mixmedia.mx.XMLEvt;
 import com.mixmedia.mx.events.ErrorEvent;
 import com.mixmedia.mx.events.Event;
 import com.mixmedia.mx.events.LoaderEvent;
-import com.mixmedia.net.ILoader;
 
 class XMLEvtTest extends LoaderTestCase {
 	private var className:String = "XMLEvtTest";
@@ -12,6 +11,7 @@ class XMLEvtTest extends LoaderTestCase {
 	private var eventType:Object;
 	private var instanceType:Object;
 	private var targetType:Object;
+	private var instance:XMLEvt;
 
 	public function XMLEvtTest(testMethod:String) {
 		super(testMethod);

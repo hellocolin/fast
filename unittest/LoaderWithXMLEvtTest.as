@@ -5,6 +5,7 @@ import com.mixmedia.mx.events.ErrorEvent;
 import com.mixmedia.mx.events.Event;
 import com.mixmedia.mx.events.LoaderEvent;
 import com.mixmedia.net.ILoader;
+import com.mixmedia.net.LoadXML;
 import com.mixmedia.net.Loader;
 
 class LoaderWithXMLEvtTest extends LoaderTestCase {
@@ -13,6 +14,7 @@ class LoaderWithXMLEvtTest extends LoaderTestCase {
 	private var eventType:Object;
 	private var instanceType:Object;
 	private var targetType:Object;
+	
 
 	public function LoaderWithXMLEvtTest(testMethod:String) {
 		super(testMethod);
@@ -24,7 +26,7 @@ class LoaderWithXMLEvtTest extends LoaderTestCase {
 		targetType = XMLEvt;
 		filePath = "http://www.colvia.com/FAST/test.html";
 		
-		instance = new Loader(new XMLEvt());
+		instance = new Loader(new LoadXML());
 		instance.addEventListener(LoaderEvent.COMPLETE, Delegate.create(super,resumeTest));
 		instance.addEventListener(ErrorEvent.ERROR, Delegate.create(super,resumeTest));
 		instance.load(filePath);

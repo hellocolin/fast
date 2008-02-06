@@ -5,7 +5,7 @@ class AllTests extends asunit.framework.TestSuite {
 	public function AllTests() {
 		super();
 
-/*		addTest(new LoaderWithLoadSWFonErrorTest());
+		addTest(new LoaderWithLoadSWFonErrorTest());
 		addTest(new LoaderWithLoadSWFTest());
 		addTest(new LoaderWithLoadFLVTest());
 		addTest(new LoaderWithXMLEvtTest());
@@ -22,7 +22,7 @@ class AllTests extends asunit.framework.TestSuite {
 		addTest(new QueueTest());
 	
 		addTest(new JSTest());
-		addTest(new DelegateTest());*/
+		addTest(new DelegateTest());
 
 		addTest(new LoadVarsEvtTest());
 

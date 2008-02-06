@@ -57,6 +57,7 @@ class LoaderTestCase extends TestCase {
 	
 	public function testEnd():Void{
 		assertTrue("data loading Timeout", isTimeout!=true);
+		instance.unload();
 		delete instance;
 	}
 }

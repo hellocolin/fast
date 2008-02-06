@@ -5,6 +5,7 @@ import com.mixmedia.mx.events.Event;
 import com.mixmedia.mx.events.IOErrorEvent;
 import com.mixmedia.mx.events.LoaderEvent;
 import com.mixmedia.net.ILoader;
+import com.mixmedia.net.LoadXML;
 import com.mixmedia.net.Loader;
 
 class LoaderWithXMLEvtonErrorTest extends LoaderTestCase {
@@ -24,7 +25,7 @@ class LoaderWithXMLEvtonErrorTest extends LoaderTestCase {
 		targetType = XMLEvt;
 		filePath = "failLoad.xml";
 
-		instance = new Loader(new XMLEvt(),4);
+		instance = new Loader(new LoadXML(),4);
 		instance.addEventListener(LoaderEvent.COMPLETE, Delegate.create(super,resumeTest));
 		instance.addEventListener(IOErrorEvent.IO_ERROR, Delegate.create(super,resumeTest));
 		instance.load(filePath);

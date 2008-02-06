@@ -98,4 +98,6 @@ class com.mixmedia.net.LoadVAR extends AbstractEventDispatcher implements IEvent
 	public function get loaded():Boolean{
 		return base.loaded;
 	}
+	
+	public function unload() : Void {}
 }
