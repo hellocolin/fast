@@ -33,7 +33,7 @@ class com.mixmedia.mx.events.Event {
 	public static var RESIZE : String="resize";
 	public static var CHANGE : String="change";
 	public static var COMPLETE : String="complete";
-	public static var FULLSCREEN : String="fullscreen";
+
 	public static var REMOVED : String="removed";
 	public static var CONNECT : String="connect";
 	public static var SCROLL : String="scroll";

@@ -8,6 +8,6 @@ class com.mixmedia.mx.events.LoaderEvent extends Event{
 
 	public function LoaderEvent(currentTarget : Object, type:String,target:Object,targetContainer:Object){
 		super(currentTarget,type,target);
-		this.targetContainer=targetContainer;
+		this.targetContainer=(targetContainer==null)?"":targetContainer;
 	}
 }
