@@ -10,7 +10,6 @@ import com.mixmedia.mx.events.MouseEvent;
 import com.mixmedia.net.ILoader;
 import com.mixmedia.net.LoadFLV;
 import com.mixmedia.net.Loader;
-import com.mixmedia.utils.MovieClipTools;
 import com.mixmedia.view.events.VideoPlayerEvent;
 
 /**
@@ -33,7 +32,13 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	public var clickDisable : Boolean = true;
 	
 	public var autoPlay:Boolean = false;
-	public var autoScale:Boolean = true;
+	private var _autoScale:Boolean = true;
+
+	private var defaultWidth:Number;
+	private var defaultHeight:Number;
+	private var flvWidth : Number;
+	private var flvHeight : Number;
+
 
 	public function VideoPlayer(){
 		base = new Loader(new LoadFLV(vid,false,1,true,0),1);
@@ -41,25 +46,19 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 		base.addEventListener(LoaderEvent.PROGRESS,Delegate.create(this,onProgress));
 		base.addEventListener(ErrorEvent.ERROR,Delegate.create(this,onError));
 		base.addEventListener(LoaderEvent.OPEN, Delegate.create(this,onStreamOpen));
+		defaultWidth =vid._width;
+		defaultHeight=vid._height;
 	}
 	
 	private function onStreamOpen(e:LoaderEvent):Void{
 		ns = NetStreamEvt(e.target);
-		resize();
-	}
-
-	private function resize():Void{
-
-		if(autoScale==true)return;
 		var metaDataArray:Array = ns.metaDataArray;
 		for(var i:Number = 0;i<metaDataArray.length;i++){
-			if(metaDataArray[i].name=="width")vid._width=metaDataArray[i].value;
-			if(metaDataArray[i].name=="height")vid._height=metaDataArray[i].value;
+			if(metaDataArray[i].name=="width")flvWidth=metaDataArray[i].value;
+			if(metaDataArray[i].name=="height")flvHeight=metaDataArray[i].value;
 		}
-		
-		MovieClipTools.alignCenter(vid, this);
 	}
-	
+
 	public function load(path:String):Void{
 		startTime = getTimer();
 		isMetaReady=false;
@@ -76,13 +75,13 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	}
 	
 	private function onProgress():Void{
-		/*
-		var downloadElapsedTime:Number = getTimer()-startTime;
-		var downloadBitrate:Number = (ns.bytesLoaded/downloadElapsedTime);
-		var flvBitrate:Number = ns.bytesTotal/(this.getDuration()*1000);
-		var downloadExpectTime:Number = Math.ceil(ns.bytesTotal/downloadBitrate);
-		var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
-		*/
+/*
+var downloadElapsedTime:Number = getTimer()-startTime;
+var downloadBitrate:Number = (ns.bytesLoaded/downloadElapsedTime);
+var flvBitrate:Number = ns.bytesTotal/(this.getDuration()*1000);
+var downloadExpectTime:Number = Math.ceil(ns.bytesTotal/downloadBitrate);
+var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
+*/
 		if(safePlayToEnd==false){
 			if(getSecondBeforeSafePlay()<=0)onEarliestStartTime();
 		}
@@ -265,14 +264,26 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 			dispatchEvent(new MouseEvent(currentTarget,MouseEvent.MOUSE_OUT,this));
 		}
 	}
-	
+
 	public function getTargetContainer() : Object {
 		return vid;
 	}
-	
+
 	private function removeReplayInterval():Void{
 		clearInterval(iid);
 		iid=null;
+	}
+
+	public function get autoScale():Boolean{
+		return _autoScale;
+	}
+
+	public function set autoScale(value:Boolean):Void{
+		_autoScale = value;
+		vid._width = (value)?flvWidth:defaultWidth ;
+		vid._height = (value)?flvHeight:defaultHeight;
+		vid._x = (value)?(defaultWidth -flvWidth )/2:0;
+		vid._y = (value)?(defaultHeight-flvHeight)/ 2 : 0;
 	}
 	
 	public function unload() : Void {
