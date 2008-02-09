@@ -16,6 +16,7 @@ class ContentLoader extends MovieClip {
 	private var prefix:String;
 	private var currentNavKey:String;
 	private var motion:MotionTween;
+	private var targetName:String;
 
 	public function ContentLoader(){
 		loader = new Loader(new LoadSWF(this));
@@ -23,8 +24,9 @@ class ContentLoader extends MovieClip {
 		loader.setErrorIcon(this);
 		loader.addEventListener(LoaderEvent.COMPLETE, Delegate.create(this,onLoadContentAndFadeIn));
 
-		prefix = _name.split('$')[1];
-		prefix = (prefix==null)?"":prefix;
+		var para:Array = _name.split('$');
+		targetName	= para[1]==null?"":para[1];
+		prefix		= para[2]==null?"":para[2]; 
 
 		motion = new MotionTween(MovieClip(loader.getTargetContainer()));
 
@@ -33,11 +35,18 @@ class ContentLoader extends MovieClip {
 	}
 
 	private function onNavChange(e:NavigationEvent):Void{
+		//if targetName is empty, load only 
+		var navTargetIsEmpty:Boolean = (e.targetContainer==""||e.targetContainer==null);
+ 		var criteria1:Boolean = (targetName==""&&navTargetIsEmpty);
+ 		var criteria2:Boolean = (navTargetIsEmpty==false&&e.targetContainer==targetName);
+		if(criteria1==false&&criteria2==false)return;
+
 		currentNavKey = e.navKey;
 		motion.startTween({a:0});
 		motion.addEventListener(Event.TWEENEND, Delegate.create(this, onFadeOutAndLoad));
+		return;
 	}
-	
+
 	private function onFadeOutAndLoad(e:Event):Void {
 		MotionTween(e.currentTarget).removeEventListener(Event.TWEENEND,arguments.caller);
 		loadAction();
@@ -46,7 +55,7 @@ class ContentLoader extends MovieClip {
 	private function onLoadContentAndFadeIn():Void{
 		motion.startTween({a:100});
 	}
-	
+
 	private function loadAction():Void{
 		loader.load(prefix+currentNavKey+".swf");	
 	}
