@@ -11,19 +11,23 @@ class com.mixmedia.locale.Language extends AbstractEventDispatcher {
 		return ins;
 	}
 
-	public static var LANG_EN:String = "en";
-	public static var LANG_CN:String = "zh-CN";
+	public static var LANG_EN:Array = ["en","eng"];
+	public static var LANG_CN:Array = ["zh-CN","schi"];
 	
-	private var currentLang:String = LANG_EN;
+	private var currentLang:Array = LANG_EN;
 	
 	private function Language() {}
 	
-	public function set lang(strLang:String):Void{
-		currentLang = strLang;
+	public function set lang(strLang:Array):Void{
+		currentLang = strLang[0];
 		dispatchEvent(new Event(currentTarget,Event.CHANGE,this));
 	}
 
 	public function get lang():String{
-		return currentLang;
+		return currentLang[0];
+	}
+	
+	public function get id():String{
+		return currentLang[1];
 	}
 }
