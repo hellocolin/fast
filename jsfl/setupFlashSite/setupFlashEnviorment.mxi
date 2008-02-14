@@ -14,13 +14,13 @@
 	<!-- Describe the extension -->
 
 	<description>
-		<![CDATA[]]>
+		<![CDATA[command to setup flash export profile]]>
 	</description>
 
 	<!-- Describe where the extension shows in the UI of the product -->
 
 	<ui-access>
-		<![CDATA[]]>
+		<![CDATA[command to setup flash export profile]]>
 	</ui-access>
 
 	<!-- Describe the files that comprise the extension -->
