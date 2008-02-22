@@ -3,7 +3,7 @@
  * @author colin
  */
 class com.mixmedia.utils.ObjectUtils {
-	private function isObjectInstanceOfType(obj:Object,type:Function):Boolean{
+	public static function isObjectInstanceOfType(obj:Object,type:Function):Boolean{
 		//handle primitive types
 		if(type==String  && typeof(obj) == "string")  return true;
 		if(type==Number  && typeof(obj) == "number")  return true;
