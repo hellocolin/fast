@@ -9,7 +9,9 @@ import com.mixmedia.mx.events.LoaderEvent;
 import com.mixmedia.mx.events.MouseEvent;
 import com.mixmedia.net.ILoader;
 import com.mixmedia.net.LoadFLV;
+import com.mixmedia.net.LoadSWF;
 import com.mixmedia.net.Loader;
+import com.mixmedia.utils.MovieClipTools;
 import com.mixmedia.view.events.VideoPlayerEvent;
 
 /**
@@ -39,6 +41,8 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	private var flvWidth : Number;
 	private var flvHeight : Number;
 
+	private var mcPreloadImage:MovieClip;
+	private var preloadImageLoader:Loader;
 
 	public function VideoPlayer(){
 		base = new Loader(new LoadFLV(vid,false,1,true,0),1);
@@ -47,9 +51,20 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 		base.addEventListener(ErrorEvent.ERROR,Delegate.create(this,onError));
 		base.addEventListener(LoaderEvent.OPEN, Delegate.create(this,onStreamOpen));
 		defaultWidth =vid._width;
-		defaultHeight=vid._height;
+		defaultHeight=vid._height;	
 	}
 	
+	public function setPreloadImage(url:String):Void{
+		mcPreloadImage = this.createEmptyMovieClip("mcPreloadImage",1);
+		preloadImageLoader = new Loader(new LoadSWF(mcPreloadImage));
+		preloadImageLoader.addEventListener(LoaderEvent.READY, Delegate.create(this, onPreloadImageLoaded));
+		preloadImageLoader.load(url);
+	}
+
+	private function onPreloadImageLoaded():Void{
+		MovieClipTools.alignCenter(mcPreloadImage,this);
+	}
+
 	private function onStreamOpen(e:LoaderEvent):Void{
 		ns = NetStreamEvt(e.target);
 		var metaDataArray:Array = ns.metaDataArray;
@@ -57,6 +72,7 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 			if(metaDataArray[i].name=="width")flvWidth=metaDataArray[i].value;
 			if(metaDataArray[i].name=="height")flvHeight=metaDataArray[i].value;
 		}
+		scale();
 	}
 
 	public function load(path:String):Void{
@@ -111,7 +127,9 @@ var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
 
 	public function play():Void{
 		if(isPlaying==true)return;
-
+		if(mcPreloadImage._visible == true){
+			mcPreloadImage._visible = false;
+		}
 		if(ns.bytesLoaded==0){
 			dispatchEvent(new ErrorEvent(currentTarget,ErrorEvent.ERROR,this,'VideoPlayer play before data loaded'));
 			return;
@@ -280,12 +298,16 @@ var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
 
 	public function set autoScale(value:Boolean):Void{
 		_autoScale = value;
-		vid._width = (value)?flvWidth:defaultWidth ;
-		vid._height = (value)?flvHeight:defaultHeight;
-		vid._x = (value)?(defaultWidth -flvWidth )/2:0;
-		vid._y = (value)?(defaultHeight-flvHeight)/ 2 : 0;
+		scale();
 	}
-	
+
+	private function scale():Void{
+		vid._width = (_autoScale)?defaultWidth:flvWidth;
+		vid._height = (_autoScale)?defaultHeight:flvHeight;
+		vid._x = (_autoScale)?0 : (defaultWidth -flvWidth )/ 2;
+		vid._y = (_autoScale)?0 : (defaultHeight-flvHeight)/ 2;	
+	}
+
 	public function unload() : Void {
 		base.unload();
 	}

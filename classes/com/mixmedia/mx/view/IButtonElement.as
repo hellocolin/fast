@@ -1,4 +1,4 @@
-import com.mixmedia.view.events.ButtonClipEvent;
+﻿import com.mixmedia.view.events.ButtonClipEvent;
 
 /**
  * @author Colin
