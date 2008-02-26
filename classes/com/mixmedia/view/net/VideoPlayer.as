@@ -195,18 +195,6 @@ var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
 		dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.PLAYEND, this));	
 	}
 	
-	private function onPress():Void{
-		dispatchEvent(new MouseEvent(currentTarget,MouseEvent.MOUSE_DOWN,this));
-	}
-
-/*	private function onMouseDown(){
-		if(clickDisable==true)return;
-
-		if(_xmouse>0&&_xmouse<100&&_ymouse>0&&_ymouse<100){
-			dispatchEvent(new EventButton(this,EventButton.EVENTPRESS));
-		}
-	}*/
-	
 	public function getBytesTotal():Number{
 		return ns.bytesTotal;
 	}
