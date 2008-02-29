@@ -1,4 +1,4 @@
-import com.mixmedia.mx.events.AbstractEventDispatcher;
+﻿import com.mixmedia.mx.events.AbstractEventDispatcher;
 import com.mixmedia.navigation.events.NavigationEvent;
 
 /**
@@ -14,11 +14,11 @@ class com.mixmedia.navigation.Navigation extends AbstractEventDispatcher{
 		return ins;
 	}
 
-	private var navKey : String;
+	private var navKey : String="";
 	public var history:Array;
 
 	private function Navigation(){
-		history = new Array();
+		reset();
 	}
 
 	public function changeSection(navKey:String,targetContainer:String,isSuppress:Boolean,eventDispatcher:Object):Void{
@@ -37,5 +37,10 @@ class com.mixmedia.navigation.Navigation extends AbstractEventDispatcher{
 	
 	public function getCurrentNavKey() : String {
 		return navKey;
+	}
+	
+	public function reset():Void{
+		history = [];
+		navKey = "";
 	}
 }

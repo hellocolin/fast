@@ -1,4 +1,4 @@
-
+﻿
 /**
  * @author Colin
  */
@@ -15,5 +15,12 @@ class com.mixmedia.utils.SystemUtils {
 			if(Number(currVersionArray[i])>Number(targetVersionArray[i]))return true;
 		}
 		return true;
+	}
+	
+	public static function getMovieURLPath(mc:MovieClip):String{
+		var pathArray:Array = mc._url.split("/");
+		pathArray.pop();
+
+		return (pathArray.length==0)?"":(pathArray.join("/")+"/");
 	}
 }

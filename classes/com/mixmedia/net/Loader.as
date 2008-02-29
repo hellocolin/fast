@@ -36,7 +36,7 @@ class com.mixmedia.net.Loader extends AbstractEventDispatcher implements ILoader
 		preloaderParent = _root;
 		errorIconParent = preloaderParent;
 
-		queue = Queue.instance(queueThreadId);
+		if(queueThreadId!=null)queue = Queue.instance(queueThreadId);
 
 		delLoad = Delegate.create(this,doLoad);
 		this.base = base;
@@ -53,7 +53,12 @@ class com.mixmedia.net.Loader extends AbstractEventDispatcher implements ILoader
 
 	public function load(request:String):Void{
 		this.request = request;
-		queue.addRequest(delLoad);
+
+		if(queue==null){
+			delLoad();
+		}else{
+			queue.addRequest(delLoad);
+		}
 	}
 
 	public function getTargetContainer():Object{

@@ -1,4 +1,4 @@
-import mx.utils.Delegate;
+﻿import mx.utils.Delegate;
 
 import com.mixmedia.mx.events.AbstractEventDispatcher;
 import com.mixmedia.mx.view.IButtonClip;
@@ -34,10 +34,12 @@ class com.mixmedia.mx.view.ButtonEvt extends AbstractEventDispatcher implements 
 
 	private function out():Void{
 		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.MOUSE_OUT  ,hitArea, isHighlight));
+		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.ROLL_OUT, hitArea, isHighlight));
 	}
 
 	private function over():Void{
 		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.MOUSE_OVER ,hitArea, isHighlight));
+		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.ROLL_OVER, hitArea, isHighlight));
 	}
 	
 	private function reset():Void{
