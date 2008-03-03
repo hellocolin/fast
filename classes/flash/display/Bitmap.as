@@ -1,4 +1,5 @@
 ﻿import flash.display.BitmapData;
+import flash.display.PixelSnapping;
 
 /**
  * @author colin
