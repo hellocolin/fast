@@ -12,6 +12,8 @@
 
 class com.mixmedia.utils.Conversion {
 	static function hexToColor(argHex:Number,argAlpha:Number):Object{// change hex value to color transform object
+		if(argHex==-1)return {ra:100,rb:0,ga:100,gb:0,ba:100,bb:0,aa:100,bb:0};
+		
 		var a:Number = (argAlpha == undefined)?100:argAlpha;
 		//extract RGB from Hex
 		var r:Number = argHex >> 16;
