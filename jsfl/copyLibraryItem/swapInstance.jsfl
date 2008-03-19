@@ -43,13 +43,14 @@ function init(){
 			var flag=true;
 			while(flag){
 				num = num+1;
-				flag = library.itemExists(itemNames.join("$")+num);
-				alert(flag);
+				flag = library.itemExists(itemNames.join("$")+"$"+num);
 			}
 			
 			var newName = itemNames.join("$")+"$"+num;
 			newItems[0].name = newName.split("/").pop();
 			isSelectInstance = true;
+
+			selectedElements[i].libraryItem = newItems[0];
 		}
 	}
 }
