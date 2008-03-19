@@ -23,7 +23,8 @@ function init(){
 		if(selectedElements.length>0){
 			for(var i=0;i<selectedElements.length;i++){
 				if(selectedElements[i].elementType=='instance'){
-					selectedElements[i].name = selectedElements[i].libraryItem.name;
+					var names = selectedElements[i].libraryItem.name.split("/");
+					selectedElements[i].name = names.pop();
 					isSelectInstance = true;
 				}
 			}
