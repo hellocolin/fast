@@ -26,14 +26,14 @@
 	<!-- Describe the files that comprise the extension -->
 
 	<files>
-		<file name="TraceClassName.jsfl" destination="$flash/Commands" />
-		<file name="setSymbolClass.jsfl" destination="$flash/Commands" />
-		<file name="renameClips.jsfl" destination="$flash/Commands" />
-		<file name="setSymbolClass\getClass.jsfl" destination="$flash/Commands" />
-		<file name="setSymbolClass\getInstanceName.jsfl" destination="$flash/Commands" />
-		<file name="setSymbolClass\setSymbolClass.xml" destination="$flash/ActionsPanel/CustomActions" />
-		<file name="setSymbolClass\XMLUI.fla" destination="$flash/Commands" />
-		<file name="setSymbolClass\XMLUI.swf" destination="$flash/WindowSWF" />
+		<file name="TraceClassName.jsfl" destination="$flash/Commands" platform="" />
+		<file name="setSymbolClass.jsfl" destination="$flash/Commands" platform="" />
+		<file name="renameClips.jsfl" destination="$flash/Commands" platform="" />
+		<file name="setSymbolClass\getClass.jsfl" destination="$flash/Commands" platform="" />
+		<file name="setSymbolClass\getInstanceName.jsfl" destination="$flash/Commands" platform="" />
+		<file name="setSymbolClass\setSymbolClass.xml" destination="$flash/ActionsPanel/CustomActions" platform="" />
+		<file name="setSymbolClass\XMLUI.fla" destination="$flash/Commands" platform="" />
+		<file name="setSymbolClass\XMLUI.swf" destination="$flash/WindowSWF" platform="" />
 	</files>
 
 </macromedia-extension>
