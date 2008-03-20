@@ -29,10 +29,10 @@
 		<file name="TraceClassName.jsfl" destination="$flash/Commands" />
 		<file name="setSymbolClass.jsfl" destination="$flash/Commands" />
 		<file name="renameClips.jsfl" destination="$flash/Commands" />
-		<file name="setSymbolClass\getClass.jsfl" destination="$flash/Commands" />
-		<file name="setSymbolClass\getInstanceName.jsfl" destination="$flash/Commands" />
+		<file name="setSymbolClass\getClass.jsfl" destination="$flash/Commands/setSymbolClass" />
+		<file name="setSymbolClass\getInstanceName.jsfl" destination="$flash/Commands/setSymbolClass" />
 		<file name="setSymbolClass\setSymbolClass.xml" destination="$flash/ActionsPanel/CustomActions" />
-		<file name="setSymbolClass\XMLUI.fla" destination="$flash/Commands" />
+		<file name="setSymbolClass\XMLUI.fla" destination="$flash/WindowSWF" />
 		<file name="setSymbolClass\XMLUI.swf" destination="$flash/WindowSWF" />
 	</files>
 
