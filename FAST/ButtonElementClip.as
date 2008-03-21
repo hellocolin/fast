@@ -3,9 +3,9 @@ import com.mixmedia.view.events.ButtonClipEvent;
 
 /**
  * @author colin
- */
+ */ 
 class ButtonElementClip extends MovieClip implements IButtonElement {
-	private var numOverFrame:Number=1;
+	private var numOverFrame:Number=0;
 	private var numOutFrame:Number=0;
 	private var numDownFrame:Number=0;
 	 
