@@ -1,33 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<macromedia-extension name="Swap Instance + Select None" version="1.0.0" type="command" requires-restart="false">
-
-	<!-- Describe the author -->
-
-	<author name="Colin Leung" />
-
-	<!-- List the required/compatible products -->
-
-	<products>
-		<product name="Flash" version="6" primary="true" />
-	</products>
-
-	<!-- Describe the extension -->
-
-	<description>
-		<![CDATA[The swap instance can simplify steps on swap symbol and change name.<br>The symbol name must be xxxx$1, xxxx$2<br><br>SelectNone can simplify steps on editing text fields.]]>
-	</description>
-
-	<!-- Describe where the extension shows in the UI of the product -->
-
-	<ui-access>
-		<![CDATA[The swap instance can simplify steps on swap symbol and change name.The symbol name must be xxxx$1, xxxx$2SelectNone can simplify steps on editing text fields.]]>
-	</ui-access>
-
-	<!-- Describe the files that comprise the extension -->
-
-	<files>
-		<file name="selectNone.jsfl" destination="$flash/Commands" />
-		<file name="swapInstance.jsfl" destination="$flash/Commands" />
-	</files>
-
-</macromedia-extension>
+﻿<?xml version="1.0" encoding="UTF-8"?><macromedia-extension	 name="Swap Instance + Select None"	 version="1.0.0"	 type="command">	<author name="Colin Leung" />	<products>		<product name="Flash" version="6" primary="true" />	</products>	<description>	<![CDATA[	The swap instance can simplify steps on swap symbol and change name.<br>The symbol name must be xxxx$1, xxxx$2<br><br>SelectNone can simplify steps on editing text fields.	]]>	</description>	<ui-access>	<![CDATA[	The swap instance can simplify steps on swap symbol and change name.The symbol name must be xxxx$1, xxxx$2SelectNone can simplify steps on editing text fields.	]]>	</ui-access>	<license-agreement>	<![CDATA[		]]>	</license-agreement>	<files>		<file source="selectNone.jsfl" destination="$flash/Commands" />		<file source="swapInstance.jsfl" destination="$flash/Commands" />	</files></macromedia-extension>
