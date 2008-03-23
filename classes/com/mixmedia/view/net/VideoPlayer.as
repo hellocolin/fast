@@ -45,8 +45,7 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	private var preloadImageLoader:Loader;
 
 	public function VideoPlayer(){
-		if(vid==null)vid = MovieClipTools.findVideo(this);
-		
+		if(vid==null)trace('the video object in movieclip should name as "vid"');
 		base = new Loader(new LoadFLV(vid,false,1,true,0),1);
 		base.addEventListener(LoaderEvent.READY, Delegate.create(this,onFLVLoad));
 		base.addEventListener(LoaderEvent.PROGRESS,Delegate.create(this,onProgress));
