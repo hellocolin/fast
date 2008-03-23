@@ -1,7 +1,6 @@
 ﻿/**
  * @author Colin
- */
-import com.mixmedia.view.net.VideoPlayer;class com.mixmedia.utils.MovieClipTools {
+ */class com.mixmedia.utils.MovieClipTools {
 	public static function makeClickDisable(mc:MovieClip):Void{
 		mc.onRollOver = null;
 		mc.useHandCursor = false;
