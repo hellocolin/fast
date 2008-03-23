@@ -1,7 +1,7 @@
 ﻿/**
  * @author Colin
  */
-class com.mixmedia.utils.MovieClipTools {
+import com.mixmedia.view.net.VideoPlayer;class com.mixmedia.utils.MovieClipTools {
 	public static function makeClickDisable(mc:MovieClip):Void{
 		mc.onRollOver = null;
 		mc.useHandCursor = false;
@@ -166,7 +166,12 @@ class com.mixmedia.utils.MovieClipTools {
 		for(var name:String in mc){
 			if(mc[name] instanceof Button){
 				return mc[name];
-			};
+			}
 		}
-	}
+	}		public static function findVideo(mc : MovieClip) : Video {
+		for(var name:String in mc){
+			if(mc[name] instanceof Video){
+				return mc[name];
+			}
+		}	}
 }
