@@ -1,4 +1,4 @@
-//mixmedia jsfl
+﻿//mixmedia jsfl
 //author: Colin Colvia
 //flash editor -- fl:Flash
 //current Stage -- fl.getDocumentDOM():Document
@@ -31,7 +31,7 @@ function init(){
 
 			if(selectedElements[0].libraryItem.linkageClassName!=""){
 				xui = currentDoc.xmlPanel(xmluiPath);
-
+				
 			}else{
 				alert('this instance already assigned class name.')
 				xui = currentDoc.xmlPanel(xmluiPath);
