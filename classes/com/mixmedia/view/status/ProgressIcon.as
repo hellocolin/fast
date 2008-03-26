@@ -1,20 +1,29 @@
-﻿import com.mixmedia.utils.MovieClipTools;
+﻿import mx.utils.Delegate;
+
+import com.mixmedia.motion.MotionTween;
+import com.mixmedia.mx.events.Event;
+import com.mixmedia.utils.MovieClipTools;
+import com.mixmedia.view.status.IStatusIcon;
+
 /**
-   @author Colin Leung
+@author Colin Leung
     * responsible to display the status.
 */
 
-class com.mixmedia.view.status.ProgressIcon extends MovieClip{
+class com.mixmedia.view.status.ProgressIcon extends MovieClip implements IStatusIcon{
 	//declare var
 	private var mcLoadBar:MovieClip;
 	private var txtStatus:TextField;
 	private var mcBG : MovieClip;
 	private var target : Object;//object
+	private var motion:MotionTween;
 
 	public function ProgressIcon(){
 		MovieClipTools.notResize(this);
 		MovieClipTools.makeClickDisable(mcBG);
-//		_alpha = 0;
+		motion = new MotionTween(this,{dur:10,a:100});
+		_alpha = 0;
+		motion.startTween();
 	}
 
 	public function setMonitorTarget(target:Object):Void{
@@ -34,5 +43,15 @@ class com.mixmedia.view.status.ProgressIcon extends MovieClip{
 			mcLoadBar._width = getPercent/100*50;
 			txtStatus.text = "Loading: "+Math.round(getPercent)+"%";		
 		}
+	}
+	
+	public function kill() : Void {
+		motion.addEventListener(Event.TWEENEND,Delegate.create(this,remove));
+		motion.startTween({a:0});
+	}
+
+	private function remove(e:Event) : Void {
+		MotionTween(e.currentTarget).removeEventListener(Event.TWEENEND,arguments.caller);
+		this.removeMovieClip();
 	}
 }

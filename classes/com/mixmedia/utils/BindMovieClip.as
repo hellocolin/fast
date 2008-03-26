@@ -1,3 +1,4 @@
+﻿import com.mixmedia.view.status.IStatusIcon;
 
 /**
  * @author Colin
@@ -13,6 +14,11 @@ class com.mixmedia.utils.BindMovieClip {
 	}
 
 	public static function remove(type:String,attachMC:MovieClip) : Void {
+		if(attachMC[type] instanceof IStatusIcon){
+			IStatusIcon(attachMC[type]).kill();
+			return;
+		}
+
 		attachMC[type].removeMovieClip();	
 	}
 }

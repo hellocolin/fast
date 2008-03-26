@@ -67,8 +67,13 @@ class com.mixmedia.net.LoadVAR extends AbstractEventDispatcher implements IEvent
 	};
 	
 	public function sendAndLoad(url : String,target:Object,method : String) : Boolean{
+		if(target instanceof LoadVAR)target = LoadVAR(target).getBase();
 		return base.sendAndLoad(url, target, method);
 	};
+	
+	public function getBase():LoadVars{
+		return base;
+	}
 
 	public function getBytesLoaded() : Number{
 		return base.getBytesLoaded();
