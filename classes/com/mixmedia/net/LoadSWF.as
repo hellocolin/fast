@@ -27,6 +27,7 @@ class com.mixmedia.net.LoadSWF implements ILoader {
 	}
 	
 	public function load(requestURL:String):Void {
+		mcImageLoader.unloadMovie();
 		isComplete = false;
 		mcl.loadClip(requestURL,mcImageLoader);
 	}

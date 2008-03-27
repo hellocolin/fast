@@ -1,6 +1,7 @@
 ﻿/**
  * @author Colin
- */class com.mixmedia.utils.MovieClipTools {
+ */
+class com.mixmedia.utils.MovieClipTools {
 	public static function makeClickDisable(mc:MovieClip):Void{
 		mc.onRollOver = null;
 		mc.useHandCursor = false;
@@ -167,10 +168,21 @@
 				return mc[name];
 			}
 		}
-	}		public static function findVideo(mc : MovieClip) : Video {
+	}
+	
+	public static function findVideo(mc : MovieClip) : Video {
 		for(var name:String in mc){
 			if(mc[name] instanceof Video){
 				return mc[name];
 			}
-		}	}
+		}
+	}
+	
+	public static function findTextField(mc : MovieClip) : TextField {
+		for(var name:String in mc){
+			if(mc[name] instanceof TextField){
+				return mc[name];
+			}
+		}
+	}
 }
