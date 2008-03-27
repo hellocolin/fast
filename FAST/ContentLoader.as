@@ -46,7 +46,6 @@ class ContentLoader extends MovieClip {
 
 		currentNavKey = e.navKey;
 		fadeout.startTween();
-		return;
 	}
 
 	private function onFadeOutAndLoad():Void {
