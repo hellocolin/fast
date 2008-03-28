@@ -14,7 +14,7 @@ class com.mixmedia.net.LoadVAR extends AbstractEventDispatcher implements IEvent
 	private var iid:Number;
 	private var currentTarget: Object;
 	private var isOpen : Boolean;
-	private var data:String;
+	private var _data:String;
 	
 	private var base:LoadVars;
 
@@ -22,7 +22,6 @@ class com.mixmedia.net.LoadVAR extends AbstractEventDispatcher implements IEvent
 		base = new LoadVars();
 		base.onData = Delegate.create(this, onData);
 		base.onLoad = Delegate.create(this, onLoad);
-		base.toString = Delegate.create(this, toString);
 	}
 	
 	public function load(requestURL : String) : Void{
@@ -32,12 +31,11 @@ class com.mixmedia.net.LoadVAR extends AbstractEventDispatcher implements IEvent
 	}
 
 	private function checkStatus():Void{
-		var targetObj:Object = this;
 		if(base.getBytesTotal()>0 && isOpen!=true){
-			dispatchEvent(new LoaderEvent(currentTarget,LoaderEvent.OPEN,base,targetObj));
+			dispatchEvent(new LoaderEvent(currentTarget,LoaderEvent.OPEN,base,this));
 			isOpen = true;
 		}
-		dispatchEvent(new LoaderEvent(currentTarget,LoaderEvent.PROGRESS,base,targetObj));
+		dispatchEvent(new LoaderEvent(currentTarget,LoaderEvent.PROGRESS,base,this));
 	}
 
 	private function onLoad(success:Boolean):Void{
@@ -49,8 +47,8 @@ class com.mixmedia.net.LoadVAR extends AbstractEventDispatcher implements IEvent
 	}
 
 	private function onData(src:String):Void{
-		this.data = src;
 		clearInterval(iid);
+		_data = src;
 		dispatchEvent(new LoaderEvent(currentTarget,LoaderEvent.COMPLETE, base,this));
 	}
 
@@ -66,7 +64,7 @@ class com.mixmedia.net.LoadVAR extends AbstractEventDispatcher implements IEvent
 		return base.send(url, target, method);
 	};
 	
-	public function sendAndLoad(url : String,target:Object,method : String) : Boolean{
+	public function sendAndLoad(url : String, target:Object,method : String) : Boolean{
 		if(target instanceof LoadVAR)target = LoadVAR(target).getBase();
 		return base.sendAndLoad(url, target, method);
 	};
@@ -85,12 +83,15 @@ class com.mixmedia.net.LoadVAR extends AbstractEventDispatcher implements IEvent
 
 	public function decode(queryString : String) : Void{
 		base.decode(queryString);
-		data = base.toString();
 	};
 
 	public function toString() : String{
-		return data;
+		return base.toString();
 	};
+	
+	public function get data():String{
+		return _data;
+	}
 	
 	public function set contentType(str:String):Void{
 		base.contentType = str;
