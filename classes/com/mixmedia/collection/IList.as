@@ -1,0 +1,1 @@
+/** * @author colin */interface com.mixmedia.collection.IList {	public function setData(data:Array):Void;}
