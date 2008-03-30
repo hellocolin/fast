@@ -30,7 +30,6 @@ class com.mixmedia.view.collection.RenderAsThumbnails implements IListCellRender
 			MovieClip(cell)._y = Math.floor(i/col)*cell.getRowHeight();
 
 			cell.setModel(data[i]);
-			cell.setIndex(i);
 			cells.push(cell);
 		}
 		return cells;

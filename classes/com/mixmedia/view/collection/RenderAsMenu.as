@@ -23,7 +23,6 @@ class com.mixmedia.view.collection.RenderAsMenu implements IListCellRenderArrang
 			var cell:IListCell = IListCell(target.attachMovie(cellIdentifier, 'item'+i, i));
 			MovieClip(cell)._y = cell.getRowHeight()*i;
 			cell.setModel(data[i]);
-			cell.setIndex(i);
 			cells.push(cell);
 		}
 		return cells;

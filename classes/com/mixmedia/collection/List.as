@@ -43,5 +43,5 @@ class com.mixmedia.collection.List extends AbstractEventDispatcher implements IL
 	
 	public function getMax() : Number {
 		return Math.ceil(items.length / itemsCountPerPage);
-	}
+	}		public function getItemIndex(item : Object) : Number {		for(var i:Number = 0;i<items.length;i++){			if(items[i]==item)return i;		}		return -1;	}
 }
