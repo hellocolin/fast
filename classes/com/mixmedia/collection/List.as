@@ -13,7 +13,7 @@ class com.mixmedia.collection.List extends AbstractEventDispatcher implements IL
 	
 	public function setData(data:Array):Void{
 		items = data;
-		dispatchEvent(new ListEvent(currentTarget,ListEvent.UPDATE, this, _value,items[_value]));
+		dispatchEvent(new ListEvent(currentTarget,ListEvent.UPDATE, this, null,items));
 	}
 
 	public function setValue(value:Number):Void{
