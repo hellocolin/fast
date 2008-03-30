@@ -27,16 +27,16 @@ class com.mixmedia.view.collection.RenderAsThumbnails implements IListCellRender
 
 	public function RenderAsThumbnails(cellIdentifier:String,target:MovieClip,row:Number,col:Number){
 		this.cellIdentifier = cellIdentifier;
-		this.target = target.createEmptyMovieClip("listmc", 50);
+		this.target = target.createEmptyMovieClip("$target", 50);
 		this.proxy = new Bitmap(target.createEmptyMovieClip("proxy",51),null,PixelSnapping.ALWAYS,true); 
 		this.row = (row==null)?3:row;
 		this.col = (col==null)?3:col;
 		cells = new Array();
-		
+
 		fadein  = new MotionTween(this.target,{a:100});
 		fadeout = new MotionTween(proxy.toMovieClip(),{a:0});
 		fadeout.addEventListener(Event.TWEENEND, Delegate.create(this,onFadeout));
-		
+
 		this.target._alpha=0;
 	}
 

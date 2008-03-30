@@ -28,8 +28,8 @@ class com.mixmedia.mx.view.ButtonEvt extends AbstractEventDispatcher implements 
 	public function addElement(element:IButtonElement):Void{
 		this.addEventListener(ButtonClipEvent.MOUSE_OVER , Delegate.create(element,element.buttonOver));
 		this.addEventListener(ButtonClipEvent.MOUSE_OUT  , Delegate.create(element,element.buttonOut));
-		this.addEventListener(ButtonClipEvent.MOUSE_DOWN, Delegate.create(element,element.buttonDown));
-		this.addEventListener(ButtonClipEvent.RESET     , Delegate.create(element,element.buttonReset));
+		this.addEventListener(ButtonClipEvent.MOUSE_DOWN , Delegate.create(element,element.buttonDown));
+		this.addEventListener(ButtonClipEvent.RESET      , Delegate.create(element,element.buttonReset));
 	}
 
 	private function out():Void{
