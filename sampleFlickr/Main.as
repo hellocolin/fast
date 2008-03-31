@@ -3,6 +3,7 @@
 
 import com.mixmedia.collection.List;
 import com.mixmedia.collection.events.ListEvent;
+import com.mixmedia.flickr.Photo;
 import com.mixmedia.mx.events.Event;
 import com.mixmedia.mx.events.LoaderEvent;
 import com.mixmedia.view.collection.IListCellRenderArrangement;
@@ -20,6 +21,7 @@ class Main {	public static var API_KEY  : String = '6fbf261cfc4445d58178e674167
 
 	public function Main(base:MovieClip){
 		ThumbPic.QUEUEID= 75;
+		Photo.QUEUEID = 75;
 
 		this.base = base;
 		
@@ -28,7 +30,7 @@ class Main {	public static var API_KEY  : String = '6fbf261cfc4445d58178e674167
 		photoListView = new ListView(renderMethod,photoList);
 		photoListView.addEventListener(ListEvent.CHANGE, Delegate.create(this,thumbClick));
 		
-		var r:IGroupPhotoRequest = new LocalGroupPhotoRequest(base,photoList);
+		var r:IGroupPhotoRequest = new GroupPhotoRequest(base,photoList);
 		r.loadPhotos('get_home');
 		r.addEventListener(LoaderEvent.COMPLETE,Delegate.create(this, loaded));
 	}

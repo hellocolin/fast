@@ -6,6 +6,7 @@ import com.mixmedia.mx.events.LoaderEvent;
 import com.mixmedia.net.LoadVAR;
 import com.mixmedia.utils.BindMovieClip;
 import com.mixmedia.utils.MD5;
+import com.mixmedia.utils.Queue;
 import com.mixmedia.view.status.ProgressIcon;
 
 /**
@@ -28,8 +29,11 @@ class com.mixmedia.flickr.FlickrRest implements IEventDispatcher{
 	private var request:LoadVars;
 	private var result:LoadVAR;
 	private var _data:String;
+	private var queueId : Number;
 
-	public function FlickrRest(){
+	public function FlickrRest(queueId:Number){
+		this.queueId = queueId;
+		
 		request = new LoadVars();
 		request['api_key'] = api_key;
 
@@ -39,16 +43,30 @@ class com.mixmedia.flickr.FlickrRest implements IEventDispatcher{
 	}
 
 	public function send(needSign:Boolean):Void{
-		if(needSign)request['api_sig'] = sign(request);
+		if(queueId!=null){
+			var r:Function = Delegate.create(this, (needSign)?doSendWithSign:doSend);
+			Queue.instance(queueId).addRequest(r);
+			return;
+		}
+
+		(needSign==true)?doSendWithSign():doSend();
+	}
+	
+	private function doSendWithSign():Void{
+		request['api_sig'] = sign(request);
+		doSend();
+	}
+	
+	private function doSend():Void{
 		request.sendAndLoad(endPoint,result.getBase(),'POST');
 		makePreloader();
 	}
+	
 
 	public function set method(method:String):Void{
 		request['method'] = method;
 	}
-
-	public function get args():LoadVars{
+	public function get args():LoadVars{
 		return request;
 	}
 
@@ -128,6 +146,7 @@ class com.mixmedia.flickr.FlickrRest implements IEventDispatcher{
 	}
 
 	private function onLoadComplete() : Void {
+		if(queueId!=null)Queue.instance(queueId).next();
 		_data = result.data;
 		killPreloader();
 	}

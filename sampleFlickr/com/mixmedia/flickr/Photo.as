@@ -9,6 +9,7 @@ import com.mixmedia.mx.events.LoaderEvent;
  * @author colin
  */
 class com.mixmedia.flickr.Photo extends AbstractEventDispatcher{
+	public static var QUEUEID : Number;
 	private static var dict : Object = {};
 	public static function make(id:String,vote:Number):Photo{
 		if(dict[id] == null){
@@ -26,7 +27,7 @@ class com.mixmedia.flickr.Photo extends AbstractEventDispatcher{
 	public var small:String;
 	public var medium:String;
 	public var large:String;
-	public var vote:Number=0;
+	public var vote:Number = 0;
 
 	private var request : FlickrRest;
 
@@ -47,7 +48,7 @@ class com.mixmedia.flickr.Photo extends AbstractEventDispatcher{
 	}
 	
 	private function doRequest():Void{
-		request = new FlickrRest();
+		request = new FlickrRest(QUEUEID);
 		request.addEventListener(LoaderEvent.COMPLETE, Delegate.create(this,srcReady));
 		request.method = 'flickr.photos.getSizes';
 		request.args['photo_id'] = id;
