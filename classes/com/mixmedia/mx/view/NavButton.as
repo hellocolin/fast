@@ -68,4 +68,8 @@ class com.mixmedia.mx.view.NavButton implements IButtonClip{
 	public function get isHighlight():Boolean{
 		return base.isHighlight;
 	}
+	
+	public function select() : Void {
+		base.select();
+	}
 }

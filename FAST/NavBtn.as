@@ -32,4 +32,8 @@ class NavBtn extends MovieClip implements IEventDispatcher, IButtonClip{
 	public function addElement(element : IButtonElement) : Void {
 		base.addElement(element);
 	}
+	
+	public function select() : Void {
+		base.select();
+	}
 }

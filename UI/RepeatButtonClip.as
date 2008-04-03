@@ -69,4 +69,8 @@ class RepeatButtonClip extends MovieClip implements IButtonClip {
 		}
 		count--;
 	}
+	
+	public function select() : Void {
+		base.select();
+	}
 }

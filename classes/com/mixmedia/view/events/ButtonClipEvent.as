@@ -9,6 +9,6 @@ class com.mixmedia.view.events.ButtonClipEvent extends MouseEvent {
 
 	public function ButtonClipEvent(currentTarget:Object, type:String, target:Object, highlight:Boolean) {
 		super(currentTarget,type,target);
-		this.highlight = highlight;
+		this.highlight = (highlight==null)?false:highlight;
 	}
 }

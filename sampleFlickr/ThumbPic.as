@@ -98,5 +98,7 @@ class ThumbPic extends MovieClip implements IListCell {
 	
 	public function setList(list : List) : Void {
 		this.list = list;
+	}		public function getModel() : Object {
+		return model;
 	}
 }

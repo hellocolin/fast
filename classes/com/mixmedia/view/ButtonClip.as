@@ -31,4 +31,8 @@ class com.mixmedia.view.ButtonClip extends MovieClip implements IButtonClip {
 	public function setCurrentTarget(currentTarget : Object) : Void {
 		base.setCurrentTarget(currentTarget);
 	}
+	
+	public function select() : Void {
+		base.select();
+	}
 }

@@ -10,7 +10,7 @@ import com.mixmedia.mx.events.MouseEvent;
  * @author Colin
  */
 class com.mixmedia.mx.view.ButtonEvt extends AbstractEventDispatcher implements IButtonClip{
-	public var _isHighlight:Boolean = false;
+	private var _isHighlight:Boolean = false;
 	private var hitArea:Button;
 
 	public function ButtonEvt(hitarea:Button){
@@ -62,5 +62,7 @@ class com.mixmedia.mx.view.ButtonEvt extends AbstractEventDispatcher implements 
 	public function set isHighlight(value:Boolean):Void{
 		_isHighlight = value;
 		reset();
+	}		public function select() : Void {
+		isHighlight = true;
 	}
 }
