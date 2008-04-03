@@ -1,1 +1,1 @@
-/** * @author colin */import com.mixmedia.collection.IScrollable;interface com.mixmedia.collection.IList extends IScrollable{	public function setData(data:Array):Void;	public function getItemIndex(item:Object):Number;}
+﻿/** * @author colin */import com.mixmedia.collection.IScrollable;interface com.mixmedia.collection.IList extends IScrollable{	public function setData(data:Array):Void;	public function getItemIndex(item:Object):Number;	public function setValue(value:Number):Void;}

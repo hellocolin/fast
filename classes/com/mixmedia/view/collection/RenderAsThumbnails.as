@@ -1,8 +1,7 @@
 ﻿
 /**
  * @author colin
- */
-import flash.display.Bitmap;
+ */import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.display.PixelSnapping;
 
@@ -10,12 +9,13 @@ import mx.utils.Delegate;
 
 import com.mixmedia.motion.MotionTween;
 import com.mixmedia.mx.events.Event;
-import com.mixmedia.utils.Queue;
 import com.mixmedia.view.collection.IListCell;
 import com.mixmedia.view.collection.IListCellRenderArrangement;
 
 class com.mixmedia.view.collection.RenderAsThumbnails implements IListCellRenderArrangement {
-	private var cellIdentifier:String = "ThumbPicSelect";
+	private static var uid:Number=0;
+	
+	private var cellIdentifier:String;
 	private var cells : Array;
 	private var row : Number;
 	private var col : Number;
@@ -24,10 +24,10 @@ class com.mixmedia.view.collection.RenderAsThumbnails implements IListCellRender
 	private var fadein:MotionTween;
 	private var fadeout:MotionTween;
 
-
 	public function RenderAsThumbnails(cellIdentifier:String,target:MovieClip,row:Number,col:Number){
+		uid++;
 		this.cellIdentifier = cellIdentifier;
-		this.target = target.createEmptyMovieClip("$target", 50);
+		this.target = target.createEmptyMovieClip("$target"+uid, 50);
 		this.proxy = new Bitmap(target.createEmptyMovieClip("proxy",51),null,PixelSnapping.ALWAYS,true); 
 		this.row = (row==null)?3:row;
 		this.col = (col==null)?3:col;
@@ -59,12 +59,13 @@ class com.mixmedia.view.collection.RenderAsThumbnails implements IListCellRender
 		}
 	}
 	public function clear():Void{
-		Queue.instance(75).clear();
-		for(var i:Number=0;i<cells.length;i++){
-			MovieClip(cells[i]).removeMovieClip();
+		for(var name:String in target){
+			if(target[name] instanceof IListCell){
+				MovieClip(target[name]).removeMovieClip();
+			}
 		}
 		cells = new Array();
-	}		public function update(data : Array) : Array {
+	}	public function update(data : Array) : Array {
 		makeProxy();
 		clear();
 		doRender(data);

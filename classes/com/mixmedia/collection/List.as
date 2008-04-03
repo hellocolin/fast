@@ -16,8 +16,7 @@ class com.mixmedia.collection.List extends AbstractEventDispatcher implements IL
 		dispatchEvent(new ListEvent(currentTarget,ListEvent.UPDATE, this, null,items));
 	}
 
-	public function setValue(value:Number):Void{
-		_value = value;
+	public function setValue(value:Number):Void{		_value = value;
 		if(_value>items.length-1)_value = items.length-1;
 		if(_value<0)_value=0;
 		index = 0;
