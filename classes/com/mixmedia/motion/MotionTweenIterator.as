@@ -26,7 +26,7 @@ class com.mixmedia.motion.MotionTweenIterator {
 	}
 	
 	private function makeIterator():Void{
-		mc = _root.createEmptyMovieClip('tweenmc',500000);
+		mc = _root.createEmptyMovieClip('tweenmc',50000);
 		mc.onEnterFrame = Delegate.create(this,onEnterFrame);
 	}
 

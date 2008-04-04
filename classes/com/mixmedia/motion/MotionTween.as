@@ -1,10 +1,4 @@
-﻿import mx.events.EventDispatcher;
-
-import com.mixmedia.motion.MotionTweenIterator;
-import com.mixmedia.motion.TweenControl;
-import com.mixmedia.mx.events.Event;
-
-/**	
+﻿import com.mixmedia.motion.MotionTweenIterator;import com.mixmedia.motion.TweenControl;import com.mixmedia.mx.events.AbstractEventDispatcher;import com.mixmedia.mx.events.Event;/**	
 @class  MotionTween
 	@package com.mixmedia.motion
 	@author Colin Leung
@@ -35,7 +29,7 @@ import com.mixmedia.mx.events.Event;
 	version 2.7 use Event obj
 */
 
-class com.mixmedia.motion.MotionTween{
+class com.mixmedia.motion.MotionTween extends AbstractEventDispatcher{
 	private var target_mc:MovieClip; 
 	private var dx:Number,dy:Number,dr:Number,dxs:Number,dys:Number,dcra:Number,dcrb:Number,dcga:Number,dcgb:Number,dcba:Number,dcbb:Number,dcaa:Number,dcab:Number;
 
@@ -66,37 +60,30 @@ class com.mixmedia.motion.MotionTween{
 	
 	public var MTID:Number;//motiontween ID
 	
-	private var iterator:MotionTweenIterator;
+	private static var iterator:MotionTweenIterator = MotionTweenIterator.instance();
 
 	private var mcProxy:TweenControl;
 	
 	public function MotionTween(mc:MovieClip,obj:Object) {//constructor
-		EventDispatcher.initialize(this);
-		iterator = MotionTweenIterator.instance();
-
 		if(mc==undefined){
 			trace('motiontween require movieclip');
 			return;
-		}else{
-			target_mc = mc;
-			MTID = iterator.getMotionID();
-			//add common tweening control to tweenControl array.
-			//to force iterator only run count of movieclip, not count of MT.
-			mcProxy = iterator.getTweenControl(target_mc);
-			//default value
-			setDefaultProps();
-			if(obj!=undefined)setTargetProps(obj);
-			indTweenMethod = new Array();
 		}
+		
+		target_mc = mc;
+		MTID = iterator.getMotionID();
+		//add common tweening control to tweenControl array.
+		//to force iterator only run count of movieclip, not count of MT.
+		mcProxy = iterator.getTweenControl(target_mc);
+		//default value
+		setDefaultProps();
+		if(obj!=undefined)setTargetProps(obj);
+		indTweenMethod = new Array();
 	};
 
 	//tween method for different properties.
 	public function indTweenMethodCode(prop:String,t:Number, b:Number, c:Number, d:Number):Number{
-		if(typeof(indTweenMethod[prop])=='function'){
-			return indTweenMethod[prop](t,b,c,d);
-		}else{
-			return tweenMethod(t,b,c,d);
-		}
+		return (typeof(indTweenMethod[prop])=='function')?indTweenMethod[prop](t,b,c,d):tweenMethod(t,b,c,d);
 	}
 	private function setDeltaValues() : Void {
 		dx=targetX-beginX;
@@ -113,7 +100,7 @@ class com.mixmedia.motion.MotionTween{
 		dcaa=targetC['aa']-beginC['aa'];
 		dcab=targetC['ab']-beginC['ab'];
 	}
-	public function tweenCode():Void{
+	public function tweenCode():Void{
 		if(beginX!=targetX)target_mc._x = indTweenMethodCode('x',time,beginX,dx,dur);
 		if(beginY!=targetY)target_mc._y = indTweenMethodCode('y',time,beginY,dy,dur);
 		if(beginR!=targetR)target_mc._rotation = indTweenMethodCode('r',time,beginR,dr,dur);
@@ -147,25 +134,22 @@ class com.mixmedia.motion.MotionTween{
 	}
 
 	public function startTween(obj:Object):Boolean{//speed 1.54
-		if(obj!=undefined)setTargetProps(obj);	
-		if(mcProxy.isTweening&&response==false){
-			return false;
-		}else{
-			//v2.3 set target properties if arguments presents
-			//stop tween running
-			killTween();
-			//create timeout for tweenDelay.
-			if(mcProxy.isTweening == true){
-				if(iterator.tweenArray[mcProxy.motionMCID].MTID!=MTID){
-					clearDelayInterval();
-					mcProxy.delayInterval_array.push(setInterval(this,"initTween", tweenDelay));
-					return true;
-				}
-			}else{//ready to tween
+		if(obj!=undefined)setTargetProps(obj);
+		if(mcProxy.isTweening&&response==false)return false;	
+		//v2.3 set target properties if arguments presents
+		//stop tween running
+		killTween();
+		//create timeout for tweenDelay.
+		if(mcProxy.isTweening == true){
+			if(iterator.tweenArray[mcProxy.motionMCID].MTID!=MTID){
 				clearDelayInterval();
 				mcProxy.delayInterval_array.push(setInterval(this,"initTween", tweenDelay));
 				return true;
 			}
+		}else{//ready to tween
+			clearDelayInterval();
+			mcProxy.delayInterval_array.push(setInterval(this,"initTween", tweenDelay));
+			return true;
 		}
 	};
 	
@@ -254,25 +238,16 @@ class com.mixmedia.motion.MotionTween{
 	};
 
 	private function isNeedTween():Boolean{
-		if(response==true){return true;}
-		if(isColorNeedTween()!=0){return true;}
-		if(target_mc._x!=targetX){
-			return true;
-		}else if(target_mc._y!=targetY){
-			return true;
-		}else if(target_mc._alpha!=targetC['aa']){
-			return true;
-		}else if(target_mc._rotation!=targetR){
-			return true;
-		}else if(target_mc._xscale!=targetXS){
-			return true;
-		}else if(target_mc._yscale!=targetYS){
-			return true;
-		}else if(target_mc._visible==false){
-			return true;
-		}else{
-			return false;
-		}
+		if(response==true)return true;
+		if(isColorNeedTween()!=0)return true;
+		if(target_mc._x!=targetX)return true;
+		if(target_mc._y!=targetY)return true;
+		if(target_mc._alpha!=targetC['aa'])return true;
+		if(target_mc._rotation!=targetR)return true;
+		if(target_mc._xscale!=targetXS)return true;
+		if(target_mc._yscale!=targetYS)return true;
+		if(target_mc._visible==false)return true;
+		return false;
 	};
 
 	private function isColorNeedTween():Boolean{
@@ -303,7 +278,4 @@ class com.mixmedia.motion.MotionTween{
 		return c/2*((t-=2)*t*t + 2) + b;
 	};
 
-	public function addEventListener(event:String, handler:Function):Void{}
-	private function dispatchEvent(eventObj:Event):Void{}
-	public function removeEventListener(event:String, handler:Function):Void{}
 }

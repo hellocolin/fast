@@ -1,0 +1,1 @@
+import mx.utils.Delegate;/** * @author colin */class FixRef extends mx.utils.Delegate {	public function FixRef(f : Function) {		super(f);	}}
