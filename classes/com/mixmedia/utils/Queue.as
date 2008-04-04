@@ -1,6 +1,5 @@
 ﻿/**
  * @author Colin
- * a queue use hash to identify
  */
 
 class com.mixmedia.utils.Queue {
@@ -14,6 +13,12 @@ class com.mixmedia.utils.Queue {
 		if(insArray==null)insArray = new Array();
 		if(insArray[queueId]==null)insArray[queueId]= new Queue();
 		return insArray[queueId];
+	}
+
+	public static function clearAll():Void{
+		for(var i:Number = 0;i<insArray.length;i++){
+			insArray[i].clear();
+		}
 	}
 
 	private function Queue(){
@@ -30,7 +35,7 @@ class com.mixmedia.utils.Queue {
 		Function(requestArray[0])();
 		remove(0);
 		return requestArray.length;
-	};
+	}
 
 	public function addRequest(request:Function):Number{
 		//if the queue is empty, do the request immediately.
@@ -40,19 +45,13 @@ class com.mixmedia.utils.Queue {
 			request();
 		}
 	 	return requestArray.push(request);
-	}; 
+	}
 
 	public function clear():Void{
 	 	//clears the array, so no more loading will be started.
 	 	requestArray = new Array();
-	};
-	
-	public static function clearAll():Void{
-		for(var i:Number = 0;i<insArray.length;i++){
-			insArray[i].clear();
-		}
 	}
-	
+
 	public function addNextRequest(request:Function):Void{
 		if(requestArray.length==0){request();}
 	 	requestArray.splice(0,0,request);
@@ -69,10 +68,11 @@ class com.mixmedia.utils.Queue {
 		}
 		return -1;
 	}
-	
+
 	public function getItemAt(index:Number):Function{
 		return requestArray[index];
 	}
+
 	public function getLength():Number{
 		return requestArray.length;
 	}
