@@ -1,18 +1,16 @@
-﻿import com.mixmedia.collection.IScrollable;
-import com.mixmedia.mx.view.TextFieldXHTML;
-
-/**
+﻿import com.mixmedia.collection.IScrollable;import com.mixmedia.mx.TextFieldEvt;
+/**
  * @author colin
  */
 class XHTMLScrollPane implements IScrollable{
-	private var txt:TextFieldXHTML;
+	private var txt:TextFieldEvt;
 	private var scrollbar:ScrollBar;
 
 	private var max:Number = 0;
 	private var index:Number = 0;
 
 	public function XHTMLScrollPane(txt:TextField,scrollbar:ScrollBar){
-		this.txt = new TextFieldXHTML(txt);
+		this.txt = new TextFieldEvt(txt);
 		this.scrollbar = scrollbar;
 	}
 	

@@ -1,44 +1,17 @@
-import mx.utils.Delegate;
-
-import com.mixmedia.mx.events.AbstractEventDispatcher;
-import com.mixmedia.mx.events.Event;
-import com.mixmedia.mx.events.FocusEvent;
-import com.mixmedia.mx.events.IEventDispatcher;
-import com.mixmedia.mx.events.TextEvent;
-
-import TextField.StyleSheet;
-
-/**
+import mx.utils.Delegate;import com.mixmedia.mx.DisplayObject;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.FocusEvent;import com.mixmedia.mx.events.IEventDispatcher;import com.mixmedia.mx.events.TextEvent;import TextField.StyleSheet;/**
  * @author Colin
  */
-class com.mixmedia.mx.view.TextFieldXHTML extends AbstractEventDispatcher implements IEventDispatcher {
+class com.mixmedia.mx.TextFieldEvt extends DisplayObject implements IEventDispatcher {
 	private var base:TextField;
-	public function TextFieldXHTML(base:TextField) {
+	public function TextFieldEvt(base:TextField) {
 		this.base = base;
 		base.addListener(this);
 		base.onSetFocus = Delegate.create(this,onSetFocus);
 		base.onKillFocus= Delegate.create(this,onKillFocus);
 	}
 
-	public function get _x()			: Number{return base._x;}
-	public function get _y()			: Number{return base._y;}
-	public function get _xmouse() 		: Number{return base._xmouse;}
-	public function get _ymouse() 		: Number{return base._ymouse;}
-	public function get _xscale() 		: Number{return base._xscale;}
-	public function get _yscale() 		: Number{return base._yscale;}
-	public function get _width() 		: Number{return base._width;}
-	public function get _height() 		: Number{return base._height;}
-	public function get _alpha() 		: Number{return base._alpha;}
-	public function get _visible() 		: Boolean{return base._visible;}
 	public function get _target() 		: String{return base._target;}
-	public function get _rotation() 	: Number{return base._rotation;}
-	public function get _name() 		: String{return base._name;}
-//	public function get _framesloaded()	: Number{return base._framesloaded;}
-//	public function get _droptarget() 	: String{return base._droptarget;}
-//	public function get _currentframe()	: Number{return base._currentframe;}
-//	public function get _totalframes() 	: Number{return base._totalframes;}
 	public function get _quality() 		: String{return base._quality;}
-//	public function get _focusrect() 	: Boolean{return base._focusrect;}
 	public function get _soundbuftime()	: Number{return base._soundbuftime;}
 	public function get _url() 			: String{return base._url;}
 	public function get _parent() 		: MovieClip{return base._parent;}
@@ -74,25 +47,8 @@ class com.mixmedia.mx.view.TextFieldXHTML extends AbstractEventDispatcher implem
 	public function get mouseWheelEnabled() : Boolean{return base.mouseWheelEnabled;}
 	public function get styleSheet() 	: StyleSheet{return base.styleSheet;}
 
-	public function set _x				(n:Number)	: Void{base._x = n;}
-	public function set _y				(n:Number)	: Void{base._y = n;}
-	public function set _xmouse			(n:Number)	: Void{base._xmouse= n;}
-	public function set _ymouse			(n:Number)	: Void{base._ymouse= n;}
-	public function set _xscale			(n:Number)	: Void{base._xscale= n;}
-	public function set _yscale			(n:Number)	: Void{base._yscale= n;}
-	public function set _width 			(n:Number)	: Void{base._width= n;}
-	public function set _height			(n:Number)	: Void{base._height= n;}
-	public function set _alpha 			(n:Number)	: Void{base._alpha= n;}
-	public function set _visible 		(b: Boolean): Void{base._visible= b;}
 	public function set _target 		(s: String)	: Void{base._target= s;}
-	public function set _rotation		(n : Number): Void{base._rotation= n;}
-	public function set _name			(s: String)	: Void{base._name=s;}
-//	public function set _framesloaded	(n:Number)	: Void{base._framesloaded= n;}
-//	public function set _droptarget 	(s: String)	: Void{base._droptarget=s;}
-//	public function set _currentframe 	(n:Number)	: Void{base._currentframe= n;}
-//	public function set _totalframes 	(n:Number)	: Void{base._totalframes= n;}
 	public function set _quality 		(s: String)	: Void{base._quality=s;}
-//	public function set _focusrect 		(b: Boolean): Void{base._focusrect= b;}
 	public function set _soundbuftime 	(n: Number)	: Void{base._soundbuftime= n;}
 	public function set _url 			(s: String)	: Void{base._url=s;}
 	public function set _parent 		(m: MovieClip): Void{base._parent= m;}
@@ -140,13 +96,11 @@ class com.mixmedia.mx.view.TextFieldXHTML extends AbstractEventDispatcher implem
 
 	// Flash 8
 	public function get antiAliasType() : String{return base.antiAliasType;}
-	public function get filters() : Array{return base.filters;}
 	public function get gridFitType() : String{return base.gridFitType;}
 	public function get sharpness() : Number{return base.sharpness;}
 	public function get thickness() : Number{return base.thickness;}
 
 	public function set antiAliasType(s : String):Void{base.antiAliasType=s;}
-	public function set filters(a : Array):Void{base.filters=a;}
 	public function set gridFitType(s : String):Void{base.gridFitType=s;}
 	public function set sharpness(n : Number):Void{base.sharpness=n;}
 	public function set thickness(n : Number):Void{base.thickness=n;}
