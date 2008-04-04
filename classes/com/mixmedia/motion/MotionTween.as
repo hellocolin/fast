@@ -51,17 +51,13 @@ class com.mixmedia.motion.MotionTween extends AbstractEventDispatcher{
 	public var targetYS:Number;
 	public var targetC:Object;
 	public var response:Boolean;
-	
 	public var fixTweenID:Boolean;
 	public var goFrame:String="";
-
-	private var colorNeedTween:Boolean;
 	public var indTweenMethod:Array;
 	
 	public var MTID:Number;//motiontween ID
-	
-	private static var iterator:MotionTweenIterator = MotionTweenIterator.instance();
-
+	private var colorNeedTween:Boolean;	
+	private var iterator:MotionTweenIterator;
 	private var mcProxy:TweenControl;
 	
 	public function MotionTween(mc:MovieClip,obj:Object) {//constructor
@@ -69,7 +65,7 @@ class com.mixmedia.motion.MotionTween extends AbstractEventDispatcher{
 			trace('motiontween require movieclip');
 			return;
 		}
-		
+		iterator = MotionTweenIterator.instance();	
 		target_mc = mc;
 		MTID = iterator.getMotionID();
 		//add common tweening control to tweenControl array.
