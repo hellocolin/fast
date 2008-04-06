@@ -23,6 +23,7 @@ class com.mixmedia.mx.MovieClipLoaderEvt extends MovieClipLoader implements IEve
 
 	public function loadClip(url:String, target:Object):Boolean{
 		this.target = target;
+		isInit = false;
 		return super.loadClip(url,target);
 	}
 

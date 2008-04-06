@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>classes/com/mixmedia/motion/MotionTween.as</string>
+	<string>FAST/NavLabel.as</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -17,6 +17,8 @@
 			<string>classes</string>
 		</dict>
 		<dict>
+			<key>expanded</key>
+			<true/>
 			<key>name</key>
 			<string>FAST</string>
 			<key>regexFolderFilter</key>
@@ -29,7 +31,7 @@
 	<integer>186</integer>
 	<key>metaData</key>
 	<dict>
-		<key>classes/com/mixmedia/motion/MotionTween.as</key>
+		<key>FAST/NavLabel.as</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -46,7 +48,7 @@
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>classes/com/mixmedia/motion/MotionTween.as</string>
+		<string>FAST/NavLabel.as</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
