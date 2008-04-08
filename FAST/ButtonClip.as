@@ -6,7 +6,7 @@ import com.mixmedia.utils.MovieClipTools;
 /**
  * @author Colin
  */
-class com.mixmedia.view.ButtonClip extends MovieClip implements IButtonClip {
+class ButtonClip extends MovieClip implements IButtonClip {
 	private var hitArea:Button;
 	private var base:ButtonEvt;
 	
