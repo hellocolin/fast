@@ -55,6 +55,10 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 		defaultHeight=vid._height;	
 	}
 	
+	private function onUnload():Void{
+		unload();
+	}
+	
 	public function setPreloadImage(url:String):Void{
 		mcPreloadImage = this.createEmptyMovieClip("mcPreloadImage",1);
 		preloadImageLoader = new Loader(new LoadSWF(mcPreloadImage));

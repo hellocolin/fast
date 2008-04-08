@@ -1,9 +1,5 @@
-﻿import com.mixmedia.mx.view.ButtonEvt;
-import com.mixmedia.mx.view.IButtonClip;
-import com.mixmedia.mx.view.IButtonElement;
-import com.mixmedia.utils.MovieClipTools;
-
-/**
+﻿import com.mixmedia.mx.view.ButtonEvt;import com.mixmedia.mx.view.IButtonClip;import com.mixmedia.mx.view.IButtonElement;import com.mixmedia.utils.MovieClipTools;
+/**
  * @author Colin
  */
 class ButtonClip extends MovieClip implements IButtonClip {

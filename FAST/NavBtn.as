@@ -1,13 +1,8 @@
-﻿import com.mixmedia.mx.events.IEventDispatcher;
-import com.mixmedia.mx.view.IButtonClip;
-import com.mixmedia.mx.view.NavButton;
-import com.mixmedia.utils.MovieClipTools;
-import com.mixmedia.mx.view.IButtonElement;
-
-/**
+﻿import com.mixmedia.mx.view.IButtonClip;import com.mixmedia.mx.view.IButtonElement;import com.mixmedia.mx.view.NavButton;import com.mixmedia.utils.MovieClipTools;
+/**
  * @author Colin
  */
-class NavBtn extends MovieClip implements IEventDispatcher, IButtonClip{
+class NavBtn extends MovieClip implements IButtonClip{
 	private var hitarea:Button;
 	private var base:NavButton;
 
