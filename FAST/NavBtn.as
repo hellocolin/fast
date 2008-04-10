@@ -1,8 +1,7 @@
-﻿import com.mixmedia.mx.view.IButtonClip;import com.mixmedia.mx.view.IButtonElement;import com.mixmedia.mx.view.NavButton;import com.mixmedia.utils.MovieClipTools;
-/**
+﻿import com.mixmedia.mx.view.IButtonClip;import com.mixmedia.mx.view.IButtonElement;import com.mixmedia.mx.view.NavButton;import com.mixmedia.utils.MovieClipTools;/**
  * @author Colin
  */
-class NavBtn extends MovieClip implements IButtonClip{
+class NavBtn extends MovieClip implements IButtonClip,IFASTEventDispatcher{
 	private var hitarea:Button;
 	private var base:NavButton;
 
@@ -30,5 +29,5 @@ class NavBtn extends MovieClip implements IButtonClip{
 	
 	public function select() : Void {
 		base.select();
-	}
+	}		public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {		base.addEventListener(eventType, Fix.ref(whichObject,callFunction));	}
 }

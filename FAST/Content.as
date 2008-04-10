@@ -11,7 +11,7 @@ import com.mixmedia.net.Loader;
 /**
  * @author Colin
  */
-class ContentLoader extends MovieClip {
+class Content extends MovieClip {
 	private var loader:Loader;
 	private var prefix:String;
 	private var currentNavKey:String;
@@ -19,7 +19,7 @@ class ContentLoader extends MovieClip {
 	private var fadeout:MotionTween;
 	private var targetName:String;
 
-	public function ContentLoader(){
+	public function Content(){
 		loader = new Loader(new LoadSWF(this));
 		loader.setPreloader(this);
 		loader.setErrorIcon(this);

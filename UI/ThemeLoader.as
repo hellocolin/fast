@@ -6,7 +6,7 @@ import com.mixmedia.net.Loader;
 /**
  * @author Colin
  */
-class ThemeLoader extends ContentLoader {
+class ThemeLoader extends Content {
 	private var loader:Loader;
 	private var prefix:String;
 	private var currentNavKey:String;
