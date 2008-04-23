@@ -1,4 +1,9 @@
-﻿import com.mixmedia.collection.IList;import com.mixmedia.collection.events.ListEvent;import com.mixmedia.mx.events.AbstractEventDispatcher;import com.mixmedia.mx.events.IEventDispatcher;/**
+﻿import com.mixmedia.collection.IList;
+import com.mixmedia.collection.events.ListEvent;
+import com.mixmedia.mx.events.AbstractEventDispatcher;
+import com.mixmedia.mx.events.IEventDispatcher;
+import com.mixmedia.view.IInput;
+/**
  * @author colin
  */
 class com.mixmedia.collection.List extends AbstractEventDispatcher implements IList, IInput, IEventDispatcher{
