@@ -2,7 +2,9 @@
 /**
  * @author colin
  */
-class FlipBlackWhite {
+import com.gamemeal.flipBW.FlipBlackWhiteCell;
+
+class com.gamemeal.flipBW.FlipBlackWhite {
 	private var cells:Array;
 	private var col:Number = 4;
 	private var row:Number = 4;

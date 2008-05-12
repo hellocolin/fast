@@ -5,7 +5,7 @@ import com.mixmedia.mx.events.IEventDispatcher;
 /**
  * @author colin
  */
-class FlipBlackWhiteCell extends AbstractEventDispatcher implements IEventDispatcher{
+class com.gamemeal.flipBW.FlipBlackWhiteCell extends AbstractEventDispatcher implements IEventDispatcher{
 	//white_start
 	//black_start
 	//spin
