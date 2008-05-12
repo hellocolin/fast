@@ -6,4 +6,5 @@
 <AS2Classpath generateProblems="true" type="source" useAsSharedCode="false">FAST</AS2Classpath>
 <AS2Classpath generateProblems="true" type="source" useAsSharedCode="false">UI</AS2Classpath>
 <AS2Classpath generateProblems="true" type="source" useAsSharedCode="false">flash7Package</AS2Classpath>
+<AS2Classpath generateProblems="true" type="source" useAsSharedCode="false">Filters</AS2Classpath>
 </AS2Classpath>
