@@ -1,4 +1,5 @@
 ﻿import flash.display.BitmapData;
+import flash.filters.BlurFilter;
 import flash.filters.DisplacementMapFilter;
 import flash.geom.Matrix;
 import flash.geom.Point;
@@ -6,7 +7,7 @@ import flash.geom.Point;
 /**
  * @author colin
  */
-class RippleFilter {
+class RippleFilter implements IBitmapFilter{
 	private static var halfMatrix:Matrix= new Matrix(0.5,0,0,0.5,0,0);
 	private static var doubleMatrix:Matrix= new Matrix(2,0,0,2,0,0);
 	private static var pto:Point = new Point();
@@ -16,6 +17,7 @@ class RippleFilter {
 	private var _texture:BitmapData;
 	private var _source:BitmapData;
 	public var value:Number=0;
+	public var distance:Number = 10;
 
 	public function RippleFilter(w:Number,h:Number){
 		dots    = new BitmapData(w,h,false,0xFFFFFF);
@@ -26,7 +28,7 @@ class RippleFilter {
 		var m:MovieClip = _root.createEmptyMovieClip('buffer', 34110);
 		var pattern:BitmapData = new BitmapData(2,2,false,0xFFFFFF);
 		pattern.setPixel(0, 0, 0);
-		m.beginBitmapFill(pattern);
+		m['beginBitmapFill'](pattern);
 		m.lineTo(w,0);
 		m.lineTo(w,h);
 		m.lineTo(0,h);
@@ -38,6 +40,7 @@ class RippleFilter {
 	public function set source(bmp:Object):Void{
 		_source = blank.clone();
 		_source.draw(bmp);
+		_source.applyFilter(_source, _source.rectangle,pto,new BlurFilter(distance,distance,3));
 	}
 
 	public function set texture(bmp:Object):Void{
