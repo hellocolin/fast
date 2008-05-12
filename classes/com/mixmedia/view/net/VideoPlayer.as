@@ -32,7 +32,8 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 	public var safePlayToEnd : Boolean = false;
 	public var errorCode : String;
 	public var clickDisable : Boolean = true;
-	
+
+	public var loop:Boolean = false;	
 	public var autoPlay:Boolean = true;
 	private var _autoScale:Boolean = true;
 
@@ -152,6 +153,8 @@ var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
 		isPlay = false;
 		if(sendEvent==false)return;
 		dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.STOP));
+		
+		if(loop==true)gotoAndPlay(0);
 	}
 
 	public function seek(time:Number):Void{
