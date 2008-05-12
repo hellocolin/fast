@@ -6,10 +6,6 @@ import com.mixmedia.mx.events.IEventDispatcher;
  * @author colin
  */
 class com.gamemeal.flipBW.FlipBlackWhiteCell extends AbstractEventDispatcher implements IEventDispatcher{
-	//white_start
-	//black_start
-	//spin
-
 	private var _state:Boolean = false;
 
 	public function FlipBlackWhiteCell(state:Boolean){

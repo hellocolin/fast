@@ -3,8 +3,9 @@
  * @author colin
  */
 import com.gamemeal.flipBW.FlipBlackWhiteCell;
+import com.mixmedia.mx.events.AbstractEventDispatcher;
 
-class com.gamemeal.flipBW.FlipBlackWhite {
+class com.gamemeal.flipBW.FlipBlackWhite extends AbstractEventDispatcher{
 	private var cells:Array;
 	private var col:Number = 4;
 	private var row:Number = 4;
@@ -21,7 +22,6 @@ class com.gamemeal.flipBW.FlipBlackWhite {
 			var swapx:Number = random(col);
 			var swapy:Number = random(row);
 			setCell(swapx,swapy);
-//			trace([swapx,swapy]);
 		}
 	}
 
@@ -31,6 +31,7 @@ class com.gamemeal.flipBW.FlipBlackWhite {
 		FlipBlackWhiteCell(cells[x][y-1]).swap();
 		FlipBlackWhiteCell(cells[x][y+1]).swap();
 		FlipBlackWhiteCell(cells[x][y]).swap();
+		if(checkIsAllWhite())dispatchEvent(new GameEvent(this,GameEvent.WIN));
 	}
 
 	private function checkIsAllWhite():Boolean{
