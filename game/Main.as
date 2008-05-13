@@ -1,4 +1,6 @@
-﻿import com.gamemeal.cardMatch.Card;
+﻿import com.gamemal.Timer;
+import com.gamemal.TimerEvent;
+import com.gamemeal.cardMatch.Card;
 import com.gamemeal.cardMatch.CardEvent;
 import com.gamemeal.cardMatch.CardMatchGame;
 import com.gamemeal.cardMatch.CardMatchGameEvent;
@@ -31,8 +33,8 @@ class Main {
 		TimeupPanel(base['timeupPanel']).addEventListener(MouseEvent.CLICK,Fix.ref(this, start));
 		
 		timer = new Timer(30000);
-		timer.addEventListener(Event.COMPLETE, Fix.ref(this,gameover));
-		timer.addEventListener(Event.CHANGE, Fix.ref(this,updateTimerView));
+		timer.addEventListener(TimerEvent.TIMEUP, Fix.ref(this,gameover));
+		timer.addEventListener(TimerEvent.CHANGE, Fix.ref(this,updateTimerView));
 		
 		demo();
 	}

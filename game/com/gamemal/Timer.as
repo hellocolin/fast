@@ -1,10 +1,10 @@
-﻿import com.mixmedia.mx.events.AbstractEventDispatcher;
-import com.mixmedia.mx.events.Event;
+﻿import com.gamemal.TimerEvent;
+import com.mixmedia.mx.events.AbstractEventDispatcher;
 
 /**
  * @author colin
  */
-class Timer extends AbstractEventDispatcher{
+class com.gamemal.Timer extends AbstractEventDispatcher{
 	private var limit:Number = 30000;
 	private var iid : Number;
 	private var startTime:Number=0;
@@ -18,14 +18,14 @@ class Timer extends AbstractEventDispatcher{
 
 		clearInterval(iid);
 		iid = setInterval(Fix.ref(this,loop),500);
-		dispatchEvent(new Event(this, Event.START));
+		dispatchEvent(new TimerEvent(this, TimerEvent.START));
 		loop();
 	}
 	
 	private function loop() : Void {
-		dispatchEvent(new Event(this,Event.CHANGE));
+		dispatchEvent(new TimerEvent(this,TimerEvent.CHANGE));
 		if(getTimer()-startTime>=limit){
-			dispatchEvent(new Event(this, Event.COMPLETE));
+			dispatchEvent(new TimerEvent(this, TimerEvent.TIMEUP));
 			stop();
 			clearInterval(iid);
 		}
@@ -38,7 +38,7 @@ class Timer extends AbstractEventDispatcher{
 
 	public function stop():Void{
 		clearInterval(iid);
-		dispatchEvent(new Event(this, Event.STOP));
+		dispatchEvent(new TimerEvent(this, TimerEvent.STOP));
 	}
 
 	public function get time():Number{
