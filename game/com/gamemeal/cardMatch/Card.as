@@ -23,4 +23,8 @@ class com.gamemeal.cardMatch.Card extends AbstractEventDispatcher{
 	
 	public function get isOpen():Boolean{
 		return _isOpen;
-	}}
+	}
+	public function toString():String{
+		return '[object Card {id:'+id+'}]';
+	}
+}

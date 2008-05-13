@@ -13,20 +13,18 @@
 		if(row*col%match!=0)trace('card counts cannot divided by matches');
 	}
 	
-	public function start():Void{
-		cards = [];
+	public function start():Void{		cards = [];
 		openedCards = [];
 		for(var i:Number = 0;i<row*col/match;i++){
 			for(var j:Number=0;j<match;j++){
 				cards.push(new Card(i.toString()));
 			}
-		}
-		suffleCards();		dispatchEvent(new GameEvent(this,GameEvent.START));
+		}		suffleCards();		dispatchEvent(new GameEvent(this,GameEvent.START));
 	}
 	
 	public function open(x:Number,y:Number):Void{
 		getCard(x,y).open();
-		openedCards.push(getCard(x,y));
+		openedCards.push(getCard(x,y));
 		if(openedCards.length==1)return;
 
 		if(checkMatch()==false){			closeCards();
@@ -38,10 +36,9 @@
 			openedCards=[];
 		}		//check is all card opened		for(var i:Number=0;i<cards.length;i++){			if(Card(cards[i]).isOpen==false)return;		}		dispatchEvent(new GameEvent(this,GameEvent.WIN));
 	}
-	
+	public function getCard(x:Number,y:Number):Card{		return cards[y*col+x];	}	
 	private function checkMatch():Boolean{
-		for(var i:Number=1;i<openedCards.length;i++){
-			if(Card(openedCards[i]).id!=Card(openedCards[i-1]).id){
+		for(var i:Number=1;i<openedCards.length;i++){			if(Card(openedCards[i]).id != Card(openedCards[i-1]).id){
 				return false;
 			}
 		}
@@ -55,10 +52,6 @@
 		openedCards=[];
 	}
 
-	private function getCard(x:Number,y:Number):Card{
-		return cards[y*col+x];
-	}
-	
 	private function suffleCards() : Void {
 		var nLength:Number,nRandom:Number,temp:Array,i:Number;
 		nLength = cards.length;
