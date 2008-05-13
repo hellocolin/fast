@@ -1,6 +1,9 @@
+﻿
+/** * @author colin */
+import com.gamemeal.cardMatch.CardEvent;
+import com.mixmedia.mx.events.AbstractEventDispatcher;
 
-/** * @author colin */import com.gamemal.cardMatch.CardEvent;import com.mixmedia.mx.events.AbstractEventDispatcher;
-class com.gamemal.cardMatch.Card extends AbstractEventDispatcher{
+class com.gamemeal.cardMatch.Card extends AbstractEventDispatcher{
 	private var _isOpen:Boolean = false;
 	public var id:String;
 	
