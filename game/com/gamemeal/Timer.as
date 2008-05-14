@@ -1,10 +1,10 @@
-﻿import com.gamemal.TimerEvent;
+﻿import com.gamemeal.TimerEvent;
 import com.mixmedia.mx.events.AbstractEventDispatcher;
 
 /**
  * @author colin
  */
-class com.gamemal.Timer extends AbstractEventDispatcher{
+class com.gamemeal.Timer extends AbstractEventDispatcher{
 	private var limit:Number = 30000;
 	private var iid : Number;
 	private var startTime:Number=0;

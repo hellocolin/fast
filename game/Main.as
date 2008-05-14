@@ -1,10 +1,9 @@
-﻿import com.gamemal.Timer;
-import com.gamemal.TimerEvent;
+﻿import com.gamemeal.Timer;
+import com.gamemeal.TimerEvent;
 import com.gamemeal.cardMatch.Card;
 import com.gamemeal.cardMatch.CardEvent;
 import com.gamemeal.cardMatch.CardMatchGame;
 import com.gamemeal.cardMatch.CardMatchGameEvent;
-import com.mixmedia.mx.events.Event;
 import com.mixmedia.mx.events.MouseEvent;
 import com.mixmedia.utils.ArrayUtils;
 

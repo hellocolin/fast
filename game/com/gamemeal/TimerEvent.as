@@ -1,6 +1,6 @@
-import com.mixmedia.mx.events.Event;
+﻿import com.mixmedia.mx.events.Event;
 
-/** * @author colin */class com.gamemal.TimerEvent extends Event {
+/** * @author colin */class com.gamemeal.TimerEvent extends Event {
 	public static var CHANGE:String = 'change';
 	public static var START:String  = 'start';
 	public static var STOP:String   = 'stop';
