@@ -12,7 +12,7 @@ class com.gamemeal.Timer extends AbstractEventDispatcher{
 	public function Timer(limit:Number){
 		this.limit = limit;
 	}
-	
+
 	public function start():Void{
 		startTime = getTimer();
 
@@ -21,7 +21,7 @@ class com.gamemeal.Timer extends AbstractEventDispatcher{
 		dispatchEvent(new TimerEvent(this, TimerEvent.START));
 		loop();
 	}
-	
+
 	private function loop() : Void {
 		dispatchEvent(new TimerEvent(this,TimerEvent.CHANGE));
 		if(getTimer()-startTime>=limit){
@@ -30,7 +30,7 @@ class com.gamemeal.Timer extends AbstractEventDispatcher{
 			clearInterval(iid);
 		}
 	}
-	
+
 	public function resume():Void{
 		clearInterval(iid);
 		iid = setInterval(Fix.ref(this,loop),500);
@@ -46,6 +46,8 @@ class com.gamemeal.Timer extends AbstractEventDispatcher{
 	}
 	
 	public function get countDown():Number{
-		return limit-(getTimer()-startTime);
+		var left:Number = limit-(getTimer()-startTime);
+		if(left<0)left = 0;
+		return left;
 	}
 }
