@@ -1,4 +1,4 @@
-import mx.utils.Delegate;import com.mixmedia.mx.DisplayObject;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.FocusEvent;import com.mixmedia.mx.events.IEventDispatcher;import com.mixmedia.mx.events.TextEvent;import TextField.StyleSheet;/**
+﻿import mx.utils.Delegate;import com.mixmedia.mx.DisplayObject;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.FocusEvent;import com.mixmedia.mx.events.IEventDispatcher;import com.mixmedia.mx.events.TextEvent;import TextField.StyleSheet;/**
  * @author Colin
  */
 class com.mixmedia.mx.TextFieldEvt extends DisplayObject implements IEventDispatcher {
