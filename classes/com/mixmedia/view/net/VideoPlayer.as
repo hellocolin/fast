@@ -87,12 +87,14 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 		flvURL = path;
 		base.load(path);
 		safePlayToEnd = false;
+		isPlay = false;
 	}
 
 	private function onFLVLoad(e:LoaderEvent):Void{
 		ns = NetStreamEvt(e.target);
 		ns.onStatus = Delegate.create(this,onVideoStatus);
 		dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.READY,this));
+		if(autoPlay==true)play();
 		clickDisable = false;
 	}
 	
@@ -132,7 +134,7 @@ var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
 	}
 
 	public function play():Void{
-		if(isPlaying==true)return;
+		if(isPlay==true)return;
 		if(mcPreloadImage._visible == true){
 			mcPreloadImage._visible = false;
 		}
@@ -164,6 +166,7 @@ var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
 	}
 
 	public function gotoAndPlay(time:Number):Void{
+		isPlay = false;
 		if(time==0){
 			removeReplayInterval();
 		}
