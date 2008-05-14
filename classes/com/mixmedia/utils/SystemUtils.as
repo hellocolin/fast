@@ -23,4 +23,9 @@ class com.mixmedia.utils.SystemUtils {
 
 		return (pathArray.length==0)?"":(pathArray.join("/")+"/");
 	}
+	
+	public static function getMovieFileName(mc:MovieClip):String{
+		var pathArray:Array = mc._url.split("/");
+		return pathArray.pop().toString();
+	}
 }
