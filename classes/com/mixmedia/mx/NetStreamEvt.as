@@ -82,6 +82,8 @@ class com.mixmedia.mx.NetStreamEvt extends NetStream implements IEventDispatcher
 	}
 
 	public function load(requestURL : String) : Void {
+		metaDataArray = new Array();
+		cuePointArray = new Array();
 		this.play(requestURL);
 		isOpen = false;
 		isComplete=false;
