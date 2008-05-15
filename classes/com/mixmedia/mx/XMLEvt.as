@@ -1,18 +1,10 @@
-﻿import mx.events.EventDispatcher;
-import mx.utils.Delegate;
-
-import com.mixmedia.mx.events.Event;
-import com.mixmedia.mx.events.IEventDispatcher;
-import com.mixmedia.mx.events.IOErrorEvent;
-import com.mixmedia.mx.events.LoaderEvent;
-import com.mixmedia.net.ILoader;
-
-/**
+﻿import mx.events.EventDispatcher;import mx.utils.Delegate;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.IEventDispatcher;import com.mixmedia.mx.events.IFASTEventDispatcher;import com.mixmedia.mx.events.IOErrorEvent;import com.mixmedia.mx.events.LoaderEvent;import com.mixmedia.net.ILoader;
+/**
  * @author Colin
  * 
  */
 
- class com.mixmedia.mx.XMLEvt extends XML implements IEventDispatcher{
+ class com.mixmedia.mx.XMLEvt extends XML implements IEventDispatcher,IFASTEventDispatcher{
 	private var iid:Number;
 	private var isOpen:Boolean = false;
 	private var isComplete:Boolean = false;
@@ -66,5 +58,5 @@ import com.mixmedia.net.ILoader;
 	
 	public function setCurrentTarget(currentTarget : Object) : Void {
 		this.currentTarget = ILoader(currentTarget);
-	}
+	}	public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {		addEventListener(eventType,Delegate.create(whichObject,callFunction));	}
 }

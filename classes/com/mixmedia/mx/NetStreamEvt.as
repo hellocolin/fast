@@ -1,16 +1,8 @@
-﻿import mx.events.EventDispatcher;
-import mx.utils.Delegate;
-
-import com.mixmedia.mx.events.Event;
-import com.mixmedia.mx.events.IEventDispatcher;
-import com.mixmedia.mx.events.IOErrorEvent;
-import com.mixmedia.mx.events.LoaderEvent;
-import com.mixmedia.net.ILoader;
-
-/**
+﻿import mx.events.EventDispatcher;import mx.utils.Delegate;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.IEventDispatcher;import com.mixmedia.mx.events.IFASTEventDispatcher;import com.mixmedia.mx.events.IOErrorEvent;import com.mixmedia.mx.events.LoaderEvent;import com.mixmedia.net.ILoader;
+/**
  * @author Colin
  */
-class com.mixmedia.mx.NetStreamEvt extends NetStream implements IEventDispatcher{
+class com.mixmedia.mx.NetStreamEvt extends NetStream implements IEventDispatcher,IFASTEventDispatcher{
 	public var metaDataArray:Array;
 	public var cuePointArray : Array;
 	private var currentTarget : Object;
@@ -98,5 +90,5 @@ class com.mixmedia.mx.NetStreamEvt extends NetStream implements IEventDispatcher
 	
 	public function setCurrentTarget(currentTarget : Object) : Void {
 		this.currentTarget = ILoader(currentTarget);
-	}
+	}		public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {		addEventListener(eventType,Delegate.create(whichObject,callFunction));	}
 }

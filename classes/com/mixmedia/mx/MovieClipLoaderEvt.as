@@ -1,15 +1,7 @@
-﻿import mx.events.EventDispatcher;
-
-import com.mixmedia.mx.events.Event;
-import com.mixmedia.mx.events.IEventDispatcher;
-import com.mixmedia.mx.events.IOErrorEvent;
-import com.mixmedia.mx.events.LoaderEvent;
-import com.mixmedia.net.ILoader;
-
-/**
+﻿import mx.events.EventDispatcher;import mx.utils.Delegate;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.IEventDispatcher;import com.mixmedia.mx.events.IFASTEventDispatcher;import com.mixmedia.mx.events.IOErrorEvent;import com.mixmedia.mx.events.LoaderEvent;import com.mixmedia.net.ILoader;/**
  * @author colin
  */
-class com.mixmedia.mx.MovieClipLoaderEvt extends MovieClipLoader implements IEventDispatcher{
+class com.mixmedia.mx.MovieClipLoaderEvt extends MovieClipLoader implements IEventDispatcher,IFASTEventDispatcher{
 	private var target : Object;
 	private var currentTarget : Object;
 	private var isInit:Boolean = false;
@@ -67,5 +59,5 @@ class com.mixmedia.mx.MovieClipLoaderEvt extends MovieClipLoader implements IEve
 	
 	public function setCurrentTarget(currentTarget : Object) : Void {
 		this.currentTarget = ILoader(currentTarget);
-	}
+	}		public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {		addEventListener(eventType,Delegate.create(whichObject,callFunction));	}
 }
