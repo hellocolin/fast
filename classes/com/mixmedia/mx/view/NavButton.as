@@ -17,7 +17,7 @@ class com.mixmedia.mx.view.NavButton implements IButtonClip{
 	private var nav:Navigation;
 
 	public var navKey:String;
-	public var targetContainer:String;
+	public var targetContainer: String;
 
 	public function NavButton(hitarea:Button,navKey:String,targetContainer:String){
 		base = new ButtonEvt(hitarea);
@@ -71,5 +71,9 @@ class com.mixmedia.mx.view.NavButton implements IButtonClip{
 	
 	public function select() : Void {
 		base.select();
+	}
+	
+	public function setMouseOverDelay(num : Number) : Void {
+		base.setMouseOverDelay(num);
 	}
 }

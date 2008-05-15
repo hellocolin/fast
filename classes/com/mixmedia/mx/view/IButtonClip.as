@@ -1,4 +1,4 @@
-import com.mixmedia.mx.events.IEventDispatcher;
+﻿import com.mixmedia.mx.events.IEventDispatcher;
 import com.mixmedia.mx.view.IButtonElement;
 
 /**
@@ -7,4 +7,5 @@ import com.mixmedia.mx.view.IButtonElement;
 interface com.mixmedia.mx.view.IButtonClip extends IEventDispatcher{
 	function addElement(element:IButtonElement):Void;
 	function select():Void;
+	function setMouseOverDelay(num:Number):Void;
 }

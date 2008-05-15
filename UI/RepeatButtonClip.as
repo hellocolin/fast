@@ -73,4 +73,8 @@ class RepeatButtonClip extends MovieClip implements IButtonClip {
 	public function select() : Void {
 		base.select();
 	}
+	
+	public function setMouseOverDelay(num : Number) : Void {
+		base.setMouseOverDelay(num);
+	}
 }
