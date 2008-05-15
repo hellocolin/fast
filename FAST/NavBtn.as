@@ -1,4 +1,4 @@
-﻿import com.mixmedia.mx.view.IButtonClip;import com.mixmedia.mx.view.IButtonElement;import com.mixmedia.mx.view.NavButton;import com.mixmedia.utils.MovieClipTools;/**
+﻿import com.mixmedia.mx.events.IFASTEventDispatcher;import com.mixmedia.mx.view.IButtonClip;import com.mixmedia.mx.view.IButtonElement;import com.mixmedia.mx.view.NavButton;import com.mixmedia.utils.MovieClipTools;/**
  * @author Colin
  */
 class NavBtn extends MovieClip implements IButtonClip,IFASTEventDispatcher{

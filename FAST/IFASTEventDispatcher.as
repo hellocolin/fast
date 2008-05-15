@@ -1,1 +1,0 @@
-/** * @author colin */interface IFASTEventDispatcher {	function when(eventType:String,whichObject:Object,callFunction:Function):Void;}

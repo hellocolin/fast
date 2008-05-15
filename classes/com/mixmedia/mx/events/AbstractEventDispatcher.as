@@ -1,12 +1,7 @@
-﻿import mx.events.EventDispatcher;
-
-import com.mixmedia.mx.events.Event;
-import com.mixmedia.mx.events.IEventDispatcher;
-
-/**
+﻿import mx.events.EventDispatcher;import mx.utils.Delegate;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.IEventDispatcher;import com.mixmedia.mx.events.IFASTEventDispatcher;/**
  * @author colin
  */
-class com.mixmedia.mx.events.AbstractEventDispatcher implements IEventDispatcher{
+class com.mixmedia.mx.events.AbstractEventDispatcher implements IEventDispatcher,IFASTEventDispatcher{
 	private var currentTarget:Object;
 
 	public function AbstractEventDispatcher(){
@@ -20,5 +15,5 @@ class com.mixmedia.mx.events.AbstractEventDispatcher implements IEventDispatcher
 
 	public function addEventListener(event:String, handler:Function):Void{}
 	private function dispatchEvent(eventObj:Event):Void{}
-	public function removeEventListener(event:String, handler:Function):Void{}
+	public function removeEventListener(event:String, handler:Function) : Void {	}		public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {		addEventListener(eventType,Delegate.create(this,callFunction));	}
 }
