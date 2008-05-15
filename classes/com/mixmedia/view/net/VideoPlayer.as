@@ -52,8 +52,9 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 		base.addEventListener(LoaderEvent.PROGRESS,Delegate.create(this,onProgress));
 		base.addEventListener(ErrorEvent.ERROR,Delegate.create(this,onError));
 		base.addEventListener(LoaderEvent.OPEN, Delegate.create(this,onStreamOpen));
+		base.addEventListener(LoaderEvent.COMPLETE, Delegate.create(this, onLoadComplete));
 		defaultWidth =vid._width;
-		defaultHeight=vid._height;	
+		defaultHeight=vid._height;
 	}
 	
 	private function onUnload():Void{
@@ -96,6 +97,10 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 		dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.READY,this));
 		if(autoPlay==true)play();
 		clickDisable = false;
+	}
+
+	private function onLoadComplete() : Void {
+		dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.COMPLETE,this));
 	}
 	
 	private function onProgress():Void{

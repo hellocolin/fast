@@ -16,8 +16,8 @@ class com.mixmedia.net.LoadFLV implements ILoader {
 		this.vid.deblocking = (deblocking==null)?2:deblocking;
 		this.vid.smoothing = (smooth==null)?true:smooth;
 		this.autoPlay = (autoPlay==null)?true:autoPlay;
-		this.buffer = (buffer==null)?0:buffer;
-		
+		this.buffer = (buffer==null)?3:buffer;
+
 		vid_nc = new NetConnection();
 		vid_nc.connect(null);
 		vid_ns = new NetStreamEvt(vid_nc);
