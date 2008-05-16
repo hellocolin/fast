@@ -38,6 +38,9 @@ function init(){
 			}
 			if(xui.dismiss == 'accept'){
 				renameItemsClass();
+				if(selectedElements[0].name==''){
+					selectedElements[0].name=selectedElements[0].libraryItem.name.split('/').pop();
+				}
 			}
 		}else{
 			alert('only accept 1 symbol instance on stage')

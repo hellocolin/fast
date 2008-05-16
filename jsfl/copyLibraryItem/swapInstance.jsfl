@@ -27,12 +27,15 @@ function init(){
 
 	for(var i=0;i<selectedElements.length;i++){
 		if(selectedElements[i].elementType=='instance'){
-			var itemName  = selectedElements[i].libraryItem.name;
+			var oldItem   = selectedElements[i].libraryItem;
+			var itemName  = oldItem.name;
+			var itemClass = oldItem.linkageClassName;
 			var itemNames = itemName.split("$");
 			var num = Number(itemNames.pop());
 
 			if(isNaN(num) ==true){
-				alert('library item format should be xxxx$1, xxxx$2');return;
+				alert('library item format should be xxxx$1, xxxx$2');
+				return;
 			}
 
 			library.selectNone();
@@ -50,7 +53,15 @@ function init(){
 			newItems[0].name = newName.split("/").pop();
 			isSelectInstance = true;
 
+			if(itemClass!=''){
+				newItems[0].linkageExportForAS = true;
+				newItems[0].linkageExportInFirstFrame = true;
+				newItems[0].linkageIdentifier = String(newItems[0].name).split('/').pop();
+				newItems[0].linkageClassName = itemClass;
+			}
+
 			selectedElements[i].libraryItem = newItems[0];
+			selectedElements[i].name = newItems[0].name.split("/").pop();
 		}
 	}
 }
