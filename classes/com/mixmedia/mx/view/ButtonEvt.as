@@ -104,7 +104,7 @@ class com.mixmedia.mx.view.ButtonEvt extends AbstractEventDispatcher implements 
 	}
 
 	public function clearMouseOver() : Void {
-		clearInterval(outDelay);
+		clearInterval(overIID);
 	}
 
 	public function clearMouseOut() : Void {
