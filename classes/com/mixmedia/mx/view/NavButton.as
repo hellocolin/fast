@@ -76,4 +76,8 @@ class com.mixmedia.mx.view.NavButton implements IButtonClip{
 	public function setMouseOverDelay(num : Number) : Void {
 		base.setMouseOverDelay(num);
 	}
+	
+	public function setMouseOutDelay(num : Number) : Void {
+		base.setMouseOutDelay(num);
+	}
 }
