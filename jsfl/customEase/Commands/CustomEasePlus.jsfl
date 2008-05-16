@@ -61,11 +61,11 @@ function getCurve(){//array of curves
 }
 
 function saveCurve(curveName){
-	declareVar()
+	declareVar();
 	var curArray = getCurve();
 	if(curArray!='noCurveDefined'){
 		var textToWrite ="function returnCurve(curArray){\ncurArray[0]=["+curArray[0]+"];\ncurArray[1]=["+curArray[1]+"];\ncurArray[2]=["+curArray[2]+"];\ncurArray[3]=["+curArray[3]+"];\ncurArray[4]=["+curArray[4]+"];\ncurArray[5]=["+curArray[5]+"];\n}";
-		FLfile.write(commandAssetPath+"data/"+curveName, textToWrite)
+		FLfile.write(commandAssetPath+"data/"+curveName+'.eas', textToWrite)
 	}else{
 		trace('you selected a frame without Custom Easing')
 	}
@@ -74,7 +74,7 @@ function saveCurve(curveName){
 
 function applyCurve(curveFile){
 	declareVar();
-	curveFile = commandAssetPath+"data/"+curveFile;
+	curveFile = commandAssetPath+"data/"+curveFile+'.eas';
 	var curArray = new Array();
 	var curveType = ["all", "position", "rotation", "scale", "color", "filters"];
 	timeline.createMotionTween();
@@ -98,7 +98,7 @@ function applyCurve(curveFile){
 
 function deleteCurve(curveName){
 	declareVar();
-	var curveFile = commandAssetPath+"data/"+curveName;
+	var curveFile = commandAssetPath+"data/"+curveName+'.eas';
 	FLfile.remove(curveFile);
 	alert(curveName+' removed!')
 }
