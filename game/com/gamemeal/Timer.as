@@ -1,4 +1,6 @@
-﻿import com.gamemeal.TimerEvent;
+﻿import mx.utils.Delegate;
+
+import com.gamemeal.TimerEvent;
 import com.mixmedia.mx.events.AbstractEventDispatcher;
 
 /**
@@ -17,7 +19,7 @@ class com.gamemeal.Timer extends AbstractEventDispatcher{
 		startTime = getTimer();
 
 		clearInterval(iid);
-		iid = setInterval(Fix.ref(this,loop),500);
+		iid = setInterval(Delegate.create(this,loop),500);
 		dispatchEvent(new TimerEvent(this, TimerEvent.START));
 		loop();
 	}
@@ -33,7 +35,7 @@ class com.gamemeal.Timer extends AbstractEventDispatcher{
 
 	public function resume():Void{
 		clearInterval(iid);
-		iid = setInterval(Fix.ref(this,loop),500);
+		iid = setInterval(Delegate.create(this,loop),500);
 	}
 
 	public function stop():Void{
