@@ -1,4 +1,6 @@
-﻿import mx.utils.Delegate;
+﻿import com.mixmedia.mx.events.Event;
+
+import mx.utils.Delegate;
 
 import com.mixmedia.mx.events.AbstractEventDispatcher;
 import com.mixmedia.mx.view.IButtonClip;
@@ -93,8 +95,9 @@ class com.mixmedia.mx.view.ButtonEvt extends AbstractEventDispatcher implements 
 		reset();
 	}		public function select() : Void {
 		isHighlight = true;
+		dispatchEvent(new ButtonClipEvent(currentTarget, ButtonClipEvent.SELECT, hitArea,isHighlight));
 	}
-	
+
 	public function setMouseOverDelay(num : Number) : Void {
 		overDelay = num;
 	}
