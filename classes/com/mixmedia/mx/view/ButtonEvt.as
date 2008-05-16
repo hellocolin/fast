@@ -14,7 +14,8 @@ class com.mixmedia.mx.view.ButtonEvt extends AbstractEventDispatcher implements 
 	private var hitArea: Button;
 	private var overDelay : Number=0;
 	private var outDelay:Number=0;
-	private var iid:Number;
+	private var overIID:Number;
+	private var outIID:Number;
 
 	public function ButtonEvt(hitarea:Button){
 		this.hitArea = hitarea;
@@ -34,33 +35,38 @@ class com.mixmedia.mx.view.ButtonEvt extends AbstractEventDispatcher implements 
 		this.addEventListener(ButtonClipEvent.MOUSE_DOWN , Delegate.create(element,element.buttonDown));
 		this.addEventListener(ButtonClipEvent.RESET      , Delegate.create(element,element.buttonReset));
 	}
+	
+	private function clearIID():Void{
+		clearInterval(overIID);
+		clearInterval(outIID);	
+	}
 
 	private function out():Void{
-		clearInterval(iid);
+		clearIID();
 		if(outDelay==0){
 			doOut();
 		}else{
-			iid = setInterval(Delegate.create(this,doOut),outDelay);
+			outIID = setInterval(Delegate.create(this,doOut),outDelay);
 		}
 	}
 	
 	private function doOut():Void{
-		clearInterval(iid);
+		clearIID();
 		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.MOUSE_OUT  ,hitArea, isHighlight));
 		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.ROLL_OUT, hitArea, isHighlight));
 	}
 
 	private function over():Void{
-		clearInterval(iid);
+		clearIID();
 		if(overDelay==0){
 			doOver();
 		}else{
-			iid = setInterval(Delegate.create(this,doOver),overDelay);
+			overIID = setInterval(Delegate.create(this,doOver),overDelay);
 		}
 	}
 
 	private function doOver():Void{
-		clearInterval(iid);
+		clearIID();
 		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.MOUSE_OVER ,hitArea, isHighlight));
 		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.ROLL_OVER, hitArea, isHighlight));	
 	}
@@ -95,5 +101,13 @@ class com.mixmedia.mx.view.ButtonEvt extends AbstractEventDispatcher implements 
 	
 	public function setMouseOutDelay(num : Number) : Void {
 		outDelay = num;
+	}
+
+	public function clearMouseOver() : Void {
+		clearInterval(outDelay);
+	}
+
+	public function clearMouseOut() : Void {
+		clearInterval(outIID);
 	}
 }
