@@ -74,7 +74,7 @@ function saveCurve(curveName){
 
 function applyCurve(curveFile){
 	declareVar();
-	curveFile = commandAssetPath+"data/"+curveFile+'.eas';
+	curveFile = commandAssetPath+"data/"+curveFile;
 	var curArray = new Array();
 	var curveType = ["all", "position", "rotation", "scale", "color", "filters"];
 	timeline.createMotionTween();
