@@ -17,9 +17,8 @@ class Content extends MovieClip {
 	private var currentNavKey:String;
 	private var fadein:MotionTween;
 	private var fadeout:MotionTween;
-	private var targetName:String;
-
-	public function Content(){
+	private var targetName: String;	private var extension : String;
+	public function Content(){
 		loader = new Loader(new LoadSWF(this));
 		loader.setPreloader(this);
 		loader.setErrorIcon(this);
@@ -27,7 +26,8 @@ class Content extends MovieClip {
 
 		var para:Array = _name.split('$');
 		targetName	= para[1]==null?"":para[1];
-		prefix		= para[2]==null?"":para[2]; 
+		prefix		= para[2]==null?"":para[2];
+		extension   = para[3]==null?"swf":para[3];
 
 		fadein  = new MotionTween(MovieClip(loader.getTargetContainer()),{a:100});
 		fadeout = new MotionTween(MovieClip(loader.getTargetContainer()),{a:0});
@@ -57,6 +57,6 @@ class Content extends MovieClip {
 	}
 
 	private function loadAction():Void{
-		loader.load(prefix+currentNavKey+".swf");	
+		loader.load(prefix+currentNavKey+"."+extension);	
 	}
 }

@@ -6,14 +6,14 @@ import com.mixmedia.view.events.ButtonClipEvent;
 /**
  * @author colin
  */
-class NavLabel extends MovieClip implements IButtonElement {
+class Label extends MovieClip implements IButtonElement {
 	private static var overHColor:Object  = Conversion.hexToColor(0xFFFFFF, 100);
 	private static var overColor:Object   = Conversion.hexToColor(0xFFFFFF, 100);
 	private static var normalHColor:Object= Conversion.hexToColor(0xFFFFFF, 100);
 	private static var normalColor:Object = Conversion.hexToColor(-1);
 	private var motion : MotionTween;
 	
-	public function NavLabel(){
+	public function Label(){
 		motion = new MotionTween(this);
 		NavBtn(_parent).addElement(this);
 	}
