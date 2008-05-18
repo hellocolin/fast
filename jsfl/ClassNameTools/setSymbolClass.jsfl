@@ -30,23 +30,34 @@ function init(){
 		if(selectedElements.length>0&&isSymbol(selectedElements[0])){// something slected
 
 			if(selectedElements[0].libraryItem.linkageClassName!=""){
-				xui = currentDoc.xmlPanel(xmluiPath);
-				
+				xui = currentDoc.xmlPanel(xmluiPath);			
 			}else{
 				alert('this instance already assigned class name.')
 				xui = currentDoc.xmlPanel(xmluiPath);
 			}
 			if(xui.dismiss == 'accept'){
 				renameItemsClass();
-				if(selectedElements[0].name==''){
-					selectedElements[0].name=selectedElements[0].libraryItem.name.split('/').pop();
-				}
+				addInstanceNameIfEmpty();
+				setPackagePath();
 			}
 		}else{
 			alert('only accept 1 symbol instance on stage')
 		}
 	}else{
 		alert('Please open a document before using the this Command.')
+	}
+}
+
+function setPackagePath(){
+	if(fl.packagePaths.indexOf(';../classes;../FAST;./classes;./FAST')==-1){
+		fl.packagePaths += ';../classes;../FAST;./classes;./FAST';
+		fl.trace('FAST package path added');
+	}
+}
+
+function addInstanceNameIfEmpty(){
+	if(selectedElements[0].name==''){
+		selectedElements[0].name=selectedElements[0].libraryItem.name.split('/').pop();
 	}
 }
 
