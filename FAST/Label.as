@@ -7,13 +7,17 @@ import com.mixmedia.view.events.ButtonClipEvent;
  * @author colin
  */
 class Label extends MovieClip implements IButtonElement {
-	private static var overHColor:Object  = Conversion.hexToColor(0xFFFFFF, 100);
-	private static var overColor:Object   = Conversion.hexToColor(0xFFFFFF, 100);
-	private static var normalHColor:Object= Conversion.hexToColor(0xFFFFFF, 100);
-	private static var normalColor:Object = Conversion.hexToColor(-1);
+	private var overHColor:Object;
+	private var overColor:Object;
+	private var normalHColor:Object;
+	private var normalColor:Object;
 	private var motion : MotionTween;
 	
 	public function Label(){
+		overHColor = Conversion.hexToColor(0xFFFFFF, 100);
+		overColor  = Conversion.hexToColor(0xFFFFFF, 100);
+		normalHColor = Conversion.hexToColor(0xFFFFFF, 100);
+		normalColor = Conversion.hexToColor(-1);
 		motion = new MotionTween(this);
 		NavBtn(_parent).addElement(this);
 	}
