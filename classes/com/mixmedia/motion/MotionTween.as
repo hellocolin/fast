@@ -1,4 +1,4 @@
-﻿import com.mixmedia.motion.MotionTweenIterator;import com.mixmedia.motion.TweenControl;import com.mixmedia.mx.events.AbstractEventDispatcher;import com.mixmedia.mx.events.Event;/**	
+﻿import com.mixmedia.motion.MotionTweenIterator;import com.mixmedia.motion.TweenControl;import com.mixmedia.mx.events.AbstractEventDispatcher;import com.mixmedia.mx.events.Event; /**	
 @class  MotionTween
 	@package com.mixmedia.motion
 	@author Colin Leung
