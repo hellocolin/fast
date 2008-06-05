@@ -1,6 +1,5 @@
 ﻿import com.mixmedia.mx.events.AbstractEventDispatcher;
 import com.mixmedia.mx.events.Event;
-import com.mixmedia.mx.events.IEventDispatcher;
 
 /**
  * @author colin
