@@ -1,9 +1,8 @@
 ﻿import com.mixmedia.view.status.IStatusIcon;
-
-/**
+/**
  * @author Colin
  */
-class com.mixmedia.utils.BindMovieClip {
+class com.mixmedia.view.status.BindMovieClip {
 	public static var PROGRESS:String='Preloader';
 	public static var ERROR:String='ErrorIcon';
 	public static var TOOLTIP:String='toolTips';

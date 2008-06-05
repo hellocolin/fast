@@ -8,9 +8,9 @@ import com.mixmedia.mx.events.LoaderEvent;
 import com.mixmedia.mx.events.MouseEvent;
 import com.mixmedia.net.LoadFLV;
 import com.mixmedia.net.LoadSWF;
-import com.mixmedia.net.Loader;
 import com.mixmedia.utils.MovieClipTools;
 import com.mixmedia.view.events.VideoPlayerEvent;
+import com.mixmedia.view.net.Loader;
 /**
  * @author Colin
  */

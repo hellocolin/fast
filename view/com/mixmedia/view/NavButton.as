@@ -1,7 +1,7 @@
 ﻿import mx.utils.Delegate;
 
 import com.mixmedia.navigation.Navigation;
-import com.mixmedia.navigation.events.NavigationEvent;
+import com.mixmedia.navigation.NavigationEvent;
 import com.mixmedia.view.ButtonEvt;
 import com.mixmedia.view.events.ButtonClipEvent;
 
@@ -9,7 +9,7 @@ import com.mixmedia.view.events.ButtonClipEvent;
  * @author Colin
  * decorator of ButtonClip
  */
-class com.mixmedia.mx.view.NavButton implements IButtonClip{
+class com.mixmedia.view.NavButton implements IButtonClip{
 	private var base:ButtonEvt;
 	private var currentTarget : IButtonClip;
 	private var nav:Navigation;

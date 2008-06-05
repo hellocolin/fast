@@ -4,8 +4,8 @@ import com.mixmedia.mx.events.AbstractEventDispatcher;
 import com.mixmedia.mx.events.Event;
 import com.mixmedia.mx.events.IOErrorEvent;
 import com.mixmedia.mx.events.LoaderEvent;
-import com.mixmedia.utils.BindMovieClip;
 import com.mixmedia.utils.Queue;
+import com.mixmedia.view.status.BindMovieClip;
 
 /**
  * @author colin
@@ -16,7 +16,7 @@ import com.mixmedia.utils.Queue;
  * 
  * in default, error icon and preloader icon attach to _root
  */
-class com.mixmedia.net.Loader extends AbstractEventDispatcher implements ILoader{
+class com.mixmedia.view.net.Loader extends AbstractEventDispatcher implements ILoader{
 	private var base : ILoader;
 
 	private var delLoad : Function;
