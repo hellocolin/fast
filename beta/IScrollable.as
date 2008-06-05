@@ -2,7 +2,7 @@
 /**
  * @author colin
  */
-interface com.mixmedia.collection.IScrollable {
+interface IScrollable {
 	function setIndex(value:Number):Void;
 	function getIndex():Number;
 	function getMax():Number;
