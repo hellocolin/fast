@@ -8,7 +8,7 @@ import com.mixmedia.view.events.ButtonClipEvent;
 /**
  * @author Colin
  */
-class com.mixmedia.mx.view.ButtonEvt extends AbstractEventDispatcher implements IButtonClip{
+class com.mixmedia.view.ButtonEvt extends AbstractEventDispatcher implements IButtonClip{
 	private var _isHighlight:Boolean = false;
 	private var hitArea: Button;
 	private var overDelay : Number=0;

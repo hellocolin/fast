@@ -1,4 +1,6 @@
-﻿import com.mixmedia.mx.view.ButtonEvt;import com.mixmedia.utils.MovieClipTools;/**
+﻿import com.mixmedia.utils.MovieClipTools;
+import com.mixmedia.view.ButtonEvt;
+/**
  * @author Colin
  */
 class ButtonClip extends MovieClip implements IButtonClip ,IFASTEventDispatcher{

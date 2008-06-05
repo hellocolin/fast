@@ -5,7 +5,7 @@ import flash.display.PixelSnapping;
 /**
  * @author colin
  */
-class com.mixmedia.mx.view.BitmapText {
+class com.mixmedia.view.BitmapText {
 	private var txf:TextField;
 	private var bmp:Bitmap;
 

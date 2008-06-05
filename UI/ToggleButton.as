@@ -3,8 +3,8 @@
 import com.mixmedia.mx.AbstractMovieClipEventDispatcher;
 import com.mixmedia.mx.events.Event;
 import com.mixmedia.mx.events.MouseEvent;
-import com.mixmedia.mx.view.ButtonEvt;
 import com.mixmedia.utils.MovieClipTools;
+import com.mixmedia.view.ButtonEvt;
 
 /**
  * @author Colin
