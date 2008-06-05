@@ -1,6 +1,6 @@
 ﻿import com.mixmedia.mx.events.AbstractEventDispatcher;
 import com.mixmedia.navigation.NavStackRequest;
-import com.mixmedia.navigation.events.NavigationEvent;
+import com.mixmedia.navigation.NavigationEvent;
 
 /**
  * @author colin

@@ -4,7 +4,7 @@ import com.mixmedia.navigation.Navigation;
 /**
  * @author Colin
  */
-class com.mixmedia.navigation.events.NavigationEvent extends Event {
+class com.mixmedia.navigation.NavigationEvent extends Event {
 	public var navKey:String;
 	public var targetContainer:String;
 	public var isSuppress:Boolean;
