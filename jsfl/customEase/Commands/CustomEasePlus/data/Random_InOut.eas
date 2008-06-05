@@ -1,8 +1,0 @@
-function returnCurve(curArray){
-curArray[0]=[{x:0,y:0},{x:Math.random(),y:0},{x:Math.random(),y:1},{x:1,y:1}];
-curArray[1]=[{x:0,y:0},{x:0.5,y:0},{x:0.8,y:1},{x:1,y:1}];
-curArray[2]=[{x:0,y:0},{x:0.5,y:0},{x:0.8,y:1},{x:1,y:1}];
-curArray[3]=[{x:0,y:0},{x:0.5,y:0},{x:0.8,y:1},{x:1,y:1}];
-curArray[4]=[{x:0,y:0},{x:0.5,y:0},{x:0.8,y:1},{x:1,y:1}];
-curArray[5]=[{x:0,y:0},{x:0.5,y:0},{x:0.8,y:1},{x:1,y:1}];
-}

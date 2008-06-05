@@ -1,7 +1,9 @@
-﻿/** * @author colin */import com.gamemeal.cardMatch.Card;
+﻿/** * @author colin */import com.gamemeal.GameEvent;
+import com.gamemeal.cardMatch.Card;
 import com.gamemeal.cardMatch.CardMatchGameEvent;
 import com.mixmedia.mx.events.AbstractEventDispatcher;
-import com.mixmedia.utils.ArrayUtils;
+import com.mixmedia.utils.ArrayUtils;
+
 class com.gamemeal.cardMatch.CardMatchGame extends AbstractEventDispatcher {
 	private var row : Number;
 	private var col : Number;

@@ -1,6 +1,5 @@
 import com.mixmedia.mx.events.Event;
-
-/** * @author colin */class GameEvent extends Event {
+/** * @author colin */class com.gamemeal.GameEvent extends Event {
 	public static var START:String = 'start';
 	public static var WIN:String = 'win';
 	public static var GAMEOVER:String = 'gameover';

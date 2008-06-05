@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<dialog id="CustomEasePlus" title="Mixmedia Flash Toolset" buttons="accept, cancel">
-<flash id="methods" width="200" height="300" src="CustomEasePlus.swf"/>
-</dialog>

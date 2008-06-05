@@ -6,4 +6,6 @@
 <AS2Classpath generateProblems="true" type="source" useAsSharedCode="false">view</AS2Classpath>
 <AS2Classpath generateProblems="true" type="source" useAsSharedCode="false">beta</AS2Classpath>
 <AS2Classpath generateProblems="true" type="source" useAsSharedCode="false">FAST</AS2Classpath>
+<AS2Classpath generateProblems="true" type="source" useAsSharedCode="false">support/asunit</AS2Classpath>
+<AS2Classpath generateProblems="true" type="source" useAsSharedCode="false">support/unittest</AS2Classpath>
 </AS2Classpath>

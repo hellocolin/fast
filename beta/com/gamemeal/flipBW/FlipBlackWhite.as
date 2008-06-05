@@ -2,10 +2,8 @@
 /**
  * @author colin
  */
-import com.gamemeal.flipBW.FlipBlackWhiteCell;
-import com.mixmedia.mx.events.AbstractEventDispatcher;
-
-class com.gamemeal.flipBW.FlipBlackWhite extends AbstractEventDispatcher{
+import com.gamemeal.GameEvent;import com.gamemeal.flipBW.FlipBlackWhiteCell;import com.mixmedia.mx.events.AbstractEventDispatcher;
+class com.gamemeal.flipBW.FlipBlackWhite extends AbstractEventDispatcher{
 	private var cells:Array;
 	private var col:Number = 4;
 	private var row:Number = 4;
