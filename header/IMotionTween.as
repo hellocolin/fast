@@ -1,0 +1,1 @@
+/** * @author colin */interface IMotionTween extends IEventDispatcher{	public function startTween(transformState:Object):Boolean;	public function killTween():Void;}
