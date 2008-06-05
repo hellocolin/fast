@@ -24,9 +24,8 @@
 * // will return 2ba81a47c5512d9e23c435c1f29373cb
 * ------------------------------------------------------------------------------
 */
-class com.mixmedia.utils.MD5 {
-
-	/* private vars b64pad, chrsz */
+class com.mixmedia.crypto.MD5 {
+	/* private vars b64pad, chrsz */
 	private var b64pad:String  = new String( "" );
 	private var chrsz:Number = new Number( 8 );
 	
