@@ -49,6 +49,7 @@ function init(){
 }
 
 function setPackagePath(){
+	if(fl.packagePaths == undefined)return;
 	if(fl.packagePaths.indexOf(';../classes;../FAST;./classes;./FAST')==-1){
 		fl.packagePaths += ';../classes;../FAST;./classes;./FAST';
 		fl.trace('FAST package path added');
