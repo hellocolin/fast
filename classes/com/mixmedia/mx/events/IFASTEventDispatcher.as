@@ -1,1 +1,0 @@
-/** * @author colin */interface com.mixmedia.mx.events.IFASTEventDispatcher {	function when(eventType:String,whichObject:Object,callFunction:Function):Void;}

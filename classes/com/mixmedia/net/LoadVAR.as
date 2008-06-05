@@ -2,7 +2,6 @@
 
 import com.mixmedia.mx.events.AbstractEventDispatcher;
 import com.mixmedia.mx.events.Event;
-import com.mixmedia.mx.events.IEventDispatcher;
 import com.mixmedia.mx.events.IOErrorEvent;
 import com.mixmedia.mx.events.LoaderEvent;
 import com.mixmedia.net.ILoader;
@@ -10,7 +9,7 @@ import com.mixmedia.net.ILoader;
 /**
  * @author Colin
  */
-class com.mixmedia.net.LoadVAR extends AbstractEventDispatcher implements IEventDispatcher,ILoader {
+class com.mixmedia.net.LoadVAR extends AbstractEventDispatcher implements ILoader {
 	private var iid:Number;
 	private var currentTarget: Object;
 	private var isOpen : Boolean;

@@ -1,4 +1,4 @@
-﻿import mx.events.EventDispatcher;import mx.utils.Delegate;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.IEventDispatcher;import com.mixmedia.mx.events.IFASTEventDispatcher;/**
+﻿import mx.events.EventDispatcher;import mx.utils.Delegate;import com.mixmedia.mx.events.Event;/**
  * @author colin
  */
 class com.mixmedia.mx.AbstractMovieClipEventDispatcher extends MovieClip implements IEventDispatcher,IFASTEventDispatcher{

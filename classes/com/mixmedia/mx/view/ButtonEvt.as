@@ -1,12 +1,9 @@
-﻿import com.mixmedia.mx.events.Event;
-
-import mx.utils.Delegate;
+﻿import mx.utils.Delegate;
 
 import com.mixmedia.mx.events.AbstractEventDispatcher;
-import com.mixmedia.mx.view.IButtonClip;
-import com.mixmedia.mx.view.IButtonElement;
-import com.mixmedia.view.events.ButtonClipEvent;
+import com.mixmedia.mx.events.Event;
 import com.mixmedia.mx.events.MouseEvent;
+import com.mixmedia.view.events.ButtonClipEvent;
 
 /**
  * @author Colin

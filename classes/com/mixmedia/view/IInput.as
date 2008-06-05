@@ -1,5 +1,4 @@
-﻿import com.mixmedia.mx.events.IEventDispatcher;
-
+﻿
 /**
  * @author colin
  */
