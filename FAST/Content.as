@@ -1,14 +1,5 @@
-﻿import mx.utils.Delegate;
-
-import com.mixmedia.motion.MotionTween;
-import com.mixmedia.mx.events.Event;
-import com.mixmedia.mx.events.LoaderEvent;
-import com.mixmedia.navigation.Navigation;
-import com.mixmedia.navigation.events.NavigationEvent;
-import com.mixmedia.net.LoadSWF;
-import com.mixmedia.net.Loader;
-
-/**
+﻿import mx.utils.Delegate;import com.mixmedia.motion.MotionTween;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.LoaderEvent;import com.mixmedia.navigation.Navigation;import com.mixmedia.navigation.NavigationEvent;import com.mixmedia.net.LoadSWF;import com.mixmedia.view.net.Loader;
+/**
  * @author Colin
  */
 class Content extends MovieClip {
