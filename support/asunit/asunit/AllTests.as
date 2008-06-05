@@ -1,4 +1,4 @@
-
+ 
 class asunit.AllTests extends asunit.framework.TestSuite {
 	private var className:String = "asunit.AllTests";
 
