@@ -1,13 +1,5 @@
-import mx.utils.Delegate;
-
-import com.mixmedia.mx.XMLEvt;
-import com.mixmedia.mx.events.Event;
-import com.mixmedia.mx.events.IOErrorEvent;
-import com.mixmedia.mx.events.LoaderEvent;
-import com.mixmedia.net.LoadXML;
-import com.mixmedia.net.Loader;
-
-class LoaderWithXMLEvtonErrorTest extends LoaderTestCase {
+import mx.utils.Delegate;import com.mixmedia.mx.XMLEvt;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.IOErrorEvent;import com.mixmedia.mx.events.LoaderEvent;import com.mixmedia.net.LoadXML;import com.mixmedia.view.net.Loader;
+class LoaderWithXMLEvtonErrorTest extends LoaderTestCase {
 	private var className:String = "LoaderWithXMLEvtonErrorTest";
 
 	private var eventType:Object;
