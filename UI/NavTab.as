@@ -1,5 +1,4 @@
 ﻿import com.mixmedia.motion.MotionTween;
-import com.mixmedia.mx.view.IButtonElement;
 import com.mixmedia.view.events.ButtonClipEvent;
 
 /**

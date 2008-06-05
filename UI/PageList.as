@@ -4,7 +4,6 @@ import com.mixmedia.collection.IList;
 import com.mixmedia.collection.events.ListEvent;
 import com.mixmedia.mx.TextFieldEvt;
 import com.mixmedia.mx.events.Event;
-import com.mixmedia.mx.events.IEventDispatcher;
 import com.mixmedia.mx.events.MouseEvent;
 import com.mixmedia.mx.events.TextEvent;
 import com.mixmedia.view.collection.ListView;

@@ -1,7 +1,5 @@
-﻿import com.mixmedia.mx.view.IButtonElement;
-import com.mixmedia.view.events.ButtonClipEvent;
-
-/**
+﻿import com.mixmedia.view.events.ButtonClipEvent;
+/**
  * @author colin
  */ 
 class ButtonElementClip extends MovieClip implements IButtonElement {
