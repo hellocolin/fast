@@ -1,11 +1,5 @@
-﻿import com.mixmedia.collection.IScrollable;
-
-import mx.utils.Delegate;
-
-import com.mixmedia.mx.events.MouseEvent;
-import com.mixmedia.view.events.ButtonClipEvent;
-
-/**
+﻿import mx.utils.Delegate;import com.mixmedia.mx.events.MouseEvent;import com.mixmedia.view.events.ButtonClipEvent;
+/**
  * @author colin
  */
 class ScrollBar extends MovieClip{

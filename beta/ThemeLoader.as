@@ -1,9 +1,5 @@
-﻿import com.mixmedia.motion.MotionTween;
-import com.mixmedia.mx.events.Event;
-import com.mixmedia.navigation.events.NavigationEvent;
-import com.mixmedia.net.Loader;
-
-/**
+﻿import com.mixmedia.motion.MotionTween;import com.mixmedia.mx.events.Event;import com.mixmedia.navigation.NavigationEvent;import com.mixmedia.view.net.Loader;
+/**
  * @author Colin
  */
 class ThemeLoader extends Content {

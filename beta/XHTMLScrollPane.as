@@ -1,5 +1,4 @@
-﻿import com.mixmedia.collection.IScrollable;import com.mixmedia.mx.TextFieldEvt;
-/**
+﻿import com.mixmedia.mx.TextFieldEvt;/**
  * @author colin
  */
 class XHTMLScrollPane implements IScrollable{

@@ -1,16 +1,5 @@
-﻿import mx.utils.Delegate;
-
-import com.mixmedia.collection.IList;
-import com.mixmedia.collection.events.ListEvent;
-import com.mixmedia.mx.TextFieldEvt;
-import com.mixmedia.mx.events.Event;
-import com.mixmedia.mx.events.MouseEvent;
-import com.mixmedia.mx.events.TextEvent;
-import com.mixmedia.view.collection.ListView;
-import com.mixmedia.view.collection.RenderAsThumbnails;
-import com.mixmedia.view.events.ButtonClipEvent;
-
-/**
+﻿import mx.utils.Delegate;import com.mixmedia.collection.events.ListEvent;import com.mixmedia.mx.TextFieldEvt;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.MouseEvent;import com.mixmedia.mx.events.TextEvent;import com.mixmedia.view.collection.ListView;import com.mixmedia.view.collection.RenderAsThumbnails;import com.mixmedia.view.events.ButtonClipEvent;
+/**
  * @author colin
  */
 class PageList extends MovieClip implements IList, IEventDispatcher {

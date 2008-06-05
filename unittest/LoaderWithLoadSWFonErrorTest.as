@@ -1,13 +1,5 @@
-import mx.utils.Delegate;
-
-import com.mixmedia.mx.MovieClipLoaderEvt;
-import com.mixmedia.mx.events.Event;
-import com.mixmedia.mx.events.IOErrorEvent;
-import com.mixmedia.mx.events.LoaderEvent;
-import com.mixmedia.net.LoadSWF;
-import com.mixmedia.net.Loader;
-
-class LoaderWithLoadSWFonErrorTest extends LoaderTestCase {
+import mx.utils.Delegate;import com.mixmedia.mx.MovieClipLoaderEvt;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.IOErrorEvent;import com.mixmedia.mx.events.LoaderEvent;import com.mixmedia.net.LoadSWF;import com.mixmedia.view.net.Loader;
+class LoaderWithLoadSWFonErrorTest extends LoaderTestCase {
 	private var className:String = "LoaderWithLoadSWFonErrorTest";
 
 	private var eventType:Object;

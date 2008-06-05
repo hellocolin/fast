@@ -1,13 +1,5 @@
-import mx.utils.Delegate;
-
-import com.mixmedia.mx.NetStreamEvt;
-import com.mixmedia.mx.events.Event;
-import com.mixmedia.mx.events.IOErrorEvent;
-import com.mixmedia.mx.events.LoaderEvent;
-import com.mixmedia.net.LoadFLV;
-import com.mixmedia.net.Loader;
-
-class LoaderWithLoadFLVonErrorTest extends LoaderTestCase {
+import mx.utils.Delegate;import com.mixmedia.mx.NetStreamEvt;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.IOErrorEvent;import com.mixmedia.mx.events.LoaderEvent;import com.mixmedia.net.LoadFLV;import com.mixmedia.view.net.Loader;
+class LoaderWithLoadFLVonErrorTest extends LoaderTestCase {
 	private var className:String = "LoaderWithLoadFLVonErrorTest";
 
 	private var eventType:Object;

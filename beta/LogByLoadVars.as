@@ -1,11 +1,5 @@
-import mx.utils.Delegate;
-
-import com.mixmedia.mx.events.Event;
-import com.mixmedia.navigation.Navigation;
-import com.mixmedia.navigation.events.NavigationEvent;
-import com.mixmedia.net.LoadVAR;
-
-/**
+import mx.utils.Delegate;import com.mixmedia.navigation.Navigation;import com.mixmedia.navigation.NavigationEvent;import com.mixmedia.net.LoadVAR;
+/**
  * @author Colin
  */
 class LogByLoadVars {
