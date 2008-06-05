@@ -22,7 +22,7 @@ class Content extends MovieClip {
 		loader = new Loader(new LoadSWF(this));
 		loader.setPreloader(this);
 		loader.setErrorIcon(this);
-		loader.addEventListener(LoaderEvent.COMPLETE, Delegate.create(this,onLoadContentAndFadeIn));
+		loader.addEventListener(LoaderEvent.READY, Delegate.create(this,onLoadContentAndFadeIn));
 
 		var para:Array = _name.split('$');
 		targetName	= para[1]==null?"":para[1];
@@ -53,6 +53,7 @@ class Content extends MovieClip {
 	}
 
 	private function onLoadContentAndFadeIn():Void{
+		if(Navigation.instance().getNavStackRequests()!=null)Navigation.instance().nextSection();
 		fadein.startTween();
 	}
 

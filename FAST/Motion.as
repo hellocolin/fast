@@ -1,1 +1,1 @@
-import com.mixmedia.motion.MotionTween;/** * @author colin */class Motion extends MotionTween {	public function Motion(mc : MovieClip, obj : Object) {		super(mc, obj);	}}
+﻿import com.mixmedia.motion.MotionTween;/** * @author colin */class Motion extends MotionTween {	public function Motion(mc : MovieClip, obj : Object) {		super(mc, obj);	}}
