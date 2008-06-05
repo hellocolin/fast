@@ -12,4 +12,13 @@ class com.mixmedia.utils.StringUtils {
 		}
 		return str;
 	}
+
+	public static function entityDecode(str:String):String{
+		return String(str).split("&lt;").join("<").split("&gt;").join(">").split("&amp;").join("&");
+	}
+
+	public static function replace(rawString:String,stringToFind:String,stringToReplace:String):String{
+		return rawString.split(stringToFind).join(stringToReplace);
+	}
+
 }

@@ -24,8 +24,11 @@ class com.mixmedia.utils.SystemUtils {
 		return (pathArray.length==0)?"":(pathArray.join("/")+"/");
 	}
 	
-	public static function getMovieFileName(mc:MovieClip):String{
+	public static function getMovieFileName(mc:MovieClip,withExtension:Boolean):String{
+		withExtension = (withExtension==null)?true:false;
+		
 		var pathArray:Array = mc._url.split("/");
-		return pathArray.pop().toString();
+		var fileName:String = unescape(pathArray.pop().toString());
+		return (withExtension)?fileName:fileName.split(".swf")[0];
 	}
 }
