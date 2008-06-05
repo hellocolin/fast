@@ -1,9 +1,5 @@
-﻿import com.mixmedia.motion.MotionTween;
-import com.mixmedia.mx.view.IButtonElement;
-import com.mixmedia.utils.Conversion;
-import com.mixmedia.view.events.ButtonClipEvent;
-
-/**
+﻿import com.mixmedia.motion.MotionTween;import com.mixmedia.utils.Conversion;import com.mixmedia.view.events.ButtonClipEvent;
+/**
  * @author colin
  */
 class Label extends MovieClip implements IButtonElement {

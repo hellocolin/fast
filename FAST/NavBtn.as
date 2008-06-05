@@ -1,19 +1,14 @@
-﻿import com.mixmedia.mx.events.IFASTEventDispatcher;
-import com.mixmedia.mx.view.IButtonClip;
-import com.mixmedia.mx.view.IButtonElement;
-import com.mixmedia.mx.view.NavButton;
+﻿import com.mixmedia.mx.view.NavButton;
 import com.mixmedia.utils.MovieClipTools;
 import com.mixmedia.utils.StringUtils;
 import com.mixmedia.utils.SystemUtils;
-/**
- * @author Colin
- */
+/** * @author Colin */
 class NavBtn extends MovieClip implements IButtonClip,IFASTEventDispatcher{
-	public static var FILEPREFIX:String = 'FILEPREFIX';
-	private var hitarea:Button;
+	public static var FILEPREFIX:String = 'FILEPREFIX';	private var hitarea:Button;
 	private var base:NavButton;
 
-	public function NavBtn(){		var n:String = _name;		n = StringUtils.replace(_name, FILEPREFIX, SystemUtils.getMovieFileName(this, false));		var para:Array = n.split("$");
+	public function NavBtn(){		var n:String = _name;		n = StringUtils.replace(_name, FILEPREFIX, SystemUtils.getMovieFileName(this, false));
+		var para:Array = _name.split("$");
 		base = new NavButton(MovieClipTools.findButton(this),para[1],para[2]);
 		base.setCurrentTarget(this);
 	}
