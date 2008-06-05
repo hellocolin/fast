@@ -53,7 +53,7 @@ function init(){
 			newItems[0].name = newName.split("/").pop();
 			isSelectInstance = true;
 
-			if(itemClass!=''){
+			if(itemClass!='' && oldItem.linkageExportForAS==true){
 				newItems[0].linkageExportForAS = true;
 				newItems[0].linkageExportInFirstFrame = true;
 				newItems[0].linkageIdentifier = String(newItems[0].name).split('/').pop();
