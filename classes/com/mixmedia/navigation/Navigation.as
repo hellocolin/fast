@@ -1,4 +1,5 @@
 ﻿import com.mixmedia.mx.events.AbstractEventDispatcher;
+import com.mixmedia.navigation.NavStackRequest;
 import com.mixmedia.navigation.events.NavigationEvent;
 
 /**
@@ -30,17 +31,42 @@ class com.mixmedia.navigation.Navigation extends AbstractEventDispatcher{
 		
 		dispatchEvent(new NavigationEvent(currentTarget,NavigationEvent.CHANGE,this,navKey,targetContainer,isSuppress,eventDispatcher));
 	}
-
+	
 	public function back():Void{
 		changeSection(String(history.pop()));
 	}
 	
 	public function getCurrentNavKey() : String {
-		return navKey;
+		return (navStackRequests==null)?navKey:NavStackRequest(navStackRequests[navStackRequests.length-1]).navKey;
 	}
 	
 	public function reset():Void{
+		clearNavStackRequests();
 		history = [];
 		navKey = "";
+	}
+
+	private var navStackRequests:Array;	
+	public function clearNavStackRequests() : Void {
+		navStackRequests = null;
+	}
+	
+	public function changeSections(navStackRequests:Array):Void{
+		this.navStackRequests = navStackRequests;
+		nextSection();
+	}
+	
+	public function getNavStackRequests():Array{
+		return navStackRequests;
+	}
+	
+	public function nextSection() : Void {
+		if(navStackRequests.length<=0){
+			navStackRequests=null;
+			return;
+		}
+
+		var req:NavStackRequest = NavStackRequest(navStackRequests.shift());
+		changeSection(req.navKey,req.targetContainer,req.isSuppress);
 	}
 }

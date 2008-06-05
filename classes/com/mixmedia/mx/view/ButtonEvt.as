@@ -30,7 +30,7 @@ class com.mixmedia.mx.view.ButtonEvt extends AbstractEventDispatcher implements 
 		hitarea.onDragOut = hitarea.onRollOut;
 		hitarea.onReleaseOutside = hitarea.onRelease;
 	}
-	
+
 	public function addElement(element:IButtonElement):Void{
 		this.addEventListener(ButtonClipEvent.MOUSE_OVER , Delegate.create(element,element.buttonOver));
 		this.addEventListener(ButtonClipEvent.MOUSE_OUT  , Delegate.create(element,element.buttonOut));

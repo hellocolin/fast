@@ -33,6 +33,7 @@ class com.mixmedia.mx.view.NavButton implements IButtonClip{
 
 	private function click(e:ButtonClipEvent):Void{
 		var nav:Navigation = Navigation.instance();
+		nav.clearNavStackRequests();
 		nav.changeSection(navKey, targetContainer, false, e.target);
 	}
 
