@@ -4,7 +4,6 @@ import com.mixmedia.mx.MovieClipLoaderEvt;
 import com.mixmedia.mx.events.ErrorEvent;
 import com.mixmedia.mx.events.Event;
 import com.mixmedia.mx.events.LoaderEvent;
-import com.mixmedia.net.ILoader;
 import com.mixmedia.net.LoadSWF;
 
 class LoadSWFTest extends LoaderTestCase {

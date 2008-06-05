@@ -1,5 +1,5 @@
 ﻿import com.mixmedia.mx.XMLEvt;
-import com.mixmedia.net.ILoader;
+
 /**
  * @author colin
  */

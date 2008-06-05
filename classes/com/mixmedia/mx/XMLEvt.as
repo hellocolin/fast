@@ -1,4 +1,10 @@
-﻿import mx.events.EventDispatcher;import mx.utils.Delegate;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.IOErrorEvent;import com.mixmedia.mx.events.LoaderEvent;import com.mixmedia.net.ILoader;/**
+﻿import mx.events.EventDispatcher;
+import mx.utils.Delegate;
+
+import com.mixmedia.mx.events.Event;
+import com.mixmedia.mx.events.IOErrorEvent;
+import com.mixmedia.mx.events.LoaderEvent;
+/**
  * @author Colin
  * 
  */

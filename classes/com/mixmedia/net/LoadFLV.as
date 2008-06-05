@@ -1,5 +1,4 @@
 ﻿import com.mixmedia.mx.NetStreamEvt;
-import com.mixmedia.net.ILoader;
 
 /**
  * @author Colin

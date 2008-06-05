@@ -4,7 +4,6 @@ import com.mixmedia.mx.events.AbstractEventDispatcher;
 import com.mixmedia.mx.events.Event;
 import com.mixmedia.mx.events.IOErrorEvent;
 import com.mixmedia.mx.events.LoaderEvent;
-import com.mixmedia.net.ILoader;
 import com.mixmedia.utils.BindMovieClip;
 import com.mixmedia.utils.Queue;
 

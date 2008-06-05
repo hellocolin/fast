@@ -1,4 +1,16 @@
-﻿import mx.utils.Delegate;import com.mixmedia.mx.AbstractMovieClipEventDispatcher;import com.mixmedia.mx.NetStreamEvt;import com.mixmedia.mx.events.ErrorEvent;import com.mixmedia.mx.events.Event;import com.mixmedia.mx.events.LoaderEvent;import com.mixmedia.mx.events.MouseEvent;import com.mixmedia.net.ILoader;import com.mixmedia.net.LoadFLV;import com.mixmedia.net.LoadSWF;import com.mixmedia.net.Loader;import com.mixmedia.utils.MovieClipTools;import com.mixmedia.view.events.VideoPlayerEvent;
+﻿import mx.utils.Delegate;
+
+import com.mixmedia.mx.AbstractMovieClipEventDispatcher;
+import com.mixmedia.mx.NetStreamEvt;
+import com.mixmedia.mx.events.ErrorEvent;
+import com.mixmedia.mx.events.Event;
+import com.mixmedia.mx.events.LoaderEvent;
+import com.mixmedia.mx.events.MouseEvent;
+import com.mixmedia.net.LoadFLV;
+import com.mixmedia.net.LoadSWF;
+import com.mixmedia.net.Loader;
+import com.mixmedia.utils.MovieClipTools;
+import com.mixmedia.view.events.VideoPlayerEvent;
 /**
  * @author Colin
  */

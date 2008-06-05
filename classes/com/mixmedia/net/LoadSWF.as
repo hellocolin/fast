@@ -3,7 +3,6 @@
 import com.mixmedia.mx.MovieClipLoaderEvt;
 import com.mixmedia.mx.events.Event;
 import com.mixmedia.mx.events.LoaderEvent;
-import com.mixmedia.net.ILoader;
 
 /**
  * @author colin

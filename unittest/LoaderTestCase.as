@@ -2,7 +2,6 @@ import mx.utils.Delegate;
 
 import com.mixmedia.mx.events.ErrorEvent;
 import com.mixmedia.mx.events.Event;
-import com.mixmedia.net.ILoader;
 
 import asunit.framework.TestCase;
 
