@@ -1,0 +1,1 @@
+package {	/**	 * @author colin	 */	public interface ITextFormat {			}}
