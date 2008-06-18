@@ -3,7 +3,6 @@
 import com.mixmedia.locale.Language;
 import com.mixmedia.mx.AbstractMovieClipEventDispatcher;
 import com.mixmedia.mx.events.Event;
-import com.mixmedia.view.locale.ILocaleClip;
 
 /**
    @author Colin Leung
