@@ -4,6 +4,8 @@ import com.asual.swfaddress.SWFAddress;
 import com.asual.swfaddress.SWFAddressEvent;
 import com.mixmedia.mx.events.AbstractEventDispatcher;
 import com.mixmedia.mx.events.Event;
+import com.mixmedia.navigation.Navigation;
+import com.mixmedia.navigation.NavigationEvent;
 
 /** * @author colin */class com.mixmedia.navigation.DeepLinking extends AbstractEventDispatcher {
 	static private var ins:DeepLinking;
@@ -11,7 +13,14 @@ import com.mixmedia.mx.events.Event;
 		if(ins==null)ins = new DeepLinking();
 		return ins;
 	}
-	private function DeepLinking() {		SWFAddress.addEventListener(SWFAddressEvent.CHANGE, Delegate.create(this,onBaseChange));	}
+	private function DeepLinking() {
+		Navigation.instance().addEventListener(NavigationEvent.CHANGE, Delegate.create(this,setSWFAddressValue));		SWFAddress.addEventListener(SWFAddressEvent.CHANGE,            Delegate.create(this,onBaseChange));	}
+	
+	private function setSWFAddressValue(e:NavigationEvent):Void{
+		if(e.isSuppress==true)return;
+		var strTarget:String = (e.targetContainer==null || e.targetContainer=="")?"":":"+e.targetContainer;
+		SWFAddress.setValue(e.navKey + strTarget);
+	}
 	
 	private function onBaseChange():Void{
 		dispatchEvent(new Event(currentTarget, Event.CHANGE,SWFAddress));
