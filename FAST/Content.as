@@ -32,7 +32,7 @@ class Content{
 		loader = new Loader(new LoadSWF(base));
 		loader.setPreloader(base);
 		loader.setErrorIcon(base);
-		loader.addEventListener(LoaderEvent.READY, Delegate.create(this,onLoadContentAndFadeIn));
+		loader.addEventListener(LoaderEvent.COMPLETE, Delegate.create(this,onLoadContentAndFadeIn));
 
 		var para:Array = base._name.split('$');
 		targetName	= para[1]==null?"":para[1];
@@ -62,9 +62,7 @@ class Content{
 
 	private function transitionOut():Void{
 		var s:StageEvt = StageEvt.instance();
-		var left:Number = Math.floor((s.maxWidth - s.width)/2);
-		var tmx:Matrix = new Matrix(1,0,0,1,-left,0);
-		frozenPic._x = left;
+		var tmx:Matrix = new Matrix(1,0,0,1,0,0);
 
 		var bd:BitmapData = new BitmapData(s.width, s.height, true, 0);
 		bd.draw(MovieClip(loader.getTargetContainer()),tmx);
@@ -73,7 +71,7 @@ class Content{
 		MovieClip(loader.getTargetContainer()).unloadMovie();
 		MovieClip(loader.getTargetContainer())._alpha=0;
 		frozenPic.toMovieClip()._alpha=100;
-		fadeout.startTween({x:left});
+		fadeout.startTween();
 	}
 
 	private function onFadeOutAndLoad():Void {
