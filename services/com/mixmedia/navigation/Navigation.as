@@ -33,6 +33,7 @@ class com.mixmedia.navigation.Navigation extends AbstractEventDispatcher{
 	}
 	
 	public function back():Void{
+		history.pop();
 		changeSection(String(history.pop()));
 	}
 	
