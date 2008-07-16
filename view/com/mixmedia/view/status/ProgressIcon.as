@@ -23,6 +23,8 @@ class com.mixmedia.view.status.ProgressIcon extends MovieClip implements IStatus
 		MovieClipTools.makeClickDisable(mcBG);
 		motion = new MotionTween(this,{dur:10,a:100});
 		_alpha = 0;
+		_x = Math.floor(_x);
+		_y = Math.floor(_y);
 		motion.startTween();
 	}
 
@@ -41,7 +43,7 @@ class com.mixmedia.view.status.ProgressIcon extends MovieClip implements IStatus
 		if(bytes_total==0||bytes_total==undefined){
 			txtStatus.text = "Loading Data";
 		}else{
-			mcLoadBar._width = getPercent/100*50;
+			mcLoadBar._width = getPercent/100;
 			txtStatus.text = "Loading: "+Math.round(getPercent)+"%";		
 		}
 	}
