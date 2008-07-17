@@ -43,7 +43,7 @@ class com.mixmedia.view.status.ProgressIcon extends MovieClip implements IStatus
 		if(bytes_total==0||bytes_total==undefined){
 			txtStatus.text = "Loading Data";
 		}else{
-			mcLoadBar._width = getPercent/100;
+			mcLoadBar._width = getPercent;
 			txtStatus.text = "Loading: "+Math.round(getPercent)+"%";		
 		}
 	}
