@@ -1,4 +1,4 @@
-/**
+﻿/**
 * class md5 - AS2.0 - porting from original Paul Johnston JavaScript functions
 * This is just a porting from Paul Johnston's JavaScript md5 implementation.
 * Porting created by Andrea Giammarchi [ andr3a ] [ www.3site.it ] on 05/07/2004
