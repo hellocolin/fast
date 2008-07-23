@@ -17,17 +17,16 @@ import com.mixmedia.view.net.Loader;
 /**
  * @author Colin
  */
-class Content{
+class Content extends MovieClip{
 	private var frozenPic:Bitmap;
-	private var base:MovieClip;
 	private var loader:Loader;
 	private var prefix:String;
 	private var currentNavKey:String;
 	private var fadein:MotionTween;
 	private var fadeout:MotionTween;
 	private var targetName: String;	private var extension : String;
-	public function Content(base:MovieClip){
-		this.base = base;
+	public function Content(){
+		var base:MovieClip = this;
 	
 		loader = new Loader(new LoadSWF(base));
 		loader.setPreloader(base);
