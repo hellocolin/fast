@@ -31,7 +31,7 @@ class Content extends MovieClip{
 		loader = new Loader(new LoadSWF(base));
 		loader.setPreloader(base);
 		loader.setErrorIcon(base);
-		loader.addEventListener(LoaderEvent.READY, Delegate.create(this,onLoadContentAndFadeIn));
+		loader.when(LoaderEvent.READY, this,onLoadContentAndFadeIn);
 
 		var para:Array = base._name.split('$');
 		targetName	= para[1]==null?"":para[1];
@@ -42,10 +42,10 @@ class Content extends MovieClip{
 
 		fadein  = new MotionTween(MovieClip(loader.getTargetContainer()),{a:100});
 		fadeout = new MotionTween(frozenPic.toMovieClip(),{a:0});
-		fadeout.addEventListener(Event.TWEENEND, Delegate.create(this, onFadeOutAndLoad));
+		fadeout.when(Event.TWEENEND, this, onFadeOutAndLoad);
 
 		var n:Navigation = Navigation.instance();
-		n.addEventListener(NavigationEvent.CHANGE, Delegate.create(this,onNavChange));
+		n.when(NavigationEvent.CHANGE, this,onNavChange);
 	}
 
 	private function onNavChange(e:NavigationEvent):Void{
