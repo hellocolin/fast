@@ -129,8 +129,7 @@ class com.mixmedia.motion.MotionTween extends AbstractEventDispatcher{
 		return mcProxy.isTweening;
 	}
 
-	public function startTween(obj:Object):Boolean{//speed 1.54		//if target props same and response!=true, return false		if(isTargetPropsSameAsPrevious(obj)==true && response!=true && isTweening()==true)return false;
-		if(obj!=undefined)setTargetProps(obj);		if(mcProxy.isTweening&&response==false)return false;
+	public function startTween(obj:Object):Boolean{//speed 1.54		if(obj!=undefined)setTargetProps(obj);		if(mcProxy.isTweening&&response==false)return false;
 		//v2.3 set target properties if arguments presents
 		//stop tween running
 		killTween();
@@ -147,7 +146,7 @@ class com.mixmedia.motion.MotionTween extends AbstractEventDispatcher{
 			return true;
 		}
 	};
-	private function isTargetPropsSameAsPrevious(obj:Object):Boolean{		if(obj['x']!=null && obj['x']!=targetX)return false;		if(obj['y']!=null && obj['y']!=targetY)return false;		if(obj['r']!=null && obj['r']!=targetR)return false;		if(obj['xs']!=null&& obj['xs']!=targetXS)return false;		if(obj['ys']!=null&& obj['ys']!=targetYS)return false;		if(obj['a']!=null && obj['a']!=targetC['aa'])return false;		if(obj['c']!=null && obj['c']!==targetC)return false;		return true;	}	
+	
 	private function initTween():Void{
 		clearDelayInterval();
 		if(goFrame!=""){
