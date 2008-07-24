@@ -31,7 +31,7 @@ class Content extends MovieClip{
 		loader = new Loader(new LoadSWF(base));
 		loader.setPreloader(base);
 		loader.setErrorIcon(base);
-		loader.addEventListener(LoaderEvent.COMPLETE, Delegate.create(this,onLoadContentAndFadeIn));
+		loader.addEventListener(LoaderEvent.READY, Delegate.create(this,onLoadContentAndFadeIn));
 
 		var para:Array = base._name.split('$');
 		targetName	= para[1]==null?"":para[1];
