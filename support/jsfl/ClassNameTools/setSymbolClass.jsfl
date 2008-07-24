@@ -50,27 +50,26 @@ function init(){
 
 function setPackagePath(){
 	if(fl.packagePaths == undefined)return;
-	var FASTPathV1 = ';../classes;../FAST;./classes;./FAST';
+	var FASTPathsV1 = ';../classes;../FAST;./classes;./FAST';
 	var FASTPathsV2 = ';../foundation;../services;../view;../FAST;./foundation;./services;./view;./FAST';
 	var FASTPathsV3 = '../src;../ui;../controller;../foundation;../services;../view;../FAST;./src;./ui;./controller;./foundation;./services;./view;./FAST';
 
-	if(fl.packagePaths.indexOf(FASTPathV1)!=-1){
-		var oldPath = fl.packagePaths.split(FASTPathV1).join("");
+	if(fl.packagePaths.indexOf(FASTPathsV1)!=-1){
+		var oldPath = fl.packagePaths.split(FASTPathsV1).join("");
 		fl.packagePaths = oldPath;
 		fl.trace('FAST V1 package path removed');
 	}
 
-	if(fl.packagePaths.indexOf(FASTPathsV2)==-1){
-		var oldPath = fl.packagePaths.split(FASTPathV2).join("");
+	if(fl.packagePaths.indexOf(FASTPathsV2)!=-1){
+		var oldPath = fl.packagePaths.split(FASTPathsV2).join("");
 		fl.packagePaths = oldPath;
 		fl.trace('FAST V2 package path removed');
 	}
 	
 	if(fl.packagePaths.indexOf(FASTPathsV3)==-1){
 		fl.packagePaths = FASTPathsV3+fl.packagePaths;
-		fl.trace('FAST V3 package path removed');
+		fl.trace('FAST V3 package path added');
 	}
-	fl.trace(fl.packagePaths);
 }
 
 function addInstanceNameIfEmpty(){
