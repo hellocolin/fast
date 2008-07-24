@@ -129,7 +129,7 @@ class com.mixmedia.motion.MotionTween extends AbstractEventDispatcher{
 		return mcProxy.isTweening;
 	}
 
-	public function startTween(obj:Object):Boolean{//speed 1.54		//if target props same and response!=true, return false		if(isTargetPropsSameAsPrevious(obj)==true && response!=true && isTweening==true)return false;
+	public function startTween(obj:Object):Boolean{//speed 1.54		//if target props same and response!=true, return false		if(isTargetPropsSameAsPrevious(obj)==true && response!=true && isTweening()==true)return false;
 		if(obj!=undefined)setTargetProps(obj);		if(mcProxy.isTweening&&response==false)return false;
 		//v2.3 set target properties if arguments presents
 		//stop tween running
