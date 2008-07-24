@@ -50,13 +50,16 @@ function init(){
 
 function setPackagePath(){
 	if(fl.packagePaths == undefined)return;
-	if(fl.packagePaths.indexOf(';../classes;../FAST;./classes;./FAST')!=-1){
-		var oldPath = fl.packagePaths.split(';../classes;../FAST;./classes;./FAST').join("");
-		fl.trace(oldPath);
+	var FASTPathV1 = ';../classes;../FAST;./classes;./FAST';
+	var FASTPaths = ';../foundation;../services;../view;../FAST;./foundation;./services;./view;./FAST';
+	
+	if(fl.packagePaths.indexOf(FASTPathV1)!=-1){
+		var oldPath = fl.packagePaths.split(FASTPathV1).join("");
+		fl.packagePaths = oldPath;
 	}
 
-	if(fl.packagePaths.indexOf(';../classes;../FAST;./classes;./FAST')==-1){
-		fl.packagePaths += ';../classes;../FAST;./classes;./FAST';
+	if(fl.packagePaths.indexOf(FASTPaths)==-1){
+		fl.packagePaths += FASTPaths;
 		fl.trace('FAST package path added');
 	}
 }
