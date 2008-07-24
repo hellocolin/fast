@@ -64,9 +64,9 @@ class mx.events.EventDispatcher
 		var queue:Array = queueObj[queueName];
 		if (queue != undefined)
 		{
-			var i:String;
+			var i:Number;
 			// loop it as an object so it resists people removing listeners during dispatching
-			for (i in queue)
+			for (i=0;i<queue.length;i++)
 			{
 				var o:Object = queue[i];
 				var oType:String = typeof(o);
