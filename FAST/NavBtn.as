@@ -5,7 +5,7 @@ class NavBtn extends MovieClip implements IButtonClip,IFASTEventDispatcher{
 	private var base:NavButton;
 
 	public function NavBtn(){		var n:String = _name;		n = StringUtils.replace(_name, FILEPREFIX, SystemUtils.getMovieFileName(this, false));
-		var para:Array = _name.split("$");
+		var para:Array = n.split("$");
 		base = new NavButton(MovieClipTools.findButton(this),para[1],para[2]);
 		base.setCurrentTarget(this);
 	}
