@@ -32,4 +32,7 @@ class com.mixmedia.navigation.NavStackRequest {
 		return _isSuppress;
 	}
 //end scaffold
+	public function toString():String{
+		return '[object NavStackRequest]';
+	}
 }

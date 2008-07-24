@@ -28,7 +28,7 @@ class com.mixmedia.navigation.Navigation extends AbstractEventDispatcher{
 
 		this.navKey = navKey;
 		history.push(navKey);
-		
+
 		dispatchEvent(new NavigationEvent(currentTarget,NavigationEvent.CHANGE,this,navKey,targetContainer,isSuppress,eventDispatcher));
 	}
 	
@@ -66,7 +66,6 @@ class com.mixmedia.navigation.Navigation extends AbstractEventDispatcher{
 			navStackRequests=null;
 			return;
 		}
-
 		var req:NavStackRequest = NavStackRequest(navStackRequests.shift());
 		changeSection(req.navKey,req.targetContainer,req.isSuppress);
 	}
