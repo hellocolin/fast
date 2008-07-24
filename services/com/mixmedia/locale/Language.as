@@ -1,4 +1,4 @@
-import com.mixmedia.mx.events.AbstractEventDispatcher;
+﻿import com.mixmedia.mx.events.AbstractEventDispatcher;
 import com.mixmedia.mx.events.Event;
 
 /**
