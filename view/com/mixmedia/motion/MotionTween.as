@@ -134,17 +134,9 @@ class com.mixmedia.motion.MotionTween extends AbstractEventDispatcher{
 		//stop tween running
 		killTween();
 		//create timeout for tweenDelay.
-		if(mcProxy.isTweening == true){
-			if(iterator.tweenArray[mcProxy.motionMCID].MTID!=MTID){
-				clearDelayInterval();
-				mcProxy.delayInterval_array.push(setInterval(this,"initTween", tweenDelay));
-				return true;
-			}
-		}else{//ready to tween
-			clearDelayInterval();
-			mcProxy.delayInterval_array.push(setInterval(this,"initTween", tweenDelay));
-			return true;
-		}
+		clearDelayInterval();
+		mcProxy.delayInterval_array.push(setInterval(this,"initTween", tweenDelay));
+		return true;
 	};
 	
 	private function initTween():Void{

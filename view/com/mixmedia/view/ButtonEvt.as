@@ -37,7 +37,7 @@ class com.mixmedia.view.ButtonEvt extends AbstractEventDispatcher implements IBu
 	
 	private function clearIID():Void{
 		clearInterval(overIID);
-		clearInterval(outIID);	
+		clearInterval(outIID);
 	}
 
 	private function out():Void{
@@ -52,7 +52,7 @@ class com.mixmedia.view.ButtonEvt extends AbstractEventDispatcher implements IBu
 	private function doOut():Void{
 		clearIID();
 		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.MOUSE_OUT  ,hitArea, isHighlight));
-		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.ROLL_OUT, hitArea, isHighlight));
+		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.ROLL_OUT   ,hitArea, isHighlight));
 	}
 
 	private function over():Void{
@@ -67,7 +67,7 @@ class com.mixmedia.view.ButtonEvt extends AbstractEventDispatcher implements IBu
 	private function doOver():Void{
 		clearIID();
 		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.MOUSE_OVER ,hitArea, isHighlight));
-		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.ROLL_OVER, hitArea, isHighlight));	
+		dispatchEvent(new ButtonClipEvent(currentTarget,ButtonClipEvent.ROLL_OVER  ,hitArea, isHighlight));	
 	}
 	
 	private function reset():Void{
