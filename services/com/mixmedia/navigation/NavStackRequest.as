@@ -14,6 +14,6 @@ class com.mixmedia.navigation.NavStackRequest {
 	}
 
 	public function toString():String{
-		return '[object NavStackRequest]';
+		return '[object NavStackRequest]:'+[navKey,targetContainer,isSuppress];
 	}
 }
