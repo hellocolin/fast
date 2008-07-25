@@ -37,7 +37,9 @@ class ButtonClip extends MovieClip implements IButtonClip ,IFASTEventDispatcher{
 	
 	public function setMouseOutDelay(num : Number) : Void {		base.setMouseOutDelay(num);	}
 	
-	public function clearMouseOver() : Void {		base.clearMouseOver();	}
+	public function clearMouseOver() : Void {
+		base.clearMouseOver();	}
 	
-	public function clearMouseOut() : Void {		base.clearMouseOut();	}
+	public function clearMouseOut() : Void {
+		base.clearMouseOut();	}
 }

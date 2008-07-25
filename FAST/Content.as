@@ -3,8 +3,6 @@ import flash.display.BitmapData;
 import flash.display.PixelSnapping;
 import flash.geom.Matrix;
 
-import mx.utils.Delegate;
-
 import com.mixmedia.motion.MotionTween;
 import com.mixmedia.mx.StageEvt;
 import com.mixmedia.mx.events.Event;
