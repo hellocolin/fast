@@ -1,7 +1,10 @@
 ﻿import flash.display.Bitmap;
+import flash.display.BitmapData;
 import flash.display.PixelSnapping;
+import flash.geom.Matrix;
 
 import com.mixmedia.motion.MotionTween;
+import com.mixmedia.mx.StageEvt;
 import com.mixmedia.mx.events.Event;
 import com.mixmedia.mx.events.LoaderEvent;
 import com.mixmedia.navigation.Navigation;
@@ -12,37 +15,31 @@ import com.mixmedia.view.net.Loader;
 /**
  * @author Colin
  */
-class Content extends MovieClip implements IEventDispatcher,IFASTEventDispatcher{
+class ContentBMP extends MovieClip{
 	private var frozenPic:Bitmap;
-	private var base:MovieClip;
 	private var loader:Loader;
 	private var prefix:String;
 	private var currentNavKey:String;
 	private var fadein:MotionTween;
 	private var fadeout:MotionTween;
-	private var targetName: String;
-	private var extension : String;
-	private var loadedMovie:MovieClip;
-
-	public function onLoad():Void{
-		this.base = this;
+	private var targetName: String;	private var extension : String;
+	public function ContentBMP(){
+		var base:MovieClip = this;
 	
 		loader = new Loader(new LoadSWF(base));
-		loader.setCurrentTarget(this);
 		loader.setPreloader(base);
 		loader.setErrorIcon(base);
 		loader.when(LoaderEvent.READY, this,onLoadContentAndFadeIn);
-		loadedMovie = MovieClip(loader.getTargetContainer());
 
 		var para:Array = base._name.split('$');
 		targetName	= para[1]==null?"":para[1];
 		prefix		= para[2]==null?"":para[2];
 		extension   = para[3]==null?"swf":para[3];
 
-		frozenPic = new Bitmap(base,null,PixelSnapping.AUTO,true);
+		frozenPic = new Bitmap(base,null,PixelSnapping.NEVER,false);
 
 		fadein  = new MotionTween(MovieClip(loader.getTargetContainer()),{a:100});
-		fadeout = new MotionTween(MovieClip(loader.getTargetContainer()),{a:0});
+		fadeout = new MotionTween(frozenPic.toMovieClip(),{a:0});
 		fadeout.when(Event.TWEENEND, this, onFadeOutAndLoad);
 
 		var n:Navigation = Navigation.instance();
@@ -61,16 +58,16 @@ class Content extends MovieClip implements IEventDispatcher,IFASTEventDispatcher
 	}
 
 	private function transitionOut():Void{
-//		var s:StageEvt = StageEvt.instance();
-//		var tmx:Matrix = new Matrix(1,0,0,1,0,0);
+		var s:StageEvt = StageEvt.instance();
+		var tmx:Matrix = new Matrix(1,0,0,1,0,0);
 
-//		var bd:BitmapData = new BitmapData(s.width, s.height, true, 0);
-//		bd.draw(MovieClip(loader.getTargetContainer()),tmx);
+		var bd:BitmapData = new BitmapData(s.width, s.height, true, 0);
+		bd.draw(MovieClip(loader.getTargetContainer()),tmx);
 
-//		frozenPic.bitmapData = bd;
-//		MovieClip(loader.getTargetContainer()).unloadMovie();
-//		MovieClip(loader.getTargetContainer())._alpha=0;
-//		frozenPic.toMovieClip()._alpha=100;
+		frozenPic.bitmapData = bd;
+		MovieClip(loader.getTargetContainer()).unloadMovie();
+		MovieClip(loader.getTargetContainer())._alpha=0;
+		frozenPic.toMovieClip()._alpha=100;
 		fadeout.startTween();
 	}
 
@@ -85,21 +82,5 @@ class Content extends MovieClip implements IEventDispatcher,IFASTEventDispatcher
 
 	private function loadAction():Void{
 		loader.load(prefix+currentNavKey+"."+extension);	
-	}
-	
-	public function addEventListener(event : String, handler : Function) : Void {
-		loader.addEventListener(event, handler);
-	}
-	
-	public function removeEventListener(event : String, handler : Function) : Void {
-		loader.removeEventListener(event, handler);
-	}
-	
-	public function setCurrentTarget(currentTarget : Object) : Void {
-		loader.setCurrentTarget(currentTarget);
-	}
-	
-	public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {
-		loader.when(eventType, whichObject, callFunction);
 	}
 }
