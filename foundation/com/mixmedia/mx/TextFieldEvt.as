@@ -156,4 +156,7 @@ class com.mixmedia.mx.TextFieldEvt extends DisplayObject implements IEventDispat
 	private function onSetFocus(oldFocus : Object) : Void{
 		dispatchEvent(new FocusEvent(currentTarget,FocusEvent.FOCUS_IN, this, oldFocus));
 	}
+	
+	public function toTextField() : TextField {		return base;
+	}
 }
