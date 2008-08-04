@@ -34,21 +34,21 @@ class com.mixmedia.utils.MovieClipTools {
 		mc._parent._y -=o['y']%1;
 	}
 	
-	public static function matchSize(mcToResize:MovieClip,mcToMatch:MovieClip,isCrop:Boolean):Void{
+	public static function matchSize(mcToResize:Object,mcToMatch:Object,isCrop:Boolean):Void{
 		if(isCrop==null)isCrop=false;
-		var ratioFlo:Number = mcToResize._width/mcToResize._height;
-		var ratioFix:Number = mcToMatch._width/mcToMatch._height;
+		var ratioFlo:Number = mcToResize['_width']/mcToResize['_height'];
+		var ratioFix:Number = mcToMatch['_width']/mcToMatch['_height'];
 
 		if((ratioFlo>ratioFix&&isCrop==true)||(ratioFlo<ratioFix&&isCrop==false)){
 			//match height
 			//scale width with yscale
-			mcToResize._height = mcToMatch._height;
-			mcToResize._xscale = mcToResize._yscale;
+			mcToResize['_height'] = mcToMatch['_height'];
+			mcToResize['_xscale'] = mcToResize['_yscale'];
 		}else {
 			//match width
 			//scale height with xscale
-			mcToResize._width = mcToMatch._width;
-			mcToResize._yscale = mcToResize._xscale;
+			mcToResize['_width']  = mcToMatch['_width'];
+			mcToResize['_yscale'] = mcToResize['_xscale'];
 		}
 		
 	}
