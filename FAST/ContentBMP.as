@@ -15,7 +15,7 @@ import com.mixmedia.view.net.Loader;
 /**
  * @author Colin
  */
-class ContentBMP extends MovieClip{
+class ContentBMP extends MovieClip implements IEventDispatcher, IFASTEventDispatcher{
 	private var frozenPic:Bitmap;
 	private var loader:Loader;
 	private var prefix:String;
@@ -82,5 +82,21 @@ class ContentBMP extends MovieClip{
 
 	private function loadAction():Void{
 		loader.load(prefix+currentNavKey+"."+extension);	
+	}
+
+	public function addEventListener(event : String, handler : Function) : Void {
+		loader.addEventListener(event, handler);
+	}
+	
+	public function removeEventListener(event : String, handler : Function) : Void {
+		loader.removeEventListener(event, handler);
+	}
+	
+	public function setCurrentTarget(currentTarget : Object) : Void {
+		loader.setCurrentTarget(currentTarget);
+	}
+	
+	public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {
+		loader.when(eventType, whichObject, callFunction);
 	}
 }

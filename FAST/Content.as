@@ -1,7 +1,4 @@
-﻿import flash.display.Bitmap;
-import flash.display.PixelSnapping;
-
-import com.mixmedia.motion.MotionTween;
+﻿import com.mixmedia.motion.MotionTween;
 import com.mixmedia.mx.events.Event;
 import com.mixmedia.mx.events.LoaderEvent;
 import com.mixmedia.navigation.Navigation;
@@ -13,7 +10,6 @@ import com.mixmedia.view.net.Loader;
  * @author Colin
  */
 class Content extends MovieClip implements IEventDispatcher,IFASTEventDispatcher{
-	private var frozenPic:Bitmap;
 	private var base:MovieClip;
 	private var loader:Loader;
 	private var prefix:String;
@@ -39,8 +35,6 @@ class Content extends MovieClip implements IEventDispatcher,IFASTEventDispatcher
 		prefix		= para[2]==null?"":para[2];
 		extension   = para[3]==null?"swf":para[3];
 
-		frozenPic = new Bitmap(base,null,PixelSnapping.AUTO,true);
-
 		fadein  = new MotionTween(MovieClip(loader.getTargetContainer()),{a:100});
 		fadeout = new MotionTween(MovieClip(loader.getTargetContainer()),{a:0});
 		fadeout.when(Event.TWEENEND, this, onFadeOutAndLoad);
@@ -61,16 +55,6 @@ class Content extends MovieClip implements IEventDispatcher,IFASTEventDispatcher
 	}
 
 	private function transitionOut():Void{
-//		var s:StageEvt = StageEvt.instance();
-//		var tmx:Matrix = new Matrix(1,0,0,1,0,0);
-
-//		var bd:BitmapData = new BitmapData(s.width, s.height, true, 0);
-//		bd.draw(MovieClip(loader.getTargetContainer()),tmx);
-
-//		frozenPic.bitmapData = bd;
-//		MovieClip(loader.getTargetContainer()).unloadMovie();
-//		MovieClip(loader.getTargetContainer())._alpha=0;
-//		frozenPic.toMovieClip()._alpha=100;
 		fadeout.startTween();
 	}
 
@@ -86,7 +70,7 @@ class Content extends MovieClip implements IEventDispatcher,IFASTEventDispatcher
 	private function loadAction():Void{
 		loader.load(prefix+currentNavKey+"."+extension);	
 	}
-	
+
 	public function addEventListener(event : String, handler : Function) : Void {
 		loader.addEventListener(event, handler);
 	}
