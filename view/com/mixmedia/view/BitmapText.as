@@ -19,7 +19,7 @@ class com.mixmedia.view.BitmapText {
 		txf._visible = false;
 	}
 	
-	private function update():Void{
+	public function update():Void{
 		bmp.bitmapData.fillRect(bmp.bitmapData.rectangle,0);
 		bmp.bitmapData.draw(txf);
 	}
