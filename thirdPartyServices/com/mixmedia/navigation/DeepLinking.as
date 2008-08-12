@@ -1,4 +1,4 @@
-﻿import mx.utils.Delegate;
+import mx.utils.Delegate;
 
 import com.asual.swfaddress.SWFAddress;
 import com.asual.swfaddress.SWFAddressEvent;
@@ -21,11 +21,16 @@ import com.mixmedia.navigation.NavigationEvent;
  * 
  */class com.mixmedia.navigation.DeepLinking extends AbstractEventDispatcher {
 	static private var ins:DeepLinking;
+	private var iid : Number;
+
 	static public function instance():DeepLinking{
 		if(ins==null)ins = new DeepLinking();
 		return ins;
 	}
 
+	private var isNavChange:Boolean = false;
+	
+	
 	private function DeepLinking() {
 		Navigation.instance().addEventListener(NavigationEvent.CHANGE, Delegate.create(this,setSWFAddressValue));
 		SWFAddress.addEventListener(SWFAddressEvent.CHANGE,            Delegate.create(this,onBaseChange));
@@ -33,13 +38,25 @@ import com.mixmedia.navigation.NavigationEvent;
 	
 	private function setSWFAddressValue(e:NavigationEvent):Void{
 		if(e.isSuppress==true)return;
+		isNavChange = true;
+
 		//string of target container representation
 		var str:String = (e.targetContainer==""||e.targetContainer==null)?"" : "." + e.targetContainer;
 		SWFAddress.setValue(e.navKey+str);
 	}
-	
+
 	private function onBaseChange():Void{
-		dispatchEvent(new Event(currentTarget, Event.CHANGE,SWFAddress));
+		clearInterval(iid);
+		iid = setInterval(Delegate.create(this, delayDispatchBaseChange),5);
+	}
+	
+	private function delayDispatchBaseChange():Void{
+		clearInterval(iid);
+		if(isNavChange == true){
+			isNavChange = false;
+			return;
+		}
+		dispatchEvent(new Event(currentTarget, Event.CHANGE, SWFAddress));
 	}
 
 	public function getBaseURL():String{
