@@ -105,10 +105,10 @@ class mx.events.EventDispatcher
 */
 	function dispatchEvent(eventObj:Object):Void
 	{
-		if (eventObj['target'] == undefined)
-			eventObj['target'] = this;
-
-		this[eventObj['type'] + "Handler"](eventObj);
+//		if (eventObj['target'] == undefined)
+//			eventObj['target'] = this;
+//
+//		this[eventObj['type'] + "Handler"](eventObj);
 
 		// Dispatch to objects that are registered as listeners for
 		// this object.
