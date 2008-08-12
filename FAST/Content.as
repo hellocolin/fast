@@ -20,7 +20,7 @@ class Content extends MovieClip implements IEventDispatcher,IFASTEventDispatcher
 	private var extension : String;
 	private var loadedMovie:MovieClip;
 
-	public function onLoad():Void{
+	public function Content(){
 		this.base = this;
 	
 		loader = new Loader(new LoadSWF(base));
@@ -40,7 +40,7 @@ class Content extends MovieClip implements IEventDispatcher,IFASTEventDispatcher
 		fadeout.when(Event.TWEENEND, this, onFadeOutAndLoad);
 
 		var n:Navigation = Navigation.instance();
-		n.when(NavigationEvent.CHANGE, this,onNavChange);
+		n.when(NavigationEvent.CHANGE, this, onNavChange);
 	}
 
 	private function onNavChange(e:NavigationEvent):Void{
