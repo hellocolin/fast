@@ -15,7 +15,7 @@ class com.mixmedia.navigation.Navigation extends AbstractEventDispatcher{
 		return ins;
 	}
 
-	private var navKey : String="";
+	private var navKey : String;
 	public var history:Array;
 
 	private function Navigation(){
@@ -44,7 +44,7 @@ class com.mixmedia.navigation.Navigation extends AbstractEventDispatcher{
 	public function reset():Void{
 		clearNavStackRequests();
 		history = [];
-		navKey = "";
+		navKey = null;
 	}
 
 	private var navStackRequests:Array;	
@@ -53,6 +53,7 @@ class com.mixmedia.navigation.Navigation extends AbstractEventDispatcher{
 	}
 	
 	public function changeSections(navStackRequests:Array):Void{
+		this.navKey = NavStackRequest(navStackRequests[navStackRequests.length - 1]).navKey;
 		this.navStackRequests = navStackRequests;
 		nextSection();
 	}
