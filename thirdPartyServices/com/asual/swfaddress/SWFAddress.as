@@ -1,4 +1,4 @@
-/**
+﻿/**
  * SWFAddress 2.1: Deep linking for Flash and Ajax - http://www.asual.com/swfaddress/
  * 
  * SWFAddress is (c) 2006-2007 Rostislav Hristov and is released under the MIT License:
