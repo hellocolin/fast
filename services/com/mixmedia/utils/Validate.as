@@ -2,7 +2,7 @@
 /**
  * @author colin
  */
-class Validate {
+class com.mixmedia.utils.Validate {
 	public static function email(str:String):Boolean{
 		return !(str.indexOf('@') == -1 || str.indexOf('.') == -1 || str.indexOf('@') == 0 || (str.indexOf('.') == str.length-1));
 	}
