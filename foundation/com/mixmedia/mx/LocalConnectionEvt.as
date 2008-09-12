@@ -9,13 +9,18 @@ class com.mixmedia.mx.LocalConnectionEvt extends AbstractEventDispatcher{
 	private var base:LocalConnection;
 	private var registeredConnections:Array;
 	private var methods:Object;
+	private var connName:String;
 	
+	private static var METHOD_REGISTER:String = '__register';
+	private static var METHOD_REMOVE:String   = '__removeConn';
+
+
 	public static var EVENT_ERROR:String = 'error';
 	public static var EVENT_STATUS:String = 'status';
 	private var id : String;
 
 	public function LocalConnectionEvt(){
-		base = new LocalConnection;
+		base = new LocalConnection();
 		base.onStatus = Fix.ref(this,onStatus);
 		
 		registeredConnections=new Array();
@@ -23,25 +28,21 @@ class com.mixmedia.mx.LocalConnectionEvt extends AbstractEventDispatcher{
 	}
 
 	public function connect(connectionName : String) : Boolean{
-		id = connectionName;
+		close();
+		connName = connectionName;
+
 		if(base.connect(connectionName)==true){
-			base['register'] = Fix.ref(this,registerConnection);
+			id = connectionName;
+			base[METHOD_REGISTER] = Fix.ref(this,registerConnection);
+			base[METHOD_REMOVE]   = Fix.ref(this,removeConnection);
+			setInterval(Fix.ref(this,listConnection),500);
 			return true;
 		}
-		return setupSecondaryConnection(connectionName);
+		return setupSecondaryConnection();
 	};
 
-	private function setupSecondaryConnection(connectionName : String):Boolean{
-		var timeStamp:Date = new Date();
-		var id:String = connectionName+timeStamp.getTime();
-		var lc0:LocalConnection = new LocalConnection();
-		lc0.send(connectionName,'register',id);
-		this.id= id;
-		return base.connect(id);	
-	}
-
-	private function registerConnection(connectionName:String):Void{
-		registeredConnections.push(connectionName);
+	private function listConnection():Void{
+		trace(registeredConnections.length);
 	}
 
 	public function send(connectionName : String, methodName : String, args : Object) : Boolean{
@@ -49,6 +50,8 @@ class com.mixmedia.mx.LocalConnectionEvt extends AbstractEventDispatcher{
 	};
 	
 	public function close() : Void{
+		base.send(connName,METHOD_REMOVE,id);
+		connName = null;
 		base.close();
 	};
 	
@@ -64,16 +67,16 @@ class com.mixmedia.mx.LocalConnectionEvt extends AbstractEventDispatcher{
 		return base.allowDomain(domain);
 	};
 
-	private function onStatus(infoObject:Object):Void{
-		dispatchEvent(new Event(currentTarget,infoObject['level'],this));
-	}
-
 	public function addMethod(methodName:String,fnt:Function):Void{
 		var ins:LocalConnectionEvt = this;
 		base[methodName] = function():Void{
 			ins.broadcastToChildConnections(methodName,arguments);
 		};
 		methods[methodName] = fnt;
+	}
+
+	private function onStatus(infoObject:Object):Void{
+		dispatchEvent(new Event(currentTarget,infoObject['level'],this));
 	}
 	
 	private function broadcastToChildConnections(methodName:String,args:Array):Void{
@@ -82,5 +85,29 @@ class com.mixmedia.mx.LocalConnectionEvt extends AbstractEventDispatcher{
 			lcs.send(registeredConnections[i],methodName,args);
 		}
 		methods[methodName](args);
+	}
+	
+	private function setupSecondaryConnection():Boolean{
+		var timeStamp:Date = new Date();
+		id = connName+timeStamp.getTime()+random(10000);
+		base.send(connName,METHOD_REGISTER,id);
+		return base.connect(id);
+	}
+
+	private function registerConnection(connectionName:String):Void{
+		removeConnection(connectionName);
+		registeredConnections.push(connectionName);
+	}
+	
+	private function removeConnection(connectionName:String):Void{
+		var lcTest:LocalConnection = new LocalConnection();
+		for(var i:Number = 0;i<registeredConnections.length;i++){
+			var isConnectEmpty:Boolean = lcTest.connect(registeredConnections[i]);
+			lcTest.close();
+			if((registeredConnections[i]==connectionName)||(isConnectEmpty==true)){
+				registeredConnections.splice(i,1);
+				i--;
+			}
+		}
 	}
 }
