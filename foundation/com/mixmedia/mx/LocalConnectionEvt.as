@@ -14,7 +14,6 @@ class com.mixmedia.mx.LocalConnectionEvt extends AbstractEventDispatcher{
 	private static var METHOD_REGISTER:String = '__register';
 	private static var METHOD_REMOVE:String   = '__removeConn';
 
-
 	public static var EVENT_ERROR:String = 'error';
 	public static var EVENT_STATUS:String = 'status';
 	private var id : String;
@@ -35,15 +34,10 @@ class com.mixmedia.mx.LocalConnectionEvt extends AbstractEventDispatcher{
 			id = connectionName;
 			base[METHOD_REGISTER] = Fix.ref(this,registerConnection);
 			base[METHOD_REMOVE]   = Fix.ref(this,removeConnection);
-			setInterval(Fix.ref(this,listConnection),500);
 			return true;
 		}
 		return setupSecondaryConnection();
 	};
-
-	private function listConnection():Void{
-		trace(registeredConnections.length);
-	}
 
 	public function send(connectionName : String, methodName : String, args : Object) : Boolean{
 		return base.send(connectionName, methodName, args);
