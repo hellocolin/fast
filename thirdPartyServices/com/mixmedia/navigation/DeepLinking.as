@@ -1,4 +1,4 @@
-import mx.utils.Delegate;
+﻿import mx.utils.Delegate;
 
 import com.asual.swfaddress.SWFAddress;
 import com.asual.swfaddress.SWFAddressEvent;
