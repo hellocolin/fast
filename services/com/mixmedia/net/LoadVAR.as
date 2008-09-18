@@ -47,6 +47,16 @@ class com.mixmedia.net.LoadVAR extends AbstractEventDispatcher implements ILoade
 	private function onData(src:String):Void{
 		clearInterval(iid);
 		_data = src;
+		
+	    if(src != undefined) {
+	        base.decode(src);
+	        base.loaded = true;
+	        base.onLoad(true);
+	    }
+	    else {
+	        base.onLoad(false);
+	    }
+
 		dispatchEvent(new LoaderEvent(currentTarget,LoaderEvent.COMPLETE, base,this));
 	}
 
