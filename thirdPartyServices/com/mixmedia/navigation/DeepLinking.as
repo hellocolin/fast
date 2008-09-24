@@ -29,8 +29,7 @@ import com.mixmedia.navigation.NavigationEvent;
 	}
 
 	private var isNavChange:Boolean = false;
-	
-	
+
 	private function DeepLinking() {
 		Navigation.instance().addEventListener(NavigationEvent.CHANGE, Delegate.create(this,setSWFAddressValue));
 		SWFAddress.addEventListener(SWFAddressEvent.CHANGE,            Delegate.create(this,onBaseChange));
