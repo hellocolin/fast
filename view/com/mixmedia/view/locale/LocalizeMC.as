@@ -17,7 +17,7 @@ class com.mixmedia.view.locale.LocalizeMC extends AbstractMovieClipEventDispatch
 	}
 	
 	private function onLoad():Void{
-		gotoAndPlay(lang.lang);
+		this.gotoAndPlay(lang.lang);
 	}
 
 	private function onLangChange():Void{
