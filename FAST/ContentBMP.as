@@ -63,6 +63,7 @@ class ContentBMP extends MovieClip implements IEventDispatcher, IFASTEventDispat
 
 		var bd:BitmapData = new BitmapData(s.width, s.height, true, 0);
 		bd.draw(MovieClip(loader.getTargetContainer()),tmx);
+//		bd.applyFilter(bd, bd.rectangle, new Point(0,0), new BlurFilter(5,5,3));
 
 		frozenPic.bitmapData = bd;
 		MovieClip(loader.getTargetContainer()).unloadMovie();
