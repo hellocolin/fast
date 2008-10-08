@@ -1,4 +1,4 @@
-import com.mixmedia.mx.events.Event;
+﻿import com.mixmedia.mx.events.Event;
 
 /**
  * @author Colin
