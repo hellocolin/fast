@@ -96,6 +96,7 @@ class com.mixmedia.view.ButtonEvt extends AbstractEventDispatcher implements IBu
 	}
 		public function select() : Void {
 		isHighlight = true;
+		reset();
 		dispatchEvent(new ButtonClipEvent(currentTarget, ButtonClipEvent.SELECT, hitArea,isHighlight));
 	}
 
