@@ -1,4 +1,4 @@
-import flash.display.BitmapData;
+﻿import flash.display.BitmapData;
 
 import mx.utils.Delegate;
 
