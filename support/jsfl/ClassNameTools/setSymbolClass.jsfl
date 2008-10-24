@@ -12,7 +12,7 @@ function isDocOpen(){
 function declareVar(){
 	filePath = fl.configURI+ "Commands/"
 	//filePath = "file:///"
-	xmluiPath =  filePath+"setSymbolClass/setSymbolClass.xml";
+	xmluiPath =  filePath+"setSymbolClassAsset/setSymbolClass.xml";
 	currentDoc = fl.getDocumentDOM();
 	library = currentDoc.library;	
 	items = library.getSelectedItems();
