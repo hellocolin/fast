@@ -24,6 +24,10 @@ class ButtonClip extends MovieClip implements IButtonClip ,IFASTEventDispatcher{
 		base.addElement(element);
 	}
 
+	public function getElements():Array{
+		return base.getElements();
+	}
+
 	public function addEventListener(event : String, handler : Function) : Void {
 		base.addEventListener(event, handler);
 	}

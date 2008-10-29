@@ -14,10 +14,12 @@ class com.mixmedia.view.ButtonEvt extends AbstractEventDispatcher implements IBu
 	private var overDelay : Number=0;
 	private var outDelay:Number=0;
 	private var overIID:Number;
-	private var outIID:Number;
+	private var outIID: Number;
+	private var elements : Array;
 
 	public function ButtonEvt(hitarea:Button){
 		this.hitArea = hitarea;
+		elements = [];
 
 		hitarea.onRollOver = Delegate.create(this,over);
 		hitarea.onRollOut = Delegate.create(this,out);
@@ -29,10 +31,15 @@ class com.mixmedia.view.ButtonEvt extends AbstractEventDispatcher implements IBu
 	}
 
 	public function addElement(element:IButtonElement):Void{
+		elements.push(element);
 		this.addEventListener(ButtonClipEvent.MOUSE_OVER , Delegate.create(element,element.buttonOver));
 		this.addEventListener(ButtonClipEvent.MOUSE_OUT  , Delegate.create(element,element.buttonOut));
 		this.addEventListener(ButtonClipEvent.MOUSE_DOWN , Delegate.create(element,element.buttonDown));
 		this.addEventListener(ButtonClipEvent.RESET      , Delegate.create(element,element.buttonReset));
+	}
+	
+	public function getElements():Array{
+		return elements;
 	}
 	
 	private function clearIID():Void{

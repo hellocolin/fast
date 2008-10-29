@@ -25,7 +25,7 @@ class NavBtn extends MovieClip implements IButtonClip,IFASTEventDispatcher{
 	public function addElement(element : IButtonElement) : Void {
 		base.addElement(element);
 	}
-
+	public function getElements():Array{		return base.getElements();	}
 	public function select() : Void {
 		base.select();
 	}	public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {		base.addEventListener(eventType, Fix.ref(whichObject,callFunction));	}	public function setMouseOverDelay(num : Number) : Void {		base.setMouseOverDelay(num);	}		public function setMouseOutDelay(num : Number) : Void {		base.setMouseOutDelay(num);	}		public function clearMouseOver() : Void {		base.clearMouseOver();	}		public function clearMouseOut() : Void {		base.clearMouseOut();	}
