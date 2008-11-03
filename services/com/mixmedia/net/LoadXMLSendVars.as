@@ -12,7 +12,7 @@ import com.mixmedia.mx.events.LoaderEvent;
 import com.mixmedia.net.LoadVAR;
 import com.mixmedia.net.LoadXML;
 
-class com.mixmedia.net.LoadXMLSendVars implements ILoader, ISender {
+class com.mixmedia.net.LoadXMLSendVars implements ILoader, ISender , IFASTEventDispatcher{
 	private var baseXML :LoadXML;
 	private var baseLV:LoadVAR;
 
@@ -66,5 +66,9 @@ class com.mixmedia.net.LoadXMLSendVars implements ILoader, ISender {
 	
 	private function toString():String{
 		return "[object XMLLoaderPostFormAsVars]";
+	}
+
+	public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {
+		this.addEventListener(eventType, Delegate.create(whichObject,callFunction));
 	}
 }

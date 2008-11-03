@@ -8,7 +8,7 @@ import com.mixmedia.mx.events.LoaderEvent;
  * @author colin
  * responsible to create a proxy movieclip
  */
-class com.mixmedia.net.LoadSWF implements ILoader {
+class com.mixmedia.net.LoadSWF implements ILoader, IFASTEventDispatcher {
 	private var mcImageLoader:MovieClip;
 	private var mcl:MovieClipLoaderEvt;
 
@@ -60,5 +60,9 @@ class com.mixmedia.net.LoadSWF implements ILoader {
 	
 	public function unload() : Void {
 		mcImageLoader.unloadMovie();
+	}
+
+	public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {
+		this.addEventListener(eventType, Delegate.create(whichObject,callFunction));
 	}
 }

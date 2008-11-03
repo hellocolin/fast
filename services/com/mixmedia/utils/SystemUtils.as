@@ -31,4 +31,11 @@ class com.mixmedia.utils.SystemUtils {
 		var fileName:String = unescape(pathArray.pop().toString());
 		return (withExtension)?fileName:fileName.split(".swf")[0];
 	}
+	
+	public static function getMovieURLCurrentFolderName(mc:MovieClip):String{
+		var pathArray:Array = mc._url.split("/");
+		pathArray.pop();
+		pathArray.pop();
+		return (pathArray.length==0)?"":(pathArray.join("/")+"/");
+	}
 }

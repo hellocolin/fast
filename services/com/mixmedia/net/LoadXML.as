@@ -1,9 +1,11 @@
-﻿import com.mixmedia.mx.XMLEvt;
+﻿import mx.utils.Delegate;
+
+import com.mixmedia.mx.XMLEvt;
 
 /**
  * @author colin
  */
-class com.mixmedia.net.LoadXML implements ILoader {
+class com.mixmedia.net.LoadXML implements ILoader, IFASTEventDispatcher {
 	private var xmlContent : XMLEvt;
 	private var request : String;
 
@@ -34,4 +36,8 @@ class com.mixmedia.net.LoadXML implements ILoader {
 	}
 	
 	public function unload() : Void {}
+
+	public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {
+		this.addEventListener(eventType, Delegate.create(whichObject,callFunction));
+	}
 }

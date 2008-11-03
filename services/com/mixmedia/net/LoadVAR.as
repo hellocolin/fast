@@ -8,7 +8,7 @@ import com.mixmedia.mx.events.LoaderEvent;
 /**
  * @author Colin
  */
-class com.mixmedia.net.LoadVAR extends AbstractEventDispatcher implements ILoader {
+class com.mixmedia.net.LoadVAR extends AbstractEventDispatcher implements ILoader, IFASTEventDispatcher {
 	private var iid:Number;
 	private var currentTarget: Object;
 	private var isOpen : Boolean;
@@ -114,4 +114,8 @@ class com.mixmedia.net.LoadVAR extends AbstractEventDispatcher implements ILoade
 	}
 	
 	public function unload() : Void {}
+
+	public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {
+		this.addEventListener(eventType, Delegate.create(whichObject,callFunction));
+	}
 }

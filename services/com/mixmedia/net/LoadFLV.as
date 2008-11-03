@@ -1,9 +1,11 @@
-﻿import com.mixmedia.mx.NetStreamEvt;
+﻿import mx.utils.Delegate;
+
+import com.mixmedia.mx.NetStreamEvt;
 
 /**
  * @author Colin
  */
-class com.mixmedia.net.LoadFLV implements ILoader {
+class com.mixmedia.net.LoadFLV implements ILoader , IFASTEventDispatcher {
 	private var vid : Video;
 	private var vid_nc : NetConnection;
 	private var vid_ns : NetStreamEvt;
@@ -50,5 +52,9 @@ class com.mixmedia.net.LoadFLV implements ILoader {
 	public function unload() : Void {
 		vid_nc.close();
 		vid_ns.close();
+	}
+	
+	public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {
+		this.addEventListener(eventType, Delegate.create(whichObject,callFunction));
 	}
 }
