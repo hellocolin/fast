@@ -1,6 +1,4 @@
-﻿import mx.utils.Delegate;
-
-import com.mixmedia.mx.events.MouseEvent;
+﻿import com.mixmedia.mx.events.MouseEvent;
 import com.mixmedia.view.events.ButtonClipEvent;
 
 /**
@@ -8,8 +6,8 @@ import com.mixmedia.view.events.ButtonClipEvent;
  */
 class ScrollBar extends MovieClip{
 	private var target : IScrollable;
-	private var btnUp:  RepeatClick;
-	private var btnDown:RepeatClick;
+	private var btnUp:  ButtonClip;
+	private var btnDown:ButtonClip;
 	private var thumbBG:MovieClip;
 	private var mcThumb:ButtonClip;
 	private var thumbDist:Number;
@@ -17,17 +15,20 @@ class ScrollBar extends MovieClip{
 	private var thumbIsDown:Boolean = false;
 
 	private function onLoad():Void{
-		btnUp   = new RepeatClick(ButtonClip(this['b$up']));
-		btnDown = new RepeatClick(ButtonClip(this['b$down']));
+		btnUp   = ButtonClip(this['b$up']);
+		btnDown = ButtonClip(this['b$down']);
+		btnUp.repeatPerFrame = 3;
+		btnDown.repeatPerFrame = 3;
 
-		btnUp.addEventListener(  ButtonClipEvent.MOUSE_DOWN, Delegate.create(this,up));
-		btnDown.addEventListener(ButtonClipEvent.MOUSE_DOWN, Delegate.create(this,down));
+		btnUp.when(  ButtonClipEvent.MOUSE_DOWN, this,up);
+		btnDown.when(ButtonClipEvent.MOUSE_DOWN, this,down);
 
 		thumbBG = this['mcScrollbarThumbBg'];
-		mcThumb.addEventListener(MouseEvent.MOUSE_DOWN, Delegate.create(this,thumbDown));
-		mcThumb.addEventListener(MouseEvent.MOUSE_UP  , Delegate.create(this,thumbUp));
+		mcThumb.when(MouseEvent.MOUSE_DOWN, this,thumbDown);
+		mcThumb.when(MouseEvent.MOUSE_UP  , this,thumbUp);
 		
 		thumbDist = thumbBG._height-mcThumb._height;
+		updateButtons();
 	}
 
 	private function onEnterFrame():Void{
@@ -48,6 +49,7 @@ class ScrollBar extends MovieClip{
 
 	public function setTarget(target:IScrollable) : Void {
 		this.target = target;
+		target.updateMaxValue();
 		updateButtons();
 	}
 
@@ -64,6 +66,7 @@ class ScrollBar extends MovieClip{
 	private function updateButtons():Void{
 		ButtonClip(this['b$up'])._alpha   = (target.getIndex()<=0)?20:100;
 		ButtonClip(this['b$down'])._alpha = (target.getIndex()>=target.getMax())?20:100;
+		mcThumb._visible = (target.getMax()>0)?true:false;
 		mcThumb._y = Math.round(thumbBG._y + (target.getIndex()/target.getMax()*thumbDist));	
 	}
 }

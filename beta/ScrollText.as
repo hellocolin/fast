@@ -15,9 +15,11 @@ class ScrollText implements IScrollable {
 			base.htmlText+="<br/>";
 		}
 		base.scroll = 1;
-		max = base.maxscroll-1;
-		txtAsBmp = new BitmapText(base._parent,base.toTextField());
-		base.toTextField()._visible = false;
+		updateMaxValue();
+		if(base.toTextField().embedFonts==false){
+			txtAsBmp = new BitmapText(base._parent,base.toTextField());
+			base.toTextField()._alpha = 0;
+		}
 	}
 	public function setIndex(value : Number) : Void {
 		base.scroll = limit(value,0,max)+1;
@@ -38,5 +40,9 @@ class ScrollText implements IScrollable {
 
 	private function limit(currentValue:Number,minValue:Number,maxValue:Number):Number{
 		return Math.max(Math.min(currentValue,maxValue),minValue);
+	}
+	
+	public function updateMaxValue() : Void {
+		max = base.maxscroll-1;
 	}
 }

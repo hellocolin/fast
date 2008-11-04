@@ -13,7 +13,7 @@ class ScrollPane extends MovieClip implements IScrollable {
 	public function ScrollPane(){
 		this.setMask(mcMask);
 		translateY = _y;
-		_max = (_height- mcMask._height+marginBottom)/stepDistance;
+		updateMaxValue();
 	}
 	
 	public function setIndex(value : Number) : Void {
@@ -33,5 +33,9 @@ class ScrollPane extends MovieClip implements IScrollable {
 	
 	private function limit(currentValue:Number,minValue:Number,maxValue:Number):Number{
 		return Math.max(Math.min(currentValue,maxValue),minValue);
+	}
+	
+	public function updateMaxValue() : Void {
+		_max = (_height- mcMask._height+marginBottom)/stepDistance;
 	}
 }
