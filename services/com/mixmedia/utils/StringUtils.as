@@ -14,7 +14,7 @@ class com.mixmedia.utils.StringUtils {
 	}
 
 	public static function entityDecode(str:String):String{
-		return String(str).split("&lt;").join("<").split("&gt;").join(">").split("&amp;").join("&");
+		return String(str).split("&lt;").join("<").split("&gt;").join(">").split("&amp;").join("&").split("&quot;").join('"').split("&nbsp;").join(" ");
 	}
 
 	public static function replace(rawString:String,stringToFind:String,stringToReplace:String):String{
