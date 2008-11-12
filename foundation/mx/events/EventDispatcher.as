@@ -34,12 +34,12 @@ class mx.events.EventDispatcher
 
 			if(o['target']===handler['target'] && o['func']===handler['func']){
 				queue.splice(i, 1);
-				i--;
+				return;
 			};
 
 			if (o === handler) {
 				queue.splice(i, 1);
-				i--;
+				return;
 			}
 		}
 	}
