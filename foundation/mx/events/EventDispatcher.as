@@ -10,7 +10,9 @@
 *
 * @helpid 3295
 * @tiptext
-*/
+ */
+
+
 class mx.events.EventDispatcher
 {
 	// make a instance of ourself so we can add methods to other objects
@@ -24,19 +26,20 @@ class mx.events.EventDispatcher
 		if(queue == null)return;
 		event=event;
 
-		var l:Number = queue.length;
 		var i:Number;
+		var l:Number = queue.length;
+
 		for (i = 0; i < l; i++){
 			var o:Object = queue[i];
 
 			if(o['target']===handler['target'] && o['func']===handler['func']){
 				queue.splice(i, 1);
-				return;
+				i--;
 			};
 
-			if (o == handler) {
+			if (o === handler) {
 				queue.splice(i, 1);
-				return;
+				i--;
 			}
 		}
 	}
@@ -49,7 +52,7 @@ class mx.events.EventDispatcher
 	{
 		if (_fEventDispatcher == undefined)
 		{
-			_fEventDispatcher = new EventDispatcher;
+			_fEventDispatcher = new EventDispatcher();
 		}
 		object['addEventListener']    = _fEventDispatcher.addEventListener;
 		object['removeEventListener'] = _fEventDispatcher.removeEventListener;
@@ -58,19 +61,19 @@ class mx.events.EventDispatcher
 	}
 
 	// internal function for dispatching events
-	function dispatchQueue(queueObj:Object, eventObj:Object):Void
+	private function dispatchQueue(queueObj:Object, eventObj:Object):Void
 	{
 		var queueName:String = "__q_" + eventObj['type'];
 		var queue:Array = queueObj[queueName];
-		if (queue != undefined)
-		{
+
+		if (queue != undefined){
+			var copyOfQueue:Array = queue.slice();
 			var i:Number;
 			// loop it as an object so it resists people removing listeners during dispatching
-			for (i=0;i<queue.length;i++)
+			for (i=0;i<copyOfQueue.length;i++)
 			{
-				var o:Object = queue[i];
+				var o:Object = copyOfQueue[i];
 				var oType:String = typeof(o);
-
 				// a handler can be a function, object, or movieclip
 				if (oType == "object" || oType == "movieclip")
 				{
@@ -81,6 +84,7 @@ class mx.events.EventDispatcher
    						// this is the DOM3 way
    						o['handleEvent'](eventObj);
    					}
+
  					if (o[eventObj['type']] != undefined)
    					{
  						if (EventDispatcher.exceptions[eventObj['type']] == undefined)
@@ -103,7 +107,7 @@ class mx.events.EventDispatcher
 * dispatch the event to all listeners
 * @param eventObj an Event or one of its subclasses describing the event
 */
-	function dispatchEvent(eventObj:Object):Void
+	public function dispatchEvent(eventObj:Object):Void
 	{
 //		if (eventObj['target'] == undefined)
 //			eventObj['target'] = this;
@@ -120,13 +124,15 @@ class mx.events.EventDispatcher
 * @param event the name of the event ("click", "change", etc)
 * @param the function or object that should be called
 */
-	function addEventListener(event:String, handler:Function):Void
+	public function addEventListener(event:String, handler:Function):Void
 	{
 		var queueName:String = "__q_" + event;
+		
 		if (this[queueName] == undefined)
 		{
 			this[queueName] = new Array();
 		}
+
 		_global['ASSetPropFlags'](this, queueName,1);
 
 		EventDispatcher._removeEventListener(this[queueName], event, handler);
@@ -138,7 +144,7 @@ class mx.events.EventDispatcher
 * @param event the name of the event ("click", "change", etc)
 * @param the function or object that should be called
 */
-	function removeEventListener(event:String, handler:Function):Void
+	public function removeEventListener(event:String, handler:Function):Void
 	{
 		var queueName:String = "__q_" + event;
 		EventDispatcher._removeEventListener(this[queueName], event, handler);
