@@ -15,5 +15,5 @@ class com.mixmedia.mx.events.AbstractEventDispatcher implements IEventDispatcher
 
 	public function addEventListener(event:String, handler:Function):Void{}
 	private function dispatchEvent(eventObj:Event):Void{}
-	public function removeEventListener(event:String, handler:Function) : Void {	}		public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {		addEventListener(eventType,Delegate.create(whichObject,callFunction));	}
+	public function removeEventListener(event:String, handler:Function) : Void {	}		public function when(eventType : String, whichObject : Object, callFunction : Function) : Void {		removeEventListener(eventType,Delegate.create(whichObject,callFunction));		addEventListener(eventType,Delegate.create(whichObject,callFunction));	}
 }
