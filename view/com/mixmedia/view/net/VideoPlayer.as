@@ -22,7 +22,7 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 
 	private var vid:Video;
 	private var base:Loader;
-	private var ns:NetStreamEvt;
+	private var flvLoader:LoadFLV;
 
 	private var isPlay : Boolean = false;
 	private var flvURL : String;
@@ -45,12 +45,13 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 
 	public function VideoPlayer(){
 		if(vid==null)trace('the video object in movieclip should name as "vid"');
-		base = new Loader(new LoadFLV(vid,false,1,true,0),1);
+		flvLoader = new LoadFLV(vid,false,1,true,0);
+		base = new Loader(flvLoader,1);
 		base.addEventListener(LoaderEvent.READY, Delegate.create(this,onFLVLoad));
 		base.addEventListener(LoaderEvent.PROGRESS,Delegate.create(this,onProgress));
 		base.addEventListener(ErrorEvent.ERROR,Delegate.create(this,onError));
 		base.addEventListener(LoaderEvent.OPEN, Delegate.create(this,onStreamOpen));
-		base.addEventListener(LoaderEvent.COMPLETE, Delegate.create(this, onLoadComplete));
+		base.addEventListener(LoaderEvent.COMPLETE, Delegate.create(this,onLoadComplete));
 		defaultWidth =vid._width;
 		defaultHeight=vid._height;
 	}
@@ -70,9 +71,8 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 		MovieClipTools.alignCenter(mcPreloadImage,this);
 	}
 
-	private function onStreamOpen(e:LoaderEvent):Void{
-		ns = NetStreamEvt(e.target);
-		var metaDataArray:Array = ns.metaDataArray;
+	private function onStreamOpen():Void{
+		var metaDataArray:Array = flvLoader.getNetStream().metaDataArray;
 		for(var i:Number = 0;i<metaDataArray.length;i++){
 			if(metaDataArray[i].name=="width")flvWidth=metaDataArray[i].value;
 			if(metaDataArray[i].name=="height")flvHeight=metaDataArray[i].value;
@@ -87,17 +87,18 @@ class com.mixmedia.view.net.VideoPlayer extends AbstractMovieClipEventDispatcher
 		base.load(path);
 		safePlayToEnd = false;
 		isPlay = false;
+
 	}
 
-	private function onFLVLoad(e:LoaderEvent):Void{
-		ns = NetStreamEvt(e.target);
-		ns.onStatus = Delegate.create(this,onVideoStatus);
+	private function onFLVLoad():Void{
+		flvLoader.getNetStream().onStatus = Delegate.create(this,onVideoStatus);
 		dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.READY,this));
-		if(autoPlay==true)play();
 		clickDisable = false;
 	}
 
 	private function onLoadComplete() : Void {
+		if(autoPlay==true&&isPlay!=true)this.gotoAndPlay(0.01);
+		if(safePlayToEnd!=true)dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.EARLIESTSTARTTIME,this));
 		dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.COMPLETE,this));
 	}
 	
@@ -121,7 +122,7 @@ var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
 
 	private function onEarliestStartTime():Void{
 		safePlayToEnd = true;
-		if(autoPlay==true)this.play();
+		if(autoPlay==true&&isPlay!=true)this.gotoAndPlay(0.01);
 		dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.EARLIESTSTARTTIME,this));
 	}
 
@@ -141,11 +142,11 @@ var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
 		if(mcPreloadImage._visible == true){
 			mcPreloadImage._visible = false;
 		}
-		if(ns.bytesLoaded==0){
+		if(flvLoader.getNetStream().bytesLoaded==0){
 			dispatchEvent(new ErrorEvent(currentTarget,ErrorEvent.ERROR,this,'VideoPlayer play before data loaded'));
 			return;
 		}
-		ns.pause(false);
+		flvLoader.getNetStream().pause(false);
 		isPlay = true;
 		dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.PLAY));
 	}
@@ -154,7 +155,7 @@ var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
 		if(isPlaying==false)return;
 		removeReplayInterval();
 
-		ns.pause(true);
+		flvLoader.getNetStream().pause(true);
 		isPlay = false;
 		if(sendEvent==false)return;
 		dispatchEvent(new VideoPlayerEvent(currentTarget,VideoPlayerEvent.STOP));
@@ -165,7 +166,7 @@ var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
 	public function seek(time:Number):Void{
 		var seekMax:Number =getDuration()-1; 
 		if(time>seekMax)time = seekMax;
-		ns.seek(time);
+		flvLoader.getNetStream().seek(time);
 	}
 
 	public function gotoAndPlay(time:Number):Void{
@@ -173,12 +174,12 @@ var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
 		if(time==0){
 			removeReplayInterval();
 		}
-		ns.seek(time);
+		flvLoader.getNetStream().seek(time);
 		play();
 	}
 
 	public function gotoAndStop(time:Number):Void{
-		ns.seek(time);
+		flvLoader.getNetStream().seek(time);
 		stop();
 	}
 	
@@ -195,7 +196,7 @@ var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
 				removeReplayInterval();
 			}
 
-			prevFrameTime = ns.time;
+			prevFrameTime = flvLoader.getNetStream().time;
 
 			if(_currentframe>=getDuration()){
 				playEnd();
@@ -210,25 +211,25 @@ var earliestStartTime:Number = (this.getDuration()*1000)-downloadExpectTime;
 	}
 	
 	public function getBytesTotal():Number{
-		return ns.bytesTotal;
+		return flvLoader.getNetStream().bytesTotal;
 	}
 	
 	public function getBytesLoaded():Number{
-		return ns.bytesLoaded;
+		return flvLoader.getNetStream().bytesLoaded;
 	}
 
 	public function getDuration() : Number {
 		var i:Number=0;
-		for(i=0;i<ns.metaDataArray.length;i++){
-			if(ns.metaDataArray[i].name=='duration'){
-				return Number(ns.metaDataArray[i].value);
+		for(i=0;i<flvLoader.getNetStream().metaDataArray.length;i++){
+			if(flvLoader.getNetStream().metaDataArray[i].name=='duration'){
+				return Number(flvLoader.getNetStream().metaDataArray[i].value);
 			}
 		};
 		return -1;
 	}
 	
 	public function get _currentframe():Number{
-		return ns.time;
+		return flvLoader.getNetStream().time;
 	}
 
 	public function get isPlaying():Boolean{

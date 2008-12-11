@@ -43,7 +43,9 @@ class com.mixmedia.mx.NetStreamEvt extends NetStream implements IEventDispatcher
 	private var iid:Number;
 
 	private function checkStatus():Void{
-		if(this.bytesTotal>0 && isOpen!=true){
+		if(this.bytesTotal==-1)return;
+
+		if(this.bytesLoaded>0 && isOpen!=true){
 			dispatchEvent(new LoaderEvent(currentTarget,LoaderEvent.OPEN,this,this));
 			dispatchEvent(new LoaderEvent(currentTarget,LoaderEvent.READY,this,this));
 			isOpen = true;
@@ -54,6 +56,7 @@ class com.mixmedia.mx.NetStreamEvt extends NetStream implements IEventDispatcher
 			isComplete = true;
 			clearInterval(iid);
 		}
+
 		dispatchEvent(new LoaderEvent(currentTarget,LoaderEvent.PROGRESS,this,this));
 	}
 
@@ -82,6 +85,7 @@ class com.mixmedia.mx.NetStreamEvt extends NetStream implements IEventDispatcher
 		metaDataArray = new Array();
 		cuePointArray = new Array();
 		this.play(requestURL);
+		this.pause(true);
 		isOpen = false;
 		isComplete=false;
 		isReady = false;
